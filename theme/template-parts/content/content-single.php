@@ -1,0 +1,16 @@
+<?php
+/**
+ * Template part for displaying single posts
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ *
+ * @package Нити_Света
+ */
+
+?>
+
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+
+		<?php the_content(); ?>
+
+</article><!-- #post-${ID} -->

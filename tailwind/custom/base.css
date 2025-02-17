@@ -1,0 +1,566 @@
+/**
+ * Custom styles to immediately follow Tailwind’s `base` layer
+ *
+ * “Add things like base typography styles [or] opinionated global resets.”
+ *
+ * — from https://tailwindcss.com/docs/plugins#adding-base-styles
+ */
+
+/**
+ * This uses the background and foreground colors declared in the
+ * `theme.json` file and is applied both to the frontend and in the block
+ * editor.
+*/
+body {
+	@apply bg-background text-foreground font-sans;
+}
+
+html,
+body,
+#page {
+	@apply min-h-screen;
+}
+
+.amount {
+	/* display: none; */
+}
+a.added_to_cart.wc-forward {
+	/* display: none!important; */
+	@apply btn absolute left-0 top-0 w-full h-full text-center leading-4 bg-primary hover:ring-primary hover:ring-opacity-30;
+}
+
+.woocommerce-notices-wrapper {
+	@apply container;
+}
+
+.woocommerce-notices-wrapper {
+	@apply !p-0;
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+}
+
+.woocommerce-message {
+	@apply bg-white shadow mb-3 md:mb-8;
+}
+
+.add_to_cart_button.ajax_add_to_cart.loading:after {
+	@apply !top-[17px];
+}
+
+.woocommerce-cart {
+	.woocommerce {
+		@apply max-w-[805px];
+	}
+	.entry-header {
+		@apply hidden;
+	}
+}
+
+.woocommerce a.remove:hover {
+	@apply bg-slate-100;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+	-moz-appearance: textfield;
+}
+
+.qty {
+	@apply outline-none border-gray border h-12 w-12 text-xl font-semibold;
+}
+
+.update-cart-button {
+	display: none !important;
+}
+
+#billing_state_field {
+	@apply hidden;
+}
+
+a.add_to_cart_button.ajax_add_to_cart {
+	@apply flex items-center justify-center py-2 px-4 bg-secondary hover:bg-secondary transition-all no-underline h-[50px] text-white rounded-[6px] hover:ring-4 hover:ring-secondary hover:ring-opacity-30 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75;
+}
+
+.tippy-box[data-theme~="primary"] {
+	@apply bg-primary shadow text-sm leading-5 p-2 rounded-xl;
+}
+
+.tippy-box[data-theme~="white"] {
+	@apply bg-primary shadow text-sm leading-5 py-1 rounded-xl;
+
+	a {
+		@apply text-white font-normal;
+	}
+}
+
+.swiper-button-disabled {
+	@apply grayscale opacity-30;
+}
+
+.woocommerce-checkout {
+	header.entry-header,
+	.woocommerce-form-coupon-toggle {
+		@apply hidden;
+	}
+}
+
+.page-title,
+.entry-title {
+	@apply font-title text-center text-primary text-4xl mb-6;
+}
+
+.entry-content #yith-wcwl-form {
+	@apply container max-w-full;
+	max-width: 1620px !important;
+}
+
+.woocommerce-billing-fields,
+.woocommerce-additional-fields {
+	h3 {
+		@apply hidden;
+	}
+}
+
+.input-text {
+	@apply border border-gray rounded-md h-12 px-2 text-center transition-all focus:ring-2 focus:ring-primary focus:ring-opacity-75 hover:ring-2 hover:ring-opacity-50 hover:ring-primary;
+}
+
+#billing_last_name_field,
+#billing_address_1_field label {
+	@apply hidden;
+}
+
+.woocommerce form .form-row-first,
+.woocommerce-page form .form-row-first {
+	float: none !important;
+	width: 100%;
+}
+
+.woocommerce-billing-fields__field-wrapper {
+	@apply grid gap-3 lg:grid-cols-2;
+}
+
+#billing_first_name_field {
+	@apply order-3 lg:order-1;
+}
+
+#billing_phone_field {
+	@apply order-4 lg:order-2;
+}
+
+#billing_country_field {
+	@apply order-1 lg:order-3;
+}
+
+#billing_city_field {
+	@apply order-2 lg:order-4;
+}
+
+#billing_address_1_field {
+	@apply order-5 col-span-2;
+}
+
+.page-content > *,
+.entry-content > * {
+	max-width: 1076px !important;
+}
+
+.woocommerce-cart .button.wc-backward {
+	@apply flex items-center justify-center py-2 px-4 bg-secondary transition-all no-underline h-[50px] text-white rounded-[6px] hover:ring-4 hover:ring-secondary hover:ring-opacity-30 hover:bg-secondary hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75;
+
+	span {
+		@apply text-white;
+	}
+}
+
+.woocommerce-info {
+	@apply bg-white shadow pl-3;
+
+	&:before {
+		@apply hidden;
+	}
+}
+
+/* .woocommerce-cart .button.wc-backward {
+	@apply hidden;
+} */
+
+.open-pvz-btn {
+	@apply bg-secondary h-12 max-w-[400px] flex items-center justify-center text-center border-0 mx-auto mt-5;
+}
+
+span#select2-billing_country-container {
+	@apply h-12 flex items-center text-center justify-center;
+}
+
+span.select2-selection.select2-selection--single {
+	@apply h-12 text-center justify-center;
+}
+
+.select2-container--default
+	.select2-selection--single
+	.select2-selection__arrow {
+	@apply top-3 right-2;
+}
+
+/* #customer_details {
+	@apply ;
+} */
+
+.woocommerce-billing-fields {
+	@apply col-span-2;
+}
+
+.woocommerce-shipping-fields {
+	@apply hidden;
+}
+
+textarea#order_comments {
+	@apply min-h-[120px] py-2 px-4 hover:ring-2 hover:ring-opacity-50 hover:ring-primary focus:ring-2 focus:ring-primary focus:ring-opacity-75;
+}
+
+.woocommerce #payment #place_order,
+.woocommerce-page #payment #place_order {
+	@apply flex items-center justify-center float-none w-full bg-secondary text-white h-12 font-normal hover:ring-secondary hover:ring-opacity-30;
+}
+
+.woocommerce-checkout-review-order {
+	@apply mb-10;
+}
+
+.wc_payment_methods,
+.woocommerce-terms-and-conditions-wrapper {
+	@apply hidden;
+}
+
+.woocommerce-shipping-totals th {
+	display: none !important;
+}
+
+.woocommerce table.shop_table {
+	@apply border-0 mt-5;
+}
+
+.woocommerce table.shop_table tbody th,
+.woocommerce table.shop_table tfoot td,
+.woocommerce table.shop_table tfoot th {
+	@apply border-t-0;
+}
+
+.woocommerce-checkout-review-order-table tfoot {
+	@apply text-center text-lg lg:text-xl text-primary font-semibold pt-6 table border-t-0 w-full;
+	.woocommerce-Price-amount bdi {
+		@apply font-bold text-primary;
+	}
+}
+
+.woocommerce table.shop_table td {
+	@apply p-0;
+}
+
+#add_payment_method #payment div.form-row,
+.woocommerce-cart #payment div.form-row,
+.woocommerce-checkout #payment div.form-row {
+	@apply p-0;
+}
+
+.woocommerce-shipping-methods {
+	@apply grid grid-cols-1 lg:grid-cols-[repeat(auto-fit,_minmax(500px,_1fr))] gap-2;
+
+	li {
+		@apply bg-white px-5 py-8 shadow relative;
+
+		&:nth-child(2):before {
+			content: "или";
+			@apply flex items-center bg-white absolute justify-center text-center text-gray border border-[#E6E6E6] rounded-full w-20 h-12 top-0 left-1/2 -mt-7 max-lg:-ml-10 lg:top-1/2 lg:-left-11 lg:-mt-6;
+		}
+	}
+
+	input:checked + label {
+		@apply text-secondary;
+	}
+}
+
+.register-block {
+	&:before {
+		content: "или";
+		@apply hidden lg:flex items-center bg-white absolute justify-center text-center text-gray border border-[#E6E6E6] rounded-full w-20 h-12 top-1/2 -left-11 -mt-6;
+	}
+}
+
+label[for="shipping_method_0_official_cdek_137"] {
+	@apply lg:mb-10;
+
+	&:after {
+		content: "Если вы выберете доставку курьером, не забудьте ниже указать ваш адрес.";
+		@apply text-base text-gray font-normal lg:max-w-[310px] lg:mt-3 lg:mx-auto w-full block max-lg:text-xs;
+	}
+}
+
+#shipping_method_0_official_cdek_137:checked + label {
+	&:after {
+	}
+}
+
+tr.cart-discount {
+	/* @apply hidden; */
+}
+
+.woocommerce ul#shipping_method li label {
+	@apply flex w-full lg:text-center lg:items-center lg:justify-center cursor-pointer text-sm max-lg:flex-col max-lg:justify-start lg:text-xl font-bold text-primary hover:text-secondary lg:flex-wrap;
+
+	.woocommerce-Price-amount {
+		@apply ml-1;
+	}
+}
+
+.my-custom-shipping-table {
+	@apply mt-5;
+}
+
+.woocommerce-shipping-methods {
+	label {
+		@apply px-10;
+	}
+	input:checked + label {
+		@apply relative;
+
+		&:before {
+			content: "";
+			background-image: url("/wp-content/themes/nitisveta/theme/images/check.svg");
+			@apply text-secondary absolute left-0 top-0 lg:-top-3 inline-block w-7 h-7 mr-2 bg-contain shrink-0;
+		}
+	}
+
+	input:not(:checked) + label {
+		@apply relative;
+
+		&:before {
+			content: "";
+			@apply text-secondary absolute left-0 top-1 lg:-top-3 inline-block w-5 h-5 rounded-full border-zinc-300 border mr-2 bg-contain shrink-0;
+		}
+	}
+}
+
+.woocommerce ul#shipping_method li input {
+	@apply invisible m-0 absolute;
+}
+
+#pvz-info {
+	@apply text-center text-[15px] max-w-[400px] mx-auto bg-[#f3f3f3] text-[#626262] mt-3 border border-[#d1d1d1] font-semibold;
+	&:before {
+		@apply hidden;
+	}
+}
+
+#billing_address_1_field {
+	@apply p-5 bg-white shadow mt-4;
+}
+
+.um-register,
+.um-login {
+	.um-alt,
+	.um-field-checkbox:not(.um-field),
+	.um-field-radio:not(.um-field) {
+		@apply hidden;
+	}
+}
+.um .um-form {
+	#um-submit-btn {
+		@apply bg-secondary w-full max-w-full hover:ring-4 hover:ring-secondary hover:ring-opacity-30 block;
+		width: 100% !important;
+	}
+}
+
+.woocommerce a.remove {
+	@apply flex;
+}
+
+.um-center .um-button {
+	width: 100% !important;
+}
+
+.um-register {
+	&:after {
+		content: "Я соглашаюсь на обработку персональных данных ";
+		@apply text-gray text-sm text-center w-full mt-6 block;
+	}
+}
+
+.um-form a.um-link-alt {
+	color: #ef3343 !important;
+}
+
+.um .um-form input[type="text"],
+.um .um-form input[type="search"],
+.um .um-form input[type="tel"],
+.um .um-form input[type="number"],
+.um .um-form input[type="password"],
+.um .um-form textarea,
+.um .upload-progress,
+.select2-container .select2-choice,
+.select2-drop,
+.select2-container-multi .select2-choices,
+.select2-drop-active,
+.select2-drop.select2-drop-above {
+	@apply rounded-md h-12;
+}
+
+.um-login,
+.um-register {
+	&.um {
+		margin-bottom: 0 !important;
+	}
+
+	.um-form {
+		@apply max-w-[400px] mx-auto;
+	}
+
+	.um-form input[type="text"],
+	.um-form input[type="search"],
+	.um-form input[type="tel"],
+	.um-form input[type="number"],
+	.um-form input[type="password"] {
+		height: 50px !important;
+		@apply text-center;
+	}
+}
+
+.input-text.qty {
+	@apply rounded-none;
+}
+
+#coupon_code {
+}
+
+.wpcf7-spinner {
+	z-index: 11;
+	bottom: -30px !important;
+	right: 0 !important;
+	margin-right: 0 !important;
+}
+
+.subscribe-form-wrapper {
+	p {
+		@apply relative md:flex;
+
+		.wpcf7-form-control-wrap {
+			@apply md:w-full;
+		}
+	}
+	input[type="email"] {
+		@apply w-full border border-primary max-md:rounded-md max-md:mb-3 md:rounded-l-md h-[50px] md:border-r-0 pl-6 placeholder:text-primary;
+	}
+	input[type="submit"] {
+		@apply max-md:w-full md:rounded-r-md md:rounded-l-none md:z-10 cursor-pointer;
+	}
+}
+
+.wpcf7-spinner {
+	@apply absolute right-1 bottom-3;
+}
+
+.wpcf7 form .wpcf7-response-output {
+	@apply m-0 mt-3 rounded-md text-sm font-semibold;
+}
+
+.wpcf7 form.invalid .wpcf7-response-output,
+.wpcf7 form.unaccepted .wpcf7-response-output,
+.wpcf7 form.payment-required .wpcf7-response-output {
+	@apply bg-yellow-100 text-yellow-500;
+}
+
+.wpcf7-not-valid-tip {
+	@apply text-sm font-semibold;
+}
+
+#yith-wcwl-popup-message {
+	@apply max-md:!-ml-[138px];
+}
+
+.swiper-pagination-bullet-active {
+	@apply bg-secondary;
+}
+
+.swiper-pagination-bullet {
+	@apply !mx-2 w-[5px] h-[5px];
+}
+
+.product-card {
+	.default-fav-button,
+	.default-fav-delete-button {
+		@apply hidden;
+	}
+}
+
+.single-product .product-summary {
+	.heart-fav-button,
+	.heart-fav-delete-button {
+		@apply hidden;
+	}
+}
+
+.woocommerce-notices-wrapper {
+	.button.wc-forward {
+		@apply hidden;
+	}
+}
+
+.woocommerce-error {
+	@apply bg-white shadow px-3 !text-sm;
+
+	&:before {
+		@apply hidden;
+	}
+}
+
+.facetwp-load-more {
+	@apply btn-border h-[50px] border-secondary text-secondary w-full hover:bg-secondary text-sm text-center lg:text-base;
+}
+
+.response-message .alert {
+	@apply p-3 mt-2 rounded-md text-center;
+}
+
+.alert-success {
+	@apply text-[#155724] border-[#c3e6cb] bg-[#d4edda];
+}
+
+.alert-danger {
+	@apply text-[#721c24] border-[#f5c6cb] bg-[#f8d7da];
+}
+
+.mfp-close {
+	@apply !bg-white w-[75px] h-[50px] !border !border-[#E6E6E6] !flex items-center justify-center !-top-16 !opacity-100 rounded-md;
+}
+
+.mfp-content {
+	@apply max-lg:align-top;
+}
+
+label[for="billing_city"] {
+	@apply !hidden;
+}
+
+#billing_city_field {
+	.select2-container--default
+		.select2-selection--single
+		.select2-selection__rendered {
+		line-height: 46px;
+	}
+
+	.select2-selection__clear {
+		display: none;
+	}
+}
+
+.select2-container {
+	@apply !w-full max-w-full;
+}
