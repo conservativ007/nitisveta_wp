@@ -13,39 +13,38 @@
 <div class="mobile-menu hidden xl:hidden fixed z-[50] w-full h-full top-[60px] p-4 bg-[#F6F6F6]">
   <div class="mobile-menu-inner bg-white shadow px-3 py-8">
     <div class="flex flex-col gap-7">
-      <a href="/shop" class="flex items-center h-14 w-full transition justify-center rounded-[10px] px-3 bg-[#F8F8F8] hover:bg-slate-100"><span>Каталог
-          изделий</span></a>
+      <a href="/shop" class="flex items-center h-14 w-full transition justify-center rounded-[10px] px-3 bg-[#F8F8F8] hover:bg-slate-100"><span>Изделия</span></a>
 
-      <a href="/shop-books" class="flex items-center h-14 w-full transition justify-center rounded-[10px] px-3 bg-[#F8F8F8] hover:bg-slate-100"><span>Каталог
-          книг</span></a>
-      <a href="/sweets" class="flex items-center h-14 w-full transition justify-center rounded-[10px] px-3 bg-[#F8F8F8] hover:bg-slate-100">
-        <span>
-          Сладости
-        </span>
-      </a>
+      <a href="/shop-books" class="flex items-center h-14 w-full transition justify-center rounded-[10px] px-3 bg-[#F8F8F8] hover:bg-slate-100"><span>Книги</span></a>
       <a href="/chinesetea" class="flex items-center h-14 w-full transition justify-center rounded-[10px] px-3 bg-[#F8F8F8] hover:bg-slate-100">
         <span>
           Китайский чай
         </span>
       </a>
+      <a href="/sweets" class="flex items-center h-14 w-full transition justify-center rounded-[10px] px-3 bg-[#F8F8F8] hover:bg-slate-100">
+        <span>
+          Подарочные наборы
+        </span>
+      </a>
+      
 
       <?php
       if (is_user_logged_in()) {
-        // Код для авторизованных пользователей
-      ?>
+          // Код для авторизованных пользователей
+          ?>
         <!-- HTML для авторизованных пользователей -->
         <a href="/profile" class="flex items-center h-14 w-full transition justify-center rounded-[10px] px-3 bg-[#F8F8F8] hover:bg-slate-100"><span>Мой
             профиль</span></a>
       <?php
       } else {
-        // Код для неавторизованных пользователей
-      ?>
+          // Код для неавторизованных пользователей
+          ?>
         <!-- HTML для неавторизованных пользователей -->
         <!-- <a href="/loginregister" class="flex items-center h-14 w-full transition justify-center rounded-[10px] px-3 bg-[#F8F8F8] hover:bg-slate-100"><span>Вход/регистрация</span></a> -->
         <a href="#test-popup" class="open-popup-link flex items-center h-14 w-full transition justify-center rounded-[10px] px-3 bg-[#F8F8F8] hover:bg-slate-100"><span>Вход/регистрация</span></a>
       <?php
       }
-      ?>
+?>
     </div>
 
     <div class="grid grid-cols-2 gap-x-4 gap-y-5 mt-6">
@@ -110,20 +109,17 @@
     </button>
 
     <div class="hidden xl:flex xl:visible items-center gap-2 2xl:gap-4 w-full justify-end" id="navbar-header">
-      <a href="/shop" class="flex items-center h-14 w-full max-w-[215px] transition justify-center rounded-[10px] px-3 bg-[#F8F8F8] hover:bg-slate-100"><span>Каталог
-          изделий</span></a>
-      <a href="/sweets" class="flex items-center h-14 w-full max-w-[215px] transition justify-center rounded-[10px] px-3 bg-[#F8F8F8] hover:bg-slate-100">
-        <span>
-          Cладости</span>
-      </a>
+      <a href="/shop" class="flex items-center h-14 w-full max-w-[215px] transition justify-center rounded-[10px] px-3 bg-[#F8F8F8] hover:bg-slate-100"><span>Изделия</span></a>
+      <a href="/shop-books" class="flex items-center h-14 w-full max-w-[215px] transition justify-center rounded-[10px] px-3 bg-[#F8F8F8] hover:bg-slate-100"><span>Книги</span></a>
       <a href="/chinesetea" class="flex items-center h-14 w-full max-w-[215px] transition justify-center rounded-[10px] px-3 bg-[#F8F8F8] hover:bg-slate-100">
         <span>
           Китайский чай</span>
       </a>
-
-      <a href="/shop-books" class="flex items-center h-14 w-full max-w-[215px] transition justify-center rounded-[10px] px-3 bg-[#F8F8F8] hover:bg-slate-100"><span>Каталог
-          книг</span></a>
-
+      <a href="/sweets" class="flex items-center h-14 w-full max-w-[215px] transition justify-center rounded-[10px] px-3 bg-[#F8F8F8] hover:bg-slate-100">
+        <span>
+          Подарочные наборы</span>
+      </a>
+      
       <a href="/wishlist" class="relative flex items-center h-14 w-full max-w-[60px] transition justify-center rounded-[10px] px-3 bg-[#F8F8F8] hover:bg-slate-100">
         <div class="absolute left-4 top-4">
           <svg width="28" height="26" viewBox="0 0 28 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -145,10 +141,10 @@
           </svg>
 
           <?php
-          if (function_exists('WC')) {
-            $cart_count = WC()->cart->get_cart_contents_count();
-          }
-          ?>
+    if (function_exists('WC')) {
+        $cart_count = WC()->cart->get_cart_contents_count();
+    }
+?>
 
 
           <div id="your-element-id" class="cart-count <?php if ($cart_count == 0) : ?>hidden<?php endif; ?> flex items-center justify-center rounded-full bg-red-500 text-white absolute top-[-12px] right-[-12px] w-[24px] h-[24px] border-2 border-white text-center text-xs font-bold">
@@ -162,20 +158,20 @@
 
       <?php
       if (is_user_logged_in()) {
-        // Код для авторизованных пользователей
-      ?>
+          // Код для авторизованных пользователей
+          ?>
         <!-- HTML для авторизованных пользователей -->
         <a href="/profile" class="flex items-center h-14 w-full max-w-[215px] transition justify-center rounded-[10px] px-3 bg-[#F8F8F8] hover:bg-slate-100"><span>Мой
             профиль</span></a>
       <?php
       } else {
-        // Код для неавторизованных пользователей
-      ?>
+          // Код для неавторизованных пользователей
+          ?>
         <!-- HTML для неавторизованных пользователей -->
         <a href="#test-popup" class="open-popup-link flex items-center h-14 w-full max-w-[215px] transition justify-center rounded-[10px] px-3 bg-[#F8F8F8] hover:bg-slate-100"><span>Вход/регистрация</span></a>
       <?php
       }
-      ?>
+?>
     </div>
   </div>
 </nav>
@@ -202,10 +198,10 @@
         </svg>
 
         <?php
-        if (function_exists('WC')) {
-          $cart_count = WC()->cart->get_cart_contents_count();
-        }
-        ?>
+  if (function_exists('WC')) {
+      $cart_count = WC()->cart->get_cart_contents_count();
+  }
+?>
 
 
         <div id="your-element-id" class="cart-count <?php if ($cart_count == 0) : ?>hidden<?php endif; ?> flex items-center justify-center rounded-full bg-red-500 text-white absolute top-[-12px] right-[-12px] w-[24px] h-[24px] border-2 border-white text-center text-xs font-bold">
@@ -216,10 +212,10 @@
     </a>
 
     <a href="<?php if (is_user_logged_in()) {
-                echo "/profile";
-              } else {
-                echo "/loginregister";
-              } ?>" class="h-[50px] w-[70px] flex items-center justify-center bg-[#F8F8F8] rounded-xl">
+        echo "/profile";
+    } else {
+        echo "/loginregister";
+    } ?>" class="h-[50px] w-[70px] flex items-center justify-center bg-[#F8F8F8] rounded-xl">
       <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M25.9996 22.8002H25.8996C23.4996 22.3002 21.2996 21.7002 20.7996 20.5002C20.5996 20.0002 20.5996 19.3002 21.0996 18.5002C23.4996 13.9002 23.9996 10.0002 22.3996 7.4002C21.3996 5.7002 19.4996 4.7002 17.1996 4.7002C14.8996 4.7002 12.9996 5.7002 11.9996 7.4002C10.3996 10.0002 10.8996 14.0002 13.3996 18.5002C13.7996 19.3002 13.8996 19.9002 13.6996 20.5002C13.0996 21.7002 10.8996 22.2002 8.59961 22.8002H8.39961C5.29961 23.5002 5.09961 25.1002 5.09961 27.6002V28.9002H6.49961H7.29961H27.0996H27.4996H29.2996V27.6002C29.2996 25.1002 29.0996 23.5002 25.9996 22.8002ZM15.5996 21.4002C15.9996 20.6002 16.1996 19.2002 15.2996 17.5002C13.2996 13.7002 12.6996 10.5002 13.8996 8.6002C14.4996 7.6002 15.7996 6.9002 17.1996 6.9002C18.5996 6.9002 19.8996 7.5002 20.4996 8.5002C21.5996 10.4002 21.0996 13.7002 19.0996 17.5002C18.1996 19.3002 18.3996 20.6002 18.7996 21.4002C19.7996 23.6002 22.5996 24.2002 25.4996 24.9002C26.7996 25.2002 27.0996 25.5002 27.1996 26.7002H7.29961C7.39961 25.5002 7.69961 25.2002 8.99961 24.9002C11.8996 24.2002 14.5996 23.6002 15.5996 21.4002Z" fill="#142346" />
       </svg>
