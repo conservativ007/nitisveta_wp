@@ -3434,6 +3434,10 @@ ul#ui-id-1 {
   height: 100%;
 }
 
+.h-\[320px\]{
+  height: 320px;
+}
+
 .max-h-\[50px\]{
   max-height: 50px;
 }
@@ -5383,6 +5387,10 @@ ul#ui-id-1 {
 
   .\32xl\:h-\[450px\]{
     height: 450px;
+  }
+
+  .\32xl\:h-\[440px\]{
+    height: 440px;
   }
 
   .\32xl\:w-1\/2{
