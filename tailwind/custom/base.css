@@ -134,7 +134,8 @@ a.add_to_cart_button.ajax_add_to_cart {
 
 #billing_last_name_field,
 #billing_address_1_field label {
-	@apply hidden;
+	/* @apply hidden; */
+	display: none !important;
 }
 
 .woocommerce form .form-row-first,
@@ -143,25 +144,21 @@ a.add_to_cart_button.ajax_add_to_cart {
 	width: 100%;
 }
 
-.woocommerce-billing-fields__field-wrapper {
+/* .woocommerce-billing-fields__field-wrapper {
 	@apply grid gap-3 lg:grid-cols-2;
-}
+} */
 
 #billing_first_name_field {
 	@apply order-3 lg:order-1;
 }
 
-#billing_phone_field {
+/* #billing_phone_field {
 	@apply order-4 lg:order-2;
-}
+} */
 
-#billing_country_field {
-	@apply order-1 lg:order-3;
-}
-
-#billing_city_field {
+/* #billing_city_field {
 	@apply order-2 lg:order-4;
-}
+} */
 
 #billing_address_1_field {
 	@apply order-5 col-span-2;
@@ -222,9 +219,9 @@ span.select2-selection.select2-selection--single {
 	@apply hidden;
 }
 
-textarea#order_comments {
-	@apply min-h-[120px] py-2 px-4 hover:ring-2 hover:ring-opacity-50 hover:ring-primary focus:ring-2 focus:ring-primary focus:ring-opacity-75;
-}
+/* textarea#order_comments {
+	@apply min-h-[112px] py-2 px-4 hover:ring-2 hover:ring-opacity-50 hover:ring-primary focus:ring-2 focus:ring-primary focus:ring-opacity-75;
+} */
 
 .woocommerce #payment #place_order,
 .woocommerce-page #payment #place_order {
@@ -360,8 +357,12 @@ tr.cart-discount {
 	}
 }
 
-#billing_address_1_field {
+/* #billing_address_1_field {
 	@apply p-5 bg-white shadow mt-4;
+} */
+
+#billing_address_1_field {
+	@apply p-5 bg-white shadow;
 }
 
 .um-register,
@@ -549,7 +550,7 @@ label[for="billing_city"] {
 	@apply !hidden;
 }
 
-#billing_city_field {
+/* #billing_city_field {
 	.select2-container--default
 		.select2-selection--single
 		.select2-selection__rendered {
@@ -559,8 +560,39 @@ label[for="billing_city"] {
 	.select2-selection__clear {
 		display: none;
 	}
-}
+} */
 
 .select2-container {
 	@apply !w-full max-w-full;
+}
+
+/* кнопка лайк в карточке товара */
+
+.custom-wishlist-button a {
+	font-size: 14px;
+	font-weight: 600;
+	border-color: #142346;
+	color: #142346;
+}
+
+.custom-wishlist-button a svg {
+	width: 19px;
+	height: 18px;
+}
+
+@media (min-width: 1024px) {
+	/* 1024px и выше */
+	.custom-wishlist-button a svg {
+		width: 26px;
+		height: 26px;
+	}
+}
+
+.yith-wcwl-add-button a {
+	padding: 0;
+}
+
+.custom-button-add-to-cart button {
+	font-family: "Open Sans", sans-serif;
+	font-weight: 400;
 }

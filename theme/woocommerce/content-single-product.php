@@ -35,47 +35,35 @@ if (post_password_required()) {
 $ucenennyj_value = $product->get_attribute('pa_ucenennyj');
 $ucenenn = '';
 if ('да' === strtolower($ucenennyj_value)) {
-    $ucenenn = "уцененный";
+    $ucenenn = 'уцененный';
 }
 
 ?>
 
 <div class="container xl:mt-6">
-
     <div id="product-<?php the_ID(); ?>" <?php wc_product_class('xl:grid grid-cols-1 xl:grid-cols-7 xl:gap-3', $product); ?>>
 
         <div class="single-product-gallery-wrapper w-full col-span-4 xl:col-span-3 px-0">
 
             <?php $attachment_ids = $product->get_gallery_image_ids(); ?>
 
-            <div class="swiper mySwiper2 select-none swiper-product bg-white shadow mb-3">
-                <div class="swiper-wrapper">
+            <?php
+                $product_id = $product->get_id();
+$categories = wp_get_post_terms($product_id, 'product_cat'); // Получаем категории товара
 
-                    <div class="swiper-slide h-[340px] xl:h-[560px] w-full">
-                        <img src="<?php echo get_the_post_thumbnail_url($product->ID); ?>" class="object-cover object-center h-full w-full" />
-                    </div>
+if (!empty($categories)) {
+    $category_id = $categories[0]->term_id; // ID первой категории
+    if ($category_id == 42) {
+        include get_template_directory() . '/template-parts/blocks/template-sweets.php';
+    } else {
+        include get_template_directory() . '/template-parts/blocks/template-default.php';
+    }
+}
+?>
 
-                    <?php foreach ($attachment_ids as $attachment_id) { ?>
-                        <div class="swiper-slide h-[340px] xl:h-[560px] w-full">
-                            <img src="<?php echo wp_get_attachment_url($attachment_id); ?>" class='object-cover object-center h-full w-full block' />
-                        </div>
-                    <?php } ?>
-
-                </div>
-                <div class="swiper-navigation xl:hidden absolute h-0 top-1/2 px-1 w-full flex items-center justify-between gap-5 z-10">
-                    <div class="swiper-sprod-button-prev h-4 w-4 block"><svg width="15" height="17" viewBox="0 0 15 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M2 6.76795C0.666667 7.53775 0.666665 9.46225 2 10.2321L10.25 14.9952C11.5833 15.765 13.25 14.8027 13.25 13.2631L13.25 3.73686C13.25 2.19726 11.5833 1.23501 10.25 2.00481L2 6.76795Z" fill="#EF3343" stroke="white" stroke-width="2" />
-                        </svg>
-                    </div>
-                    <div class="swiper-sprod-button-next h-4 w-4 block"><svg width="15" height="17" viewBox="0 0 15 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M13 10.2321C14.3333 9.46225 14.3333 7.53775 13 6.76795L4.75 2.00481C3.41667 1.23501 1.75 2.19726 1.75 3.73686L1.75 13.2631C1.75 14.8027 3.41666 15.765 4.75 14.9952L13 10.2321Z" fill="#EF3343" stroke="white" stroke-width="2" />
-                        </svg>
-                    </div>
-                </div>
-                <div class="swiper-pagination xl:hidden"></div>
-            </div>
-
-            <div thumbsSlider="" class="swiper select-none mySwiper swiper-thumbs relative max-lg:hidden">
+            
+            <!-- нижние маленькие фото -->
+            <div thumbsSlider="" class="swiper select-none mySwiper swiper-thumbs relative max-xl:hidden">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide h-52 card">
                         <img src="<?php echo get_the_post_thumbnail_url($product->ID); ?>" class='object-cover object-center h-full w-full block border-2 border-transparent hover:border-secondary transition cursor-pointer' />
@@ -158,23 +146,23 @@ if ('да' === strtolower($ucenennyj_value)) {
 
                 <?php
 
-                $attributes = $product->get_attributes();
+    $attributes = $product->get_attributes();
 
-                foreach ($attributes as $attribute) {
-                    if ($attribute->is_taxonomy()) {
-                        $taxonomy = $attribute->get_name();
-                        $terms = wc_get_product_terms(get_the_ID(), $taxonomy, array('fields' => 'names'));
-                        $value = implode(', ', $terms);
-                        $label = wc_attribute_label($taxonomy);
-                    } else {
-                        $value = $attribute->get_options();
-                        $value = implode(', ', $value);
-                        $label = $attribute->get_name();
-                    }
+foreach ($attributes as $attribute) {
+    if ($attribute->is_taxonomy()) {
+        $taxonomy = $attribute->get_name();
+        $terms = wc_get_product_terms(get_the_ID(), $taxonomy, ['fields' => 'names']);
+        $value = implode(', ', $terms);
+        $label = wc_attribute_label($taxonomy);
+    } else {
+        $value = $attribute->get_options();
+        $value = implode(', ', $value);
+        $label = $attribute->get_name();
+    }
 
-                    echo '<div>' . $label . ': ' . $value . '</div>';
-                }
-                ?>
+    echo '<div>' . $label . ': ' . $value . '</div>';
+}
+?>
 
 
             </div>
@@ -189,14 +177,14 @@ if ('да' === strtolower($ucenennyj_value)) {
                 <?php endif; ?>
 
                 <?php
-                $product = wc_get_product(get_the_ID());
-                $thePrice = $product->get_price(); //will give raw price
-                $regularPrice = $product->get_regular_price(); //will give raw price
-                $discountValue = $regularPrice - $thePrice; //will give raw price
+$product = wc_get_product(get_the_ID());
+$thePrice = $product->get_price(); //will give raw price
+$regularPrice = $product->get_regular_price(); //will give raw price
+$discountValue = $regularPrice - $thePrice; //will give raw price
 
-                $percent = (($regularPrice - $thePrice) / $regularPrice) * 100;
+$percent = (($regularPrice - $thePrice) / $regularPrice) * 100;
 
-                if ($regularPrice != $thePrice) { ?>
+if ($regularPrice != $thePrice) { ?>
                     <div class='flex items-center gap-3 max-xl:order-2'>
                         <span class='text-lg xl:text-xl font-bold'>
                             <?php echo $thePrice; ?> ₽
@@ -218,21 +206,21 @@ if ('да' === strtolower($ucenennyj_value)) {
 
                 <div class="text-lg xl:text-xl font-bold max-xl:order-1">
                     <?php
-                    if ($product->is_in_stock()) {
-                        $availability = __('В наличии', 'woocommerce');
-                    }
-                    if ($product->get_stock_quantity() > 1) {
-                        $availability = __('Осталось на складе: ', 'woocommerce') . $product->get_stock_quantity() . ' шт.';
-                    }
-                    // Change in Stock Text to only 1 or 2 left
-                    if ($product->is_in_stock() && $product->get_stock_quantity() <= 1 && $product->get_stock_quantity() > 0) {
-                        $availability = __('Осталась 1 шт.', 'woocommerce');
-                    }
-                    if (!$product->is_in_stock()) {
-                        $availability = __('Нет в наличии', 'woocommerce');
-                    }
-                    echo $availability;
-                    ?>
+    if ($product->is_in_stock()) {
+        $availability = __('В наличии', 'woocommerce');
+    }
+if ($product->get_stock_quantity() > 1) {
+    $availability = __('Осталось на складе: ', 'woocommerce') . $product->get_stock_quantity() . ' шт.';
+}
+// Change in Stock Text to only 1 or 2 left
+if ($product->is_in_stock() && $product->get_stock_quantity() <= 1 && $product->get_stock_quantity() > 0) {
+    $availability = __('Осталась 1 шт.', 'woocommerce');
+}
+if (!$product->is_in_stock()) {
+    $availability = __('Нет в наличии', 'woocommerce');
+}
+echo $availability;
+?>
                 </div>
 
                 <?php if ($ucenenn) : ?>
@@ -242,12 +230,12 @@ if ('да' === strtolower($ucenennyj_value)) {
 
             <?php
             if ($product->is_in_stock()) { ?>
-                <div class="pt-1 xl:pt-7 max-w-lg">
+                <div class="custom-button-add-to-cart pt-1 xl:pt-7 max-w-lg">
                     <form class="w-full mb-4" action="<?php echo esc_url(get_permalink()); ?>" method="post" enctype='multipart/form-data'>
                         <?php
-                        $product_id = esc_attr($product->get_id());
-                        $quantity = get_product_quantity_in_cart($product_id);
-                        ?>
+    $product_id = esc_attr($product->get_id());
+                $quantity = get_product_quantity_in_cart($product_id);
+                ?>
 
                         <input type="hidden" name="add-to-cart" value="<?php echo esc_attr($product->get_id()); ?>" />
                         <input type="hidden" name="quantity" value="1" />
@@ -261,19 +249,91 @@ if ('да' === strtolower($ucenennyj_value)) {
                     </form>
                 </div>
             <?php  }
-            ?>
+?>
 
 
-            <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 xl:gap-12 max-w-lg mt-2 xl:mt-5 xl:mb-10">
+            <div class="lg:flex lg:justify-between grid grid-cols-2 lg:gap-0 gap-6 max-w-lg mt-2 xl:mt-5 xl:mb-10">
+                <!-- Ozone and Yandex market links start -->
+                <?php
+                    $post_id = get_the_ID();
 
-                <div class="">
+$yandex_value = get_field('yandex', $post_id);
+$ozon_value = get_field('ozon', $post_id);
+
+$default_ozone_value = 'https://www.ozon.ru/seller/niti-sveta-2286902';
+$default_yandex_value = 'https://market.yandex.ru/store--niti-sveta?businessId=138599662';
+
+if ($ozon_value):
+    ?>
+                <div class="order-1">
+                    <a href="<?php echo esc_url($ozon_value); ?>" target="_blank" class="block">
+                        <img class="w-full max-w-[150px] max-h-[50px] object-cover rounded-[7px]"
+                            src="<?php echo get_template_directory_uri(); ?>/images/links/ozon_link.svg"
+                            alt="Перейти на Ozon">
+                    </a>
+                </div>
+                
+                <?php else: ?>
+                    <div class="order-1">
+                        <a href="<?php echo esc_url($default_ozone_value); ?>" target="_blank" class="block">
+                            <img class="w-full max-w-[150px] max-h-[50px] object-cover rounded-[7px]"
+                                src="<?php echo get_template_directory_uri(); ?>/images/links/ozon_link.svg"
+                                alt="Перейти на Ozon">
+                        </a>
+                    </div>
+                
+                <?php endif; ?>
+
+
+
+                <?php if ($yandex_value): ?>
+                    <div class="order-2">
+                        <a href="<?php echo esc_url($yandex_value); ?>" target="_blank" class="block">
+                            <img class="w-full max-w-[150px] max-h-[50px] object-cover rounded-[7px]"
+                                src="<?php echo get_template_directory_uri(); ?>/images/links/yandex_link.svg"
+                                alt="Перейти на Yandex">
+                        </a>
+                    </div>
+                
+
+                <?php else: ?>
+                    <div class="order-2">
+                        <a href="<?php echo esc_url($default_yandex_value); ?>" target="_blank" class="block">
+                            <img class="w-full max-w-[150px] max-h-[50px] object-cover rounded-[7px]"
+                                src="<?php echo get_template_directory_uri(); ?>/images/links/yandex_link.svg"
+                                alt="Перейти на Yandex">
+                        </a>
+                    </div>
+                
+                <?php endif; ?>
+
+                <!-- Ozone and Yandex market links end -->
+                
+                <div class="order-4 lg:order-3 group relative"> 
+                    <div class="custom-share-icon btn-border border-[#142346] share-link cursor-pointer lg:w-[50px] h-[50px] p-0 space-x-3" data-template="share">
+                        <span class="relative w-[30px] h-[26px] block">
+                            <img 
+                                class="absolute inset-0 w-full h-full transition-opacity duration-100 ease-in-out img-default opacity-100" 
+                                src="<?php echo get_template_directory_uri(); ?>/images/links/share3.svg" 
+                                alt="Поделиться"
+                            >
+                            <img 
+                                class="absolute inset-0 w-full h-full transition-opacity duration-100 ease-in-out img-hover opacity-0" 
+                                src="<?php echo get_template_directory_uri(); ?>/images/links/share4.svg" 
+                                alt="Поделиться"
+                            >
+
+                            
+                        </span>
+                        <span class="lg:hidden block font-sans text-[14px] text-[#142346] font-semibold group-hover:text-white">Поделиться</span>
+                    </div>
+                </div>
+            
+
+                <div class="order-3 lg:order-4 custom-wishlist-button">
                     <?php echo do_shortcode('[yith_wcwl_add_to_wishlist]'); ?>
                 </div>
-
-                <div class="">
-                    <div class="btn-border share-link cursor-pointer h-[50px]" data-template="share"><span>Поделиться</span></div>
-                </div>
-
+               
             </div>
 
 
@@ -339,31 +399,31 @@ if ('да' === strtolower($ucenennyj_value)) {
 <?php
 
 if (has_term(18, 'product_cat', $product->get_id())) {
-    $args = array(
+    $args = [
         'post_type' => 'product',
         'posts_per_page' => 15,
-        'tax_query' => array(
-            array(
+        'tax_query' => [
+            [
                 'taxonomy' => 'product_cat',
                 'field' => 'term_id',
-                'terms' => array(18),
+                'terms' => [18],
                 'operator' => 'IN',
-            )
-        ),
-    );
+            ]
+        ],
+    ];
 } else {
-    $args = array(
+    $args = [
         'post_type' => 'product',
         'posts_per_page' => 15,
-        'tax_query' => array(
-            array(
+        'tax_query' => [
+            [
                 'taxonomy' => 'product_cat',
                 'field' => 'term_id',
-                'terms' => array(18),
+                'terms' => [18],
                 'operator' => 'NOT IN',
-            )
-        ),
-    );
+            ]
+        ],
+    ];
 }
 
 $i = 1;

@@ -17,17 +17,17 @@ get_header();
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-y-3 lg:gap-3">
           <div class="bg-white shadow rounded-md p-5 flex items-center justify-center flex-col">
             <?php
-            $countries = array(
+            $countries = [
               'RU' => 'Россия',
               'AM' => 'Армения',
               'BY' => 'Беларусь',
               'KZ' => 'Казахстан',
               'KG' => 'Кыргызстан',
-            );
+            ];
 
-            $current_user = wp_get_current_user();
-            $current_user_country_code = get_user_meta($current_user->ID, 'billing_country', true);
-            ?>
+        $current_user = wp_get_current_user();
+        $current_user_country_code = get_user_meta($current_user->ID, 'billing_country', true);
+        ?>
             <form id="custom-profile-form" action="" method="post" class="grid grid-cols-1 gap-3 max-w-sm mx-auto w-full">
               <input type="text" name="first_name" value="<?php echo esc_attr($current_user->first_name); ?>" placeholder="Имя" class="h-12 rounded-md border border-[#B6B6B6] text-base text-center">
               <input type="tel" name="phone" value="<?php echo esc_attr(get_user_meta($current_user->ID, 'billing_phone', true)); ?>" placeholder="Телефон" class="h-12 rounded-md border border-[#B6B6B6] text-base text-center">
@@ -135,34 +135,34 @@ get_header();
 
         <?php
         $user_id = get_current_user_id(); // ID текущего пользователя
-        $orders = wc_get_orders(array('customer_id' => $user_id)); // Получение заказов пользователя
-        $products = array(); // Массив для хранения товаров
+        $orders = wc_get_orders(['customer_id' => $user_id]); // Получение заказов пользователя
+        $products = []; // Массив для хранения товаров
 
         foreach ($orders as $order) {
-          foreach ($order->get_items() as $item) {
-            $product = $item->get_product(); // Получение объекта товара
-            if ($product) {
-              $products[$product->get_id()] = $product; // Сохранение объекта товара
+            foreach ($order->get_items() as $item) {
+                $product = $item->get_product(); // Получение объекта товара
+                if ($product) {
+                    $products[$product->get_id()] = $product; // Сохранение объекта товара
+                }
             }
-          }
         }
 
         if ($products) :
-          echo '<div class="font-title text-xl lg:text-4xl text-center mb-5 lg:mb-10 lg:-mt-20">Мои предыдущие заказы</div>';
-          echo '<div class="grid grid-cols-1 xl:grid-cols-2 gap-3 mb-8">';
-          foreach ($products as $product) {
-            // Теперь $product является объектом товара
-            $product_name = $product->get_name(); // Получение названия товара
-            $product_id = $product->get_id(); // Получение ID товара
-            $product_permalink = $product->get_permalink();
-            $cart_url = wc_get_cart_url(); // Получить URL корзины
-            $in_cart = false;
-            $ucenennyj_value = $product->get_attribute('pa_ucenennyj');
-            $ucenenn = '';
-            if ('да' === strtolower($ucenennyj_value)) {
-              $ucenenn = "уцененный";
-            }
-        ?>
+            echo '<div class="font-title text-xl lg:text-4xl text-center mb-5 lg:mb-10 lg:-mt-20">Мои предыдущие заказы</div>';
+            echo '<div class="grid grid-cols-1 xl:grid-cols-2 gap-3 mb-8">';
+            foreach ($products as $product) {
+                // Теперь $product является объектом товара
+                $product_name = $product->get_name(); // Получение названия товара
+                $product_id = $product->get_id(); // Получение ID товара
+                $product_permalink = $product->get_permalink();
+                $cart_url = wc_get_cart_url(); // Получить URL корзины
+                $in_cart = false;
+                $ucenennyj_value = $product->get_attribute('pa_ucenennyj');
+                $ucenenn = '';
+                if ('да' === strtolower($ucenennyj_value)) {
+                    $ucenenn = 'уцененный';
+                }
+                ?>
 
             <div class="bg-white shadow">
               <div class="md:grid md:grid-cols-8">
@@ -210,24 +210,24 @@ get_header();
                 <div class="md:col-span-5 px-3 py-5 md:pl-20">
                   <div class="product-name md:mt-8 mb-1 md:mb-4" data-title="<?php esc_attr_e('Product', 'woocommerce'); ?>">
                     <?php
-                    if (!$product_permalink) {
-                      echo wp_kses_post($product_name . '&nbsp;');
-                    } else {
-                      echo '<a href="' . $product_permalink . '" class="no-underline text-lg md:text-xl font-bold">' . $product->get_name() . '</a>';
-                    }
-                    ?>
+                            if (!$product_permalink) {
+                                echo wp_kses_post($product_name . '&nbsp;');
+                            } else {
+                                echo '<a href="' . $product_permalink . '" class="no-underline text-lg md:text-xl font-bold">' . $product->get_name() . '</a>';
+                            }
+                ?>
                   </div>
 
                   <div class="mb-1 md:mb-4">
 
                     <?php
-                    $thePrice = $product->get_price(); //will give raw price
-                    $regularPrice = $product->get_regular_price(); //will give raw price
-                    $discountValue = $regularPrice - $thePrice; //will give raw price
+                $thePrice = $product->get_price(); //will give raw price
+                $regularPrice = $product->get_regular_price(); //will give raw price
+                $discountValue = $regularPrice - $thePrice; //will give raw price
 
-                    $percent = (($regularPrice - $thePrice) / $regularPrice) * 100;
+                $percent = (($regularPrice - $thePrice) / $regularPrice) * 100;
 
-                    if ($regularPrice != $thePrice) { ?>
+                if ($regularPrice != $thePrice) { ?>
                       <div class='flex items-center gap-3'>
                         <span class='text-lg md:text-xl font-bold'>
                           <?php echo $thePrice; ?> ₽
@@ -251,21 +251,21 @@ get_header();
 
                   <div class="text-lg md:text-xl mb-4">
                     <?php
-                    if ($product->is_in_stock()) {
-                      $availability = __('В наличии', 'woocommerce');
-                    }
-                    if ($product->get_stock_quantity() > 1) {
-                      $availability = __('Осталось на складе: ', 'woocommerce') . $product->get_stock_quantity() . ' шт.';
-                    }
-                    // Change in Stock Text to only 1 or 2 left
-                    if ($product->is_in_stock() && $product->get_stock_quantity() <= 1 && $product->get_stock_quantity() > 0) {
-                      $availability = __('Осталась 1 шт.', 'woocommerce');
-                    }
-                    if (!$product->is_in_stock()) {
-                      $availability = __('Нет в наличии', 'woocommerce');
-                    }
-                    echo $availability;
-                    ?>
+                if ($product->is_in_stock()) {
+                    $availability = __('В наличии', 'woocommerce');
+                }
+                if ($product->get_stock_quantity() > 1) {
+                    $availability = __('Осталось на складе: ', 'woocommerce') . $product->get_stock_quantity() . ' шт.';
+                }
+                // Change in Stock Text to only 1 or 2 left
+                if ($product->is_in_stock() && $product->get_stock_quantity() <= 1 && $product->get_stock_quantity() > 0) {
+                    $availability = __('Осталась 1 шт.', 'woocommerce');
+                }
+                if (!$product->is_in_stock()) {
+                    $availability = __('Нет в наличии', 'woocommerce');
+                }
+                echo $availability;
+                ?>
                   </div>
 
                   <div class="flex gap-7 w-full items-center">
@@ -273,12 +273,12 @@ get_header();
 
                     <div class="relative">
                       <?php
-                      if ($in_cart) {
-                        echo '<a href="' . esc_url($cart_url) . '" class="btn bg-primary text-center hover:ring-primary hover:ring-opacity-30" title="Просмотр корзины"><span>Уже в корзине</span></a>';
-                      } else {
-                        echo '<a href="' . esc_url($product->add_to_cart_url()) . '" data-quantity="1" class="btn w-36 button product_type_simple add_to_cart_button ajax_add_to_cart" data-product_id="' . $product->get_id() . '" data-product_sku="' . esc_attr($product->get_sku()) . '" aria-label="' . esc_attr($product->add_to_cart_description()) . '" rel="nofollow">В корзину</a>';
-                      }
-                      ?>
+                  if ($in_cart) {
+                      echo '<a href="' . esc_url($cart_url) . '" class="btn bg-primary text-center hover:ring-primary hover:ring-opacity-30" title="Просмотр корзины"><span>Уже в корзине</span></a>';
+                  } else {
+                      echo '<a href="' . esc_url($product->add_to_cart_url()) . '" data-quantity="1" class="btn w-36 button product_type_simple add_to_cart_button ajax_add_to_cart" data-product_id="' . $product->get_id() . '" data-product_sku="' . esc_attr($product->get_sku()) . '" aria-label="' . esc_attr($product->add_to_cart_description()) . '" rel="nofollow">В корзину</a>';
+                  }
+                ?>
                     </div>
 
                     <div href="#" class="btn-border share-link h-[50px] w-36 no-underline cursor-pointer" data-template="share">
@@ -329,9 +329,9 @@ get_header();
 
 
         <?php }
-          echo '</ul>';
-        endif;
-        ?>
+            echo '</ul>';
+endif;
+?>
 
 
       </div>

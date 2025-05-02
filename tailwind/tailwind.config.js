@@ -22,10 +22,11 @@ module.exports = {
 			},
 			screens: {
 				'2xl': '1660px',
+				'1.5xl': '1370px',
 			},
 		},
 		fontFamily: {
-			sans: ['"Open Sans"', 'system-ui'],
+			sans: ['"Open Sans"', 'sans-serif'],
 			title: ['"Alice"'],
 			poppins: ['Poppins', 'sans-serif'],
 		},

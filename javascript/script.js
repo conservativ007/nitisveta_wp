@@ -426,19 +426,19 @@ jQuery(document).ready(function ($) {
 			'<button title="%title%" type="button" class="mfp-close"><svg width="24" height="23" viewBox="0 0 24 23" fill="none"><line x1="21" y1="2.82843" x2="2.82843" y2="21" stroke="#3B2F4A" stroke-width="4" stroke-linecap="round"/><line x1="2" y1="-2" x2="27.6985" y2="-2" transform="matrix(0.707107 0.707107 0.707107 -0.707107 3 0)" stroke="#3B2F4A" stroke-width="4" stroke-linecap="round"/></svg></button>',
 	});
 
-	if (
-		$('body').hasClass('woocommerce-cart') &&
-		$('body').hasClass('not-logged-in')
-	) {
-		// Если да, то открываем Magnific Popup
-		// Замените #test-popup на селектор вашего Magnific Popup
-		$.magnificPopup.open({
-			items: {
-				src: '#test-popup',
-			},
-			type: 'inline', // Указывает тип содержимого (может быть 'image', 'inline', 'ajax' и т.д.)
-		});
-	}
+	// if (
+	// 	$('body').hasClass('woocommerce-cart') &&
+	// 	$('body').hasClass('not-logged-in')
+	// ) {
+	// 	// Если да, то открываем Magnific Popup
+	// 	// Замените #test-popup на селектор вашего Magnific Popup
+	// 	$.magnificPopup.open({
+	// 		items: {
+	// 			src: '#test-popup',
+	// 		},
+	// 		type: 'inline', // Указывает тип содержимого (может быть 'image', 'inline', 'ajax' и т.д.)
+	// 	});
+	// }
 
 	$('.popup-auth-title').click(function () {
 		$(this).next().toggleClass('max-lg:hidden');

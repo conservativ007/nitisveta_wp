@@ -35,15 +35,17 @@ if (post_password_required()) {
 $ucenennyj_value = $product->get_attribute('pa_ucenennyj');
 $ucenenn = '';
 if ('да' === strtolower($ucenennyj_value)) {
-    $ucenenn = "уцененный";
+    $ucenenn = 'уцененный';
 }
 
 ?>
 
 <div class="container xl:mt-6">
+
     <div id="product-<?php the_ID(); ?>" <?php wc_product_class('xl:grid grid-cols-1 xl:grid-cols-7 xl:gap-3', $product); ?>>
 
         <div class="single-product-gallery-wrapper w-full col-span-4 xl:col-span-3 px-0">
+          
 
             <?php $attachment_ids = $product->get_gallery_image_ids(); ?>
 
@@ -74,7 +76,8 @@ if ('да' === strtolower($ucenennyj_value)) {
                 <div class="swiper-pagination xl:hidden"></div>
             </div>
 
-            <div thumbsSlider="" class="swiper select-none mySwiper swiper-thumbs relative max-lg:hidden">
+            <!-- нижние маленькие фото -->
+            <div thumbsSlider="" class="swiper select-none mySwiper swiper-thumbs relative max-xl:hidden">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide h-52 card">
                         <!-- <img src="<?php echo get_the_post_thumbnail_url($product->ID); ?>" class='object-cover object-center h-full w-full block border-2 border-transparent hover:border-secondary transition cursor-pointer' /> -->
@@ -126,6 +129,7 @@ if ('да' === strtolower($ucenennyj_value)) {
             <p>
                 <!-- Output only the product description with paragraphs -->
                 <?php echo wpautop($product->get_description()); ?>
+                <span class="text-[40px] text-red-800">sweets</span>
             </p>
 
             <div class="grid grid-cols-1 xl:grid-cols-3 gap-x-4 text-sm leading-6 pb-7 border-b-2 xl:border-b border-slate-200">
@@ -162,21 +166,21 @@ if ('да' === strtolower($ucenennyj_value)) {
 
                 $attributes = $product->get_attributes();
 
-                foreach ($attributes as $attribute) {
-                    if ($attribute->is_taxonomy()) {
-                        $taxonomy = $attribute->get_name();
-                        $terms = wc_get_product_terms(get_the_ID(), $taxonomy, array('fields' => 'names'));
-                        $value = implode(', ', $terms);
-                        $label = wc_attribute_label($taxonomy);
-                    } else {
-                        $value = $attribute->get_options();
-                        $value = implode(', ', $value);
-                        $label = $attribute->get_name();
-                    }
+foreach ($attributes as $attribute) {
+    if ($attribute->is_taxonomy()) {
+        $taxonomy = $attribute->get_name();
+        $terms = wc_get_product_terms(get_the_ID(), $taxonomy, ['fields' => 'names']);
+        $value = implode(', ', $terms);
+        $label = wc_attribute_label($taxonomy);
+    } else {
+        $value = $attribute->get_options();
+        $value = implode(', ', $value);
+        $label = $attribute->get_name();
+    }
 
-                    echo '<div>' . $label . ': ' . $value . '</div>';
-                }
-                ?>
+    echo '<div>' . $label . ': ' . $value . '</div>';
+}
+?>
 
 
             </div>
@@ -191,18 +195,18 @@ if ('да' === strtolower($ucenennyj_value)) {
                 <?php endif; ?>
 
                 <?php
-                $product = wc_get_product(get_the_ID());
-                $thePrice = $product->get_price(); //will give raw price
-                $regularPrice = $product->get_regular_price(); //will give raw price
-                $discountValue = $regularPrice - $thePrice; //will give raw price
+$product = wc_get_product(get_the_ID());
+$thePrice = $product->get_price(); //will give raw price
+$regularPrice = $product->get_regular_price(); //will give raw price
+$discountValue = $regularPrice - $thePrice; //will give raw price
 
-                $percent = (($regularPrice - $thePrice) / $regularPrice) * 100;
+$percent = (($regularPrice - $thePrice) / $regularPrice) * 100;
 
-                // ---------------------------------------------------
-                $product_id = esc_attr($product->get_id());
-                $quantity = get_product_quantity_in_cart($product_id);
+// ---------------------------------------------------
+$product_id = esc_attr($product->get_id());
+$quantity = get_product_quantity_in_cart($product_id);
 
-                if ($regularPrice != $thePrice) { ?>
+if ($regularPrice != $thePrice) { ?>
                     <div class='flex items-center gap-3 max-xl:order-2'>
                         <span class='text-lg xl:text-xl font-bold'>
                             <?php echo $thePrice; ?> ₽
@@ -225,21 +229,21 @@ if ('да' === strtolower($ucenennyj_value)) {
 
                 <!-- <div class="text-lg xl:text-xl font-bold max-xl:order-1">
                     <?php
-                    if ($product->is_in_stock()) {
-                        $availability = __('В наличии', 'woocommerce');
-                    }
-                    if ($product->get_stock_quantity() > 1) {
-                        $availability = __('Осталось на складе: ', 'woocommerce') . $product->get_stock_quantity() . ' шт.';
-                    }
-                    // Change in Stock Text to only 1 or 2 left
-                    if ($product->is_in_stock() && $product->get_stock_quantity() <= 1 && $product->get_stock_quantity() > 0) {
-                        $availability = __('Осталась 1 шт.', 'woocommerce');
-                    }
-                    if (!$product->is_in_stock()) {
-                        $availability = __('Нет в наличии', 'woocommerce');
-                    }
-                    echo $availability;
-                    ?>
+    if ($product->is_in_stock()) {
+        $availability = __('В наличии', 'woocommerce');
+    }
+if ($product->get_stock_quantity() > 1) {
+    $availability = __('Осталось на складе: ', 'woocommerce') . $product->get_stock_quantity() . ' шт.';
+}
+// Change in Stock Text to only 1 or 2 left
+if ($product->is_in_stock() && $product->get_stock_quantity() <= 1 && $product->get_stock_quantity() > 0) {
+    $availability = __('Осталась 1 шт.', 'woocommerce');
+}
+if (!$product->is_in_stock()) {
+    $availability = __('Нет в наличии', 'woocommerce');
+}
+echo $availability;
+?>
                 </div> -->
 
                 <?php if ($ucenenn) : ?>
@@ -248,13 +252,13 @@ if ('да' === strtolower($ucenennyj_value)) {
             </div>
 
             <!-- <?php
-                    if ($product->is_in_stock()) { ?>
+if ($product->is_in_stock()) { ?>
                     <div class="pt-1 xl:pt-7">
                         <form class="w-full mb-4" action="<?php echo esc_url(get_permalink()); ?>" method="post" enctype='multipart/form-data'>
                             <?php
-                            $product_id = esc_attr($product->get_id());
-                            $quantity = get_product_quantity_in_cart($product_id);
-                            ?>
+        $product_id = esc_attr($product->get_id());
+    $quantity = get_product_quantity_in_cart($product_id);
+    ?>
 
                             <input type="hidden" name="add-to-cart" value="<?php echo esc_attr($product->get_id()); ?>" />
                             <input type="hidden" name="quantity" value="1" />
@@ -281,16 +285,16 @@ if ('да' === strtolower($ucenennyj_value)) {
                         </form>
                     </div>
                 <?php  }
-                ?> -->
+?> -->
 
             <?php
             if ($product->is_in_stock()) { ?>
                 <div class="pt-1 xl:pt-7 max-w-lg">
                     <form class="w-full mb-4" action="<?php echo esc_url(get_permalink()); ?>" method="post" enctype='multipart/form-data'>
                         <?php
-                        $product_id = esc_attr($product->get_id());
-                        $quantity = get_product_quantity_in_cart($product_id);
-                        ?>
+        $product_id = esc_attr($product->get_id());
+                $quantity = get_product_quantity_in_cart($product_id);
+                ?>
 
                         <input type="hidden" name="add-to-cart" value="<?php echo esc_attr($product->get_id()); ?>" />
                         <input type="hidden" name="quantity" value="1" />
@@ -304,7 +308,7 @@ if ('да' === strtolower($ucenennyj_value)) {
                     </form>
                 </div>
             <?php  }
-            ?>
+?>
 
             <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 xl:gap-12 max-w-lg mt-2 xl:mt-5 xl:mb-10">
 
@@ -380,31 +384,31 @@ if ('да' === strtolower($ucenennyj_value)) {
 <?php
 
 if (has_term(18, 'product_cat', $product->get_id())) {
-    $args = array(
+    $args = [
         'post_type' => 'product',
         'posts_per_page' => 15,
-        'tax_query' => array(
-            array(
+        'tax_query' => [
+            [
                 'taxonomy' => 'product_cat',
                 'field' => 'term_id',
-                'terms' => array(18),
+                'terms' => [18],
                 'operator' => 'IN',
-            )
-        ),
-    );
+            ]
+        ],
+    ];
 } else {
-    $args = array(
+    $args = [
         'post_type' => 'product',
         'posts_per_page' => 15,
-        'tax_query' => array(
-            array(
+        'tax_query' => [
+            [
                 'taxonomy' => 'product_cat',
                 'field' => 'term_id',
-                'terms' => array(18),
+                'terms' => [18],
                 'operator' => 'NOT IN',
-            )
-        ),
-    );
+            ]
+        ],
+    ];
 }
 
 $i = 1;

@@ -10,7 +10,7 @@
 
 ?>
 
-<div class="mobile-menu hidden xl:hidden fixed z-[50] w-full h-full top-[60px] p-4 bg-[#F6F6F6]">
+<div class="mobile-menu hidden xl:hidden fixed z-[210] w-full h-full top-[60px] p-4 bg-[#F6F6F6]">
   <div class="mobile-menu-inner bg-white shadow px-3 py-8">
     <div class="flex flex-col gap-7">
       <a href="/shop" class="flex items-center h-14 w-full transition justify-center rounded-[10px] px-3 bg-[#F8F8F8] hover:bg-slate-100"><span>Изделия</span></a>
@@ -89,7 +89,7 @@
 <nav class="bg-white border-gray-200 fixed w-full z-50 top-0">
 
   <div class="container max-2xl:max-w-full flex flex-nowrap items-center justify-between mx-auto h-[60px] xl:h-[106px] py-2 xl:py-4">
-    <a href="/" class="flex  items-center flex-shrink-0 mr-3">
+    <a href="/" class="flex  items-center flex-shrink-0 mr-11">
       <img src="<?php echo get_template_directory_uri(); ?>/images/logo.svg" class="w-[175px] xl:w-[270px]" alt="Нити Света логотип" />
     </a>
 
@@ -108,15 +108,15 @@
 
     </button>
 
-    <div class="hidden xl:flex xl:visible items-center gap-2 2xl:gap-4 w-full justify-end" id="navbar-header">
+    <div class="hidden xl:flex xl:visible items-center gap-2 2xl:gap-4 w-full justify-between font-sans text-[#142346] 1.5xl:text-[16px] text-[15px]" id="navbar-header">
       <a href="/shop" class="flex items-center h-14 w-full max-w-[215px] transition justify-center rounded-[10px] px-3 bg-[#F8F8F8] hover:bg-slate-100"><span>Изделия</span></a>
       <a href="/shop-books" class="flex items-center h-14 w-full max-w-[215px] transition justify-center rounded-[10px] px-3 bg-[#F8F8F8] hover:bg-slate-100"><span>Книги</span></a>
       <a href="/chinesetea" class="flex items-center h-14 w-full max-w-[215px] transition justify-center rounded-[10px] px-3 bg-[#F8F8F8] hover:bg-slate-100">
         <span>
           Китайский чай</span>
       </a>
-      <a href="/sweets" class="flex items-center h-14 w-full max-w-[215px] transition justify-center rounded-[10px] px-3 bg-[#F8F8F8] hover:bg-slate-100">
-        <span>
+      <a href="/sweets" class="flex items-center h-14 w-full max-w-[215px] transition justify-center rounded-[10px] 2xl:px-3 bg-[#F8F8F8] hover:bg-slate-100">
+        <span class="">
           Подарочные наборы</span>
       </a>
       
@@ -133,8 +133,8 @@
         <!-- <span class="relative left-3">Избранное</span> -->
       </a>
 
-      <a href="<?php echo is_user_logged_in() ? '/cart' : '/cart?redirect_to=/checkout'; ?>" class="cart-button relative flex items-center h-14 w-full max-w-[60px] transition justify-center rounded-[10px] px-3 bg-[#F8F8F8] hover:bg-slate-100">
-
+      <!-- <a href="<?php echo is_user_logged_in() ? '/cart' : '/cart?redirect_to=/checkout'; ?>" class="cart-button relative flex items-center h-14 w-full max-w-[60px] transition justify-center rounded-[10px] px-3 bg-[#F8F8F8] hover:bg-slate-100"> -->
+      <a href="/cart" class="cart-button relative flex items-center h-14 w-full max-w-[60px] transition justify-center rounded-[10px] px-3 bg-[#F8F8F8] hover:bg-slate-100">
         <div class="absolute left-4 top-4 ">
           <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M20.6665 24.6665C21.4012 24.6665 21.9998 25.2638 21.9998 25.9998C21.9998 26.7358 21.4012 27.3332 20.6665 27.3332C19.9305 27.3332 19.3332 26.7358 19.3332 25.9998C19.3332 25.2638 19.9305 24.6665 20.6665 24.6665ZM12.6665 24.6665C13.4012 24.6665 13.9998 25.2638 13.9998 25.9998C13.9998 26.7358 13.4012 27.3332 12.6665 27.3332C11.9305 27.3332 11.3332 26.7358 11.3332 25.9998C11.3332 25.2638 11.9305 24.6665 12.6665 24.6665ZM27.1852 5.27717L21.8585 15.9292C21.6332 16.3812 21.1705 16.6665 20.6665 16.6665H9.99984C9.2625 16.6665 8.6665 17.2638 8.6665 17.9998C8.6665 18.7358 9.2625 19.3332 9.99984 19.3332H23.3332C24.0678 19.3332 24.6665 19.9305 24.6665 20.6665C24.6665 21.4025 24.0678 21.9998 23.3332 21.9998C23.3332 21.9998 14.5505 21.9998 9.99984 21.9998C7.7905 21.9998 5.99984 20.2092 5.99984 17.9998C5.99984 16.3905 6.94919 15.0038 8.31852 14.3692L5.00785 3.33317H1.99984C1.26384 3.33317 0.666504 2.73584 0.666504 1.99984C0.666504 1.26384 1.26384 0.666504 1.99984 0.666504H5.99984C6.58784 0.666504 7.1065 1.05317 7.27584 1.61717L7.79187 3.33317H25.9838C26.0892 3.33184 26.1958 3.3425 26.2998 3.36784L26.3105 3.3705C26.4345 3.39984 26.5505 3.4465 26.6585 3.50784C26.8585 3.62117 27.0198 3.77984 27.1332 3.96517C27.2478 4.1505 27.3185 4.36517 27.3305 4.59584C27.3372 4.7185 27.3265 4.84384 27.2985 4.96784L27.2959 4.9785C27.2705 5.08384 27.2332 5.18384 27.1852 5.27717ZM23.8425 5.99984H8.59184L10.9919 13.9998H19.8425L23.8425 5.99984Z" fill="#142346" />
@@ -161,14 +161,26 @@
           // Код для авторизованных пользователей
           ?>
         <!-- HTML для авторизованных пользователей -->
-        <a href="/profile" class="flex items-center h-14 w-full max-w-[215px] transition justify-center rounded-[10px] px-3 bg-[#F8F8F8] hover:bg-slate-100"><span>Мой
-            профиль</span></a>
+        <!-- <a href="/profile" class="flex items-center h-14 w-full max-w-[215px] transition justify-center rounded-[10px] px-3 bg-[#F8F8F8] hover:bg-slate-100"><span>Мой
+            профиль</span></a> -->
+            <a href="/profile" class="flex items-center h-14 w-14 max-w-[215px] transition justify-center rounded-[10px] px-3 bg-[#F8F8F8] hover:bg-slate-100">
+              <svg width="27" height="26" viewBox="0 0 27 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22.8567 19.4285H22.7496C20.1782 18.8928 17.821 18.2499 17.2853 16.9642C17.071 16.4285 17.071 15.6785 17.6067 14.8214C20.1782 9.89279 20.7139 5.71422 18.9996 2.9285C17.9282 1.10707 15.8924 0.0356445 13.4282 0.0356445C10.9639 0.0356445 8.92815 1.10707 7.85673 2.9285C6.14244 5.71422 6.67815 9.99993 9.35672 14.8214C9.7853 15.6785 9.89244 16.3214 9.67815 16.9642C9.0353 18.2499 6.67815 18.7856 4.21387 19.4285H3.99958C0.678153 20.1785 0.463867 21.8928 0.463867 24.5714V25.9642H1.96387H2.82101H24.0353H24.4639H26.3924V24.5714C26.3924 21.8928 26.1782 20.1785 22.8567 19.4285ZM11.7139 17.9285C12.1424 17.0714 12.3567 15.5714 11.3924 13.7499C9.24958 9.6785 8.60672 6.24993 9.89244 4.21422C10.5353 3.14279 11.9282 2.39279 13.4282 2.39279C14.9282 2.39279 16.321 3.03565 16.9639 4.10707C18.1424 6.14279 17.6067 9.6785 15.4639 13.7499C14.4996 15.6785 14.7139 17.0714 15.1424 17.9285C16.2139 20.2856 19.2139 20.9285 22.321 21.6785C23.7139 21.9999 24.0353 22.3214 24.1424 23.6071H2.82101C2.92815 22.3214 3.24958 21.9999 4.64244 21.6785C7.74958 20.9285 10.6424 20.2856 11.7139 17.9285Z" fill="#142346" />
+              </svg>
+            </a>
+            <!-- <a href="/profile" class="flex items-center h-14 w-full max-w-[215px] transition justify-center rounded-[10px] px-3 bg-[#F8F8F8] hover:bg-slate-100"><span>Мой
+            профиль</span></a> -->
       <?php
       } else {
           // Код для неавторизованных пользователей
           ?>
         <!-- HTML для неавторизованных пользователей -->
-        <a href="#test-popup" class="open-popup-link flex items-center h-14 w-full max-w-[215px] transition justify-center rounded-[10px] px-3 bg-[#F8F8F8] hover:bg-slate-100"><span>Вход/регистрация</span></a>
+        <a href="#test-popup" class="open-popup-link flex items-center h-14 w-14 max-w-[215px] transition justify-center rounded-[10px] px-3 bg-[#F8F8F8] hover:bg-slate-100">
+          <svg width="27" height="26" viewBox="0 0 27 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22.8567 19.4285H22.7496C20.1782 18.8928 17.821 18.2499 17.2853 16.9642C17.071 16.4285 17.071 15.6785 17.6067 14.8214C20.1782 9.89279 20.7139 5.71422 18.9996 2.9285C17.9282 1.10707 15.8924 0.0356445 13.4282 0.0356445C10.9639 0.0356445 8.92815 1.10707 7.85673 2.9285C6.14244 5.71422 6.67815 9.99993 9.35672 14.8214C9.7853 15.6785 9.89244 16.3214 9.67815 16.9642C9.0353 18.2499 6.67815 18.7856 4.21387 19.4285H3.99958C0.678153 20.1785 0.463867 21.8928 0.463867 24.5714V25.9642H1.96387H2.82101H24.0353H24.4639H26.3924V24.5714C26.3924 21.8928 26.1782 20.1785 22.8567 19.4285ZM11.7139 17.9285C12.1424 17.0714 12.3567 15.5714 11.3924 13.7499C9.24958 9.6785 8.60672 6.24993 9.89244 4.21422C10.5353 3.14279 11.9282 2.39279 13.4282 2.39279C14.9282 2.39279 16.321 3.03565 16.9639 4.10707C18.1424 6.14279 17.6067 9.6785 15.4639 13.7499C14.4996 15.6785 14.7139 17.0714 15.1424 17.9285C16.2139 20.2856 19.2139 20.9285 22.321 21.6785C23.7139 21.9999 24.0353 22.3214 24.1424 23.6071H2.82101C2.92815 22.3214 3.24958 21.9999 4.64244 21.6785C7.74958 20.9285 10.6424 20.2856 11.7139 17.9285Z" fill="#142346" />
+          </svg>
+        </a>
+        <!-- <a href="#test-popup" class="open-popup-link flex items-center h-14 w-full max-w-[215px] transition justify-center rounded-[10px] px-3 bg-[#F8F8F8] hover:bg-slate-100"><span>Вход/регистрация</span></a> -->
       <?php
       }
 ?>
