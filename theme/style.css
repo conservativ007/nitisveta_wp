@@ -1938,9 +1938,21 @@ label[for="billing_city"]{
   padding-left: 10px;
 }
 
+.\!container{
+  width: 100% !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
+  padding-right: 10px !important;
+  padding-left: 10px !important;
+}
+
 @media (min-width: 640px){
   .container{
     max-width: 640px;
+  }
+
+  .\!container{
+    max-width: 640px !important;
   }
 }
 
@@ -1948,17 +1960,39 @@ label[for="billing_city"]{
   .container{
     max-width: 768px;
   }
+
+  .\!container{
+    max-width: 768px !important;
+  }
 }
 
 @media (min-width: 1024px){
   .container{
     max-width: 1024px;
   }
+
+  .\!container{
+    max-width: 1024px !important;
+  }
 }
 
 @media (min-width: 1280px){
   .container{
     max-width: 1280px;
+  }
+
+  .\!container{
+    max-width: 1280px !important;
+  }
+}
+
+@media (min-width: 1370px){
+  .container{
+    max-width: 1370px;
+  }
+
+  .\!container{
+    max-width: 1370px !important;
   }
 }
 
@@ -1973,6 +2007,12 @@ label[for="billing_city"]{
     max-width: 1660px;
     padding-right: 1.5rem;
     padding-left: 1.5rem;
+  }
+
+  .\!container{
+    max-width: 1660px !important;
+    padding-right: 1.5rem !important;
+    padding-left: 1.5rem !important;
   }
 }
 
@@ -3353,6 +3393,10 @@ ul#ui-id-1 {
 
 .grid{
   display: grid;
+}
+
+.contents{
+  display: contents;
 }
 
 .hidden{
