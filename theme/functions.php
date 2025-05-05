@@ -162,22 +162,14 @@ function nitisveta_scripts()
 
     wp_enqueue_style(
         'select2-css',
-<<<<<<< HEAD
-        get_template_directory_uri() . '/assets/libs/select2/select2.min.css',
-=======
         get_template_directory_uri() . '/assets/libs/select2/css/select2.css',
->>>>>>> 549137326f2ed64251b33c6f76662fa43963872c
         [],
         '4.1.0'
     );
 
     wp_enqueue_script(
         'select2-js',
-<<<<<<< HEAD
-        get_template_directory_uri() . '/assets/libs/select2/select2.min.js',
-=======
         get_template_directory_uri() . '/assets/libs/select2/js/select2.js',
->>>>>>> 549137326f2ed64251b33c6f76662fa43963872c
         ['jquery'],
         '4.1.0',
         true

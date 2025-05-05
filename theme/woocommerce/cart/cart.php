@@ -50,7 +50,7 @@ do_action('woocommerce_before_cart'); ?>
           $ucenennyj_value = $_product->get_attribute('pa_ucenennyj');
           $ucenenn = '';
           if ('да' === strtolower($ucenennyj_value)) {
-              $ucenenn = "уцененный";
+              $ucenenn = 'уцененный';
           }
 
           ?>
@@ -188,13 +188,13 @@ do_action('woocommerce_before_cart'); ?>
 
                 <?php
             $product_quantity = woocommerce_quantity_input(
-                array(
+                [
                               'input_name' => "cart[{$cart_item_key}][qty]",
                               'input_value' => $cart_item['quantity'],
                               'max_value' => $max_quantity,
                               'min_value' => $min_quantity,
                               'product_name' => $product_name,
-                            ),
+                            ],
                 $_product,
                 false
             );
@@ -321,7 +321,8 @@ function get_discount_total()
   <?php if (is_user_logged_in()) : ?>
     <a href="/checkout" class="btn mt-4 mb-8"><span>Выбрать доставку</span></a>
   <?php else : ?>
-    <a href="#test-popup" class="btn mt-4 mb-8 open-popup-link login-popup-link"><span>Выбрать доставку</span></a>
+    <!-- <a href="#test-popup" class="btn mt-4 mb-8 open-popup-link login-popup-link"><span>Выбрать доставку</span></a> -->
+    <a href="/checkout" class="btn mt-4 mb-8"><span>Выбрать доставку</span></a>
   <?php endif; ?>
 
   <table class="shop_table shop_table_responsive cart woocommerce-cart-form__contents hidden" cellspacing="0">
