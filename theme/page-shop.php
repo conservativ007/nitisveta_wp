@@ -16,22 +16,24 @@ get_header();
     <main id="main">
 
         <?php
-        $args = array(
-            'post_type' => 'product',
-            'posts_per_page' => 17,
-            'tax_query' => array(
-                array(
-                    'taxonomy' => 'product_cat',
-                    'field' => 'term_id',
-                    'terms' => array(18),
-                    'operator' => 'NOT IN',
-                )
-            ),
-            "facetwp" => true
-        );
-        $query = new WP_Query($args);
-        $i = 0;
-        ?>
+            $args = array(
+                'post_type' => 'product',
+                'posts_per_page' => 17,
+                'tax_query' => array(
+                    array(
+                        'taxonomy' => 'product_cat',
+                        'field' => 'term_id',
+                        'terms' => array(18, 41, 42),
+                        'operator' => 'NOT IN',
+                    )
+                ),
+                "facetwp" => true
+            );
+$query = new WP_Query($args);
+$i = 0;
+?>
+
+        
 
         <?php if ($query->have_posts()) : ?>
             <div class="grid lg:grid-cols-2 2xl:grid-cols-3 container gap-[10px] mb-10 mt-5">

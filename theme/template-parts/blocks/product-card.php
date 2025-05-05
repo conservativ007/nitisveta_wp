@@ -48,7 +48,7 @@ if ($product->get_stock_quantity() > 1 && $product->get_stock_quantity() < 6) {
   </div>
 
   <a href="<?php the_permalink(); ?>" class="group border-b-2 border-[#F6F6F6] h-[320px] 2xl:h-[440px] flex items-center justify-center overflow-hidden">
-    <img src="<?php echo get_the_post_thumbnail_url(); ?>" class="group-hover:scale-105 transition-all" alt="<?php the_title(); ?>">
+    <img src="<?php echo get_the_post_thumbnail_url(); ?>" class="group-hover:scale-105 transition-all object-cover w-full" alt="<?php the_title(); ?>">
   </a>
 
   <div class="flex items-center flex-nowrap p-2 lg:p-5 justify-between">

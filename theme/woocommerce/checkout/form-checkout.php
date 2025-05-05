@@ -17,15 +17,15 @@
  */
 
 if (!defined('ABSPATH')) {
-	exit;
+    exit;
 }
 
 do_action('woocommerce_before_checkout_form', $checkout);
 
 // If checkout registration is disabled and not logged in, the user cannot checkout.
 if (!$checkout->is_registration_enabled() && $checkout->is_registration_required() && !is_user_logged_in()) {
-	echo esc_html(apply_filters('woocommerce_checkout_must_be_logged_in_message', __('You must be logged in to checkout.', 'woocommerce')));
-	return;
+    echo esc_html(apply_filters('woocommerce_checkout_must_be_logged_in_message', __('You must be logged in to checkout.', 'woocommerce')));
+    return;
 }
 
 ?>
@@ -36,7 +36,7 @@ if (!$checkout->is_registration_enabled() && $checkout->is_registration_required
 
 		<?php do_action('woocommerce_checkout_before_customer_details'); ?>
 
-		<div class="bg-white p-3 lg:p-7 shadow grid gap-y-3 lg:gap-x-3 grid-cols-1 lg:grid-cols-3" id="customer_details">
+		<div class="bg-white p-3 lg:p-7 shadow grid gap-y-3 lg:gap-x-3 grid-cols-1" id="customer_details">
 			<?php do_action('woocommerce_checkout_billing'); ?>
 			<?php do_action('woocommerce_checkout_shipping'); ?>
 		</div>

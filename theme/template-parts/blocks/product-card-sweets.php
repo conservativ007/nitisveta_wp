@@ -5,16 +5,16 @@ $in_cart = false;
 
 // Проверяем, находится ли товар в корзине
 foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item) {
-  if ($cart_item['product_id'] === $product->get_id()) {
-    $in_cart = true;
-    break;
-  }
+    if ($cart_item['product_id'] === $product->get_id()) {
+        $in_cart = true;
+        break;
+    }
 }
 
 $ucenennyj_value = $product->get_attribute('pa_ucenennyj');
 $ucenenn = '';
 if ('да' === strtolower($ucenennyj_value)) {
-  $ucenenn = "уцененный";
+    $ucenenn = "уцененный";
 }
 ?>
 <?php global $product; ?>
@@ -29,17 +29,17 @@ if ('да' === strtolower($ucenennyj_value)) {
 
   <?php
   $availability = '';
-  if ($product->get_stock_quantity() > 1 && $product->get_stock_quantity() < 6) {
-  ?>
+if ($product->get_stock_quantity() > 1 && $product->get_stock_quantity() < 6) {
+    ?>
     <div class="absolute flex justify-center top-32 z-20 -right-[68px] max-xl:rotate-90 xl:top-0 xl:right-0 w-40 xl:w-full">
       <div class="bg-primary text-white flex items-center h-6 xl:h-9 px-8 font-title text-sm xl:text-xl rounded-b-lg z-10">
         <?php
-        $availability = __('осталось  ', 'woocommerce') . $product->get_stock_quantity() . ' шт.';
-        echo $availability; ?>
+          $availability = __('осталось  ', 'woocommerce') . $product->get_stock_quantity() . ' шт.';
+    echo $availability; ?>
       </div>
     </div>
   <?php  } ?>
-  <div class="absolute text-lg font-bold z-30 left-3 top-3">
+  <div class="absolute text-lg font-bold z-30 left-3 top-3 bg-white px-3 py-1 rounded-full">
     <?php echo $product->get_price(); ?>
     <span>₽</span>
   </div>
@@ -63,20 +63,20 @@ if ('да' === strtolower($ucenennyj_value)) {
 
         <div class="relative">
           <?php
-          if ($in_cart) {
-            echo '<a href="' . esc_url($cart_url) . '" class="btn text-center bg-primary hover:ring-primary hover:ring-opacity-30" title="Просмотр корзины"><span>Уже в корзине</span></a>';
+      if ($in_cart) {
+          echo '<a href="' . esc_url($cart_url) . '" class="btn text-center bg-primary hover:ring-primary hover:ring-opacity-30" title="Просмотр корзины"><span>Уже в корзине</span></a>';
 
-            // echo '<p>42</p>';
-          } else {
-            // echo '<a href="' . esc_url($product->add_to_cart_url()) . '" data-quantity="1" class="btn button product_type_simple add_to_cart_button ajax_add_to_cart" data-product_id="' . $product->get_id() . '" data-product_sku="' . esc_attr($product->get_sku()) . '" aria-label="' . esc_attr($product->add_to_cart_description()) . '" rel="nofollow">В корзину</a>';
-            echo '<a href="' . esc_url($product->add_to_cart_url()) .
-              '" data-quantity="1" class="btn button product_type_simple add_to_cart_button ajax_add_to_cart"
+          // echo '<p>42</p>';
+      } else {
+          // echo '<a href="' . esc_url($product->add_to_cart_url()) . '" data-quantity="1" class="btn button product_type_simple add_to_cart_button ajax_add_to_cart" data-product_id="' . $product->get_id() . '" data-product_sku="' . esc_attr($product->get_sku()) . '" aria-label="' . esc_attr($product->add_to_cart_description()) . '" rel="nofollow">В корзину</a>';
+          echo '<a href="' . esc_url($product->add_to_cart_url()) .
+            '" data-quantity="1" class="btn button product_type_simple add_to_cart_button ajax_add_to_cart"
             data-product_id="' . $product->get_id()
-              . '" data-product_sku="' . esc_attr($product->get_sku())
-              . '" aria-label="' . esc_attr($product->add_to_cart_description())
-              . '" rel="nofollow" data-wc-add-to-cart>В корзину</a>';
-          }
-          ?>
+            . '" data-product_sku="' . esc_attr($product->get_sku())
+            . '" aria-label="' . esc_attr($product->add_to_cart_description())
+            . '" rel="nofollow" data-wc-add-to-cart>В корзину</a>';
+      }
+?>
         </div>
 
         <a href="<?php the_permalink(); ?>" class="btn-border"><span>Подробнее</span></a>

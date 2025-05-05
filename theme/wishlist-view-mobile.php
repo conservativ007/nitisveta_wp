@@ -43,42 +43,42 @@
  */
 
 if (!defined('YITH_WCWL')) {
-  exit;
+    exit;
 } // Exit if accessed directly
 ?>
 <div class="wishlist-items-wrapper grid grid-cols-1 gap-3 mb-8">
   <?php
   if ($wishlist && $wishlist->has_items()) :
-    foreach ($wishlist_items as $item) :
-      /**
-       * Each of the wishlist items
-       *
-       * @var $item \YITH_WCWL_Wishlist_Item
-       */
-      global $product;
+      foreach ($wishlist_items as $item) :
+          /**
+           * Each of the wishlist items
+           *
+           * @var $item \YITH_WCWL_Wishlist_Item
+           */
+          global $product;
 
-      $product = $item->get_product();
+          $product = $item->get_product();
 
-      if ($product && $product->exists()) :
-        $product_id = $product->get_id();
-        $product_permalink = $product->get_permalink();
-        $cart_url = wc_get_cart_url(); // Получить URL корзины
-        $in_cart = false;
+          if ($product && $product->exists()) :
+              $product_id = $product->get_id();
+              $product_permalink = $product->get_permalink();
+              $cart_url = wc_get_cart_url(); // Получить URL корзины
+              $in_cart = false;
 
-        $ucenennyj_value = $product->get_attribute('pa_ucenennyj');
-        $ucenenn = '';
-        if ('да' === strtolower($ucenennyj_value)) {
-          $ucenenn = "уцененный";
-        }
+              $ucenennyj_value = $product->get_attribute('pa_ucenennyj');
+              $ucenenn = '';
+              if ('да' === strtolower($ucenennyj_value)) {
+                  $ucenenn = "уцененный";
+              }
 
-        // Проверяем, находится ли товар в корзине
-        foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item) {
-          if ($cart_item['product_id'] === $product->get_id()) {
-            $in_cart = true;
-            break;
-          }
-        }
-  ?>
+              // Проверяем, находится ли товар в корзине
+              foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item) {
+                  if ($cart_item['product_id'] === $product->get_id()) {
+                      $in_cart = true;
+                      break;
+                  }
+              }
+              ?>
 
         <div class="woocommerce-cart-form__cart-item bg-white shadow mb-2 relative" data-row-id="<?php echo esc_attr($item->get_product_id()); ?>">
           <div class="md:grid md:grid-cols-8">
@@ -126,24 +126,24 @@ if (!defined('YITH_WCWL')) {
             <div class="md:col-span-5 px-3 py-5 md:pl-20">
               <div class="product-name md:mt-8 mb-1 md:mb-4" data-title="<?php esc_attr_e('Product', 'woocommerce'); ?>">
                 <?php
-                if (!$product_permalink) {
-                  echo wp_kses_post($product_name . '&nbsp;');
-                } else {
-                  echo '<a href="' . $product_permalink . '" class="no-underline text-lg md:text-xl font-bold">' . $product->get_name() . '</a>';
-                }
-                ?>
+                            if (!$product_permalink) {
+                                echo wp_kses_post($product_name . '&nbsp;');
+                            } else {
+                                echo '<a href="' . $product_permalink . '" class="no-underline text-lg md:text-xl font-bold">' . $product->get_name() . '</a>';
+                            }
+          ?>
               </div>
 
               <div class="mb-1 md:mb-4">
 
                 <?php
-                $thePrice = $product->get_price(); //will give raw price
-                $regularPrice = $product->get_regular_price(); //will give raw price
-                $discountValue = $regularPrice - $thePrice; //will give raw price
+          $thePrice = $product->get_price(); //will give raw price
+          $regularPrice = $product->get_regular_price(); //will give raw price
+          $discountValue = $regularPrice - $thePrice; //will give raw price
 
-                $percent = (($regularPrice - $thePrice) / $regularPrice) * 100;
+          $percent = (($regularPrice - $thePrice) / $regularPrice) * 100;
 
-                if ($regularPrice != $thePrice) { ?>
+          if ($regularPrice != $thePrice) { ?>
                   <div class='flex items-center gap-3'>
                     <span class='text-lg md:text-xl font-bold'>
                       <?php echo $thePrice; ?> ₽
@@ -167,21 +167,21 @@ if (!defined('YITH_WCWL')) {
 
               <div class="text-lg md:text-xl mb-4">
                 <?php
-                if ($product->is_in_stock()) {
-                  $availability = __('В наличии', 'woocommerce');
-                }
-                if ($product->get_stock_quantity() > 1) {
-                  $availability = __('Осталось на складе: ', 'woocommerce') . $product->get_stock_quantity() . ' шт.';
-                }
-                // Change in Stock Text to only 1 or 2 left
-                if ($product->is_in_stock() && $product->get_stock_quantity() <= 1 && $product->get_stock_quantity() > 0) {
-                  $availability = __('Осталась 1 шт.', 'woocommerce');
-                }
-                if (!$product->is_in_stock()) {
-                  $availability = __('Нет в наличии', 'woocommerce');
-                }
-                echo $availability;
-                ?>
+          if ($product->is_in_stock()) {
+              $availability = __('В наличии', 'woocommerce');
+          }
+          if ($product->get_stock_quantity() > 1) {
+              $availability = __('Осталось на складе: ', 'woocommerce') . $product->get_stock_quantity() . ' шт.';
+          }
+          // Change in Stock Text to only 1 or 2 left
+          if ($product->is_in_stock() && $product->get_stock_quantity() <= 1 && $product->get_stock_quantity() > 0) {
+              $availability = __('Осталась 1 шт.', 'woocommerce');
+          }
+          if (!$product->is_in_stock()) {
+              $availability = __('Нет в наличии', 'woocommerce');
+          }
+          echo $availability;
+          ?>
               </div>
 
               <div class="flex gap-7 w-full items-center">
@@ -189,12 +189,12 @@ if (!defined('YITH_WCWL')) {
 
                 <div class="relative">
                   <?php
-                  if ($in_cart) {
-                    echo '<a href="' . esc_url($cart_url) . '" class="btn bg-primary text-center hover:ring-primary hover:ring-opacity-30" title="Просмотр корзины"><span>Уже в корзине</span></a>';
-                  } else {
-                    echo '<a href="' . esc_url($product->add_to_cart_url()) . '" data-quantity="1" class="btn w-36 button product_type_simple add_to_cart_button ajax_add_to_cart" data-product_id="' . $product->get_id() . '" data-product_sku="' . esc_attr($product->get_sku()) . '" aria-label="' . esc_attr($product->add_to_cart_description()) . '" rel="nofollow">В корзину</a>';
-                  }
-                  ?>
+            if ($in_cart) {
+                echo '<a href="' . esc_url($cart_url) . '" class="btn bg-primary text-center hover:ring-primary hover:ring-opacity-30" title="Просмотр корзины"><span>Уже в корзине</span></a>';
+            } else {
+                echo '<a href="' . esc_url($product->add_to_cart_url()) . '" data-quantity="1" class="btn w-36 button product_type_simple add_to_cart_button ajax_add_to_cart" data-product_id="' . $product->get_id() . '" data-product_sku="' . esc_attr($product->get_sku()) . '" aria-label="' . esc_attr($product->add_to_cart_description()) . '" rel="nofollow">В корзину</a>';
+            }
+          ?>
                 </div>
 
                 <div href="#" class="btn-border share-link h-[50px] w-36 no-underline cursor-pointer" data-template="share">
@@ -244,7 +244,7 @@ if (!defined('YITH_WCWL')) {
 
           </div>
 
-          <div class="product-remove absolute right-3 top-3 ">
+          <div class="product-remove absolute right-3 top-3 z-10z-10">
             <a href="<?php echo esc_url($item->get_remove_url()); ?>" class="remove remove_from_wishlist flex items-center justify-center" title="<?php echo esc_html(apply_filters('yith_wcwl_remove_product_wishlist_message_title', __('Remove this product', 'yith-woocommerce-wishlist'))); ?>">
               <svg width="24" height="23" viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <line x1="21" y1="2.82843" x2="2.82843" y2="21" stroke="#3B2F4A" stroke-width="4" stroke-linecap="round" />
@@ -256,8 +256,8 @@ if (!defined('YITH_WCWL')) {
 
     <?php
       endif;
-    endforeach;
-  else :
+      endforeach;
+else :
     ?>
     <tr>
       <?php
@@ -271,16 +271,16 @@ if (!defined('YITH_WCWL')) {
        *
        * @return string
        */
-      ?>
+    ?>
       <td colspan="<?php echo esc_attr($column_count); ?>" class="wishlist-empty">
         <?php echo esc_html(apply_filters('yith_wcwl_no_product_to_remove_message', __('No products added to the wishlist', 'yith-woocommerce-wishlist'), $wishlist)); ?>
       </td>
     </tr>
   <?php
-  endif;
+endif;
 
-  if (!empty($page_links)) :
-  ?>
+if (!empty($page_links)) :
+    ?>
     <tr class="pagination-row wishlist-pagination">
       <td colspan="<?php echo esc_attr($column_count); ?>">
         <?php echo wp_kses_post($page_links); ?>
