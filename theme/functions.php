@@ -156,6 +156,7 @@ function nitisveta_scripts()
     wp_enqueue_style('nitisveta-swiper', get_template_directory_uri() . '/libraries/swiper-bundle.min.css', [], '', 'all');
     wp_enqueue_style('nitisveta-magnific', get_template_directory_uri() . '/libraries/magnific-popup.css', [], '', 'all');
     wp_enqueue_style('nitisveta-style', get_stylesheet_uri(), [], filemtime(get_template_directory() . '/style.css'), 'all');
+    // wp_enqueue_style('nitisveta-city-selector', get_template_directory_uri() . '/assets/css/city_selector.css', [], '', 'all');
     wp_enqueue_script('nitisveta-swiper', get_template_directory_uri() . '/libraries/swiper-bundle.min.js', [], NITISVETA_VERSION, true);
     wp_enqueue_script('nitisveta-magnific', get_template_directory_uri() . '/libraries/jquery.magnific-popup.min.js', [], NITISVETA_VERSION, true);
     wp_enqueue_script('nitisveta-script', get_template_directory_uri() . '/js/script.min.js', [], NITISVETA_VERSION, true);
@@ -185,7 +186,7 @@ function nitisveta_scripts()
         true
     );
 
-    // show list of cities and search for cities
+    // rotate arrow in (cities and countries) for the select2
     wp_enqueue_script(
         'country_city_selector',
         get_template_directory_uri() . '/assets/js/country_city_selector.js',
@@ -193,6 +194,24 @@ function nitisveta_scripts()
         null,
         true
     );
+
+    //
+    wp_enqueue_script(
+        'select2-settings',
+        get_template_directory_uri() . '/assets/js/select2-settings.js',
+        ['jquery', 'select2-js'],
+        null,
+        true
+    );
+
+    // show list of cities and search for cities (custom)
+    // wp_enqueue_script(
+    //     'country_city_selector2',
+    //     get_template_directory_uri() . '/assets/js/country_city_selector2.js',
+    //     [],
+    //     null,
+    //     true
+    // );
 
     wp_enqueue_script(
         'update_cdek_fields',
@@ -529,6 +548,7 @@ function customize_woo_checkout_fields($fields)
 
     // pass the array of cities to JS file
     wp_localize_script('country_city_selector', 'citiesData', $cities_by_country);
+    wp_localize_script('country_city_selector2', 'citiesData', $cities_by_country);
 
     // Плейсхолдер списка городов
     $fields['billing']['billing_city'] = [
@@ -829,4 +849,21 @@ add_action('woocommerce_payment_complete', function ($order_id) {
     if (WC()->cart) {
         WC()->cart->empty_cart();
     }
+});
+
+// кастомная REST API точка с российскими городами
+add_action('rest_api_init', function () {
+    register_rest_route('custom/v1', '/cities', [
+        'methods' => 'GET',
+        'callback' => function () {
+            $json_path = get_template_directory() . '/data/russia-cities.json';
+            if (!file_exists($json_path)) {
+                return new WP_Error('not_found', 'Файл не найден', ['status' => 404]);
+            }
+
+            $data = json_decode(file_get_contents($json_path), true);
+            return rest_ensure_response($data);
+        },
+        'permission_callback' => '__return_true'
+    ]);
 });
