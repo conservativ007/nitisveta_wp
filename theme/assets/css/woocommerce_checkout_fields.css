@@ -140,13 +140,13 @@
     .my-custom-shipping-table .woocommerce-shipping-methods li:nth-child(2):before {
         top: auto;
         bottom: -32px;
-        left: calc(50% - 2.5rem) ;
+        /* left: calc(50% - 2.5rem) ; */
     }
 }
 
 @media not all and (min-width: 1024px){
     .my-custom-shipping-table .woocommerce-shipping-methods li:nth-child(2):before{
-      margin-left: auto;
+      /* margin-left: auto; */
     }
   }
   

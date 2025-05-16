@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', function () {
 					if (contentEl) {
 						const textContent = contentEl.textContent;
 
+						// console.log(textContent);
+
 						switch (true) {
 							case textContent.includes('removed'):
 								contentEl.innerHTML = contentEl.innerHTML

@@ -86,7 +86,7 @@
   </div>
 </div>
 
-<nav class="bg-white border-gray-200 fixed w-full z-50 top-0">
+<nav class="bg-white border-gray-200 fixed w-full z-[1150] top-0">
 
   <div class="container max-2xl:max-w-full flex flex-nowrap items-center justify-between mx-auto h-[60px] xl:h-[106px] py-2 xl:py-4">
     <a href="/" class="flex  items-center flex-shrink-0 mr-11">
@@ -188,7 +188,7 @@
   </div>
 </nav>
 
-<nav class="lg:hidden bg-white border-gray-200 fixed w-full z-50 bottom-0 left-0 ">
+<nav class="lg:hidden bg-white border-gray-200 fixed w-full z-[1150] bottom-0 left-0 ">
   <div class="flex gap-5 h-[70px] items-center justify-between px-5">
 
     <a href="/wishlist" class="relative flex items-center h-[50px] w-[70px] transition justify-center rounded-[10px] px-3 bg-[#F8F8F8] hover:bg-slate-100">

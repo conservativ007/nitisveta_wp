@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	jQuery('#billing_country')
 		.select2({
-			tags: true,
+			// tags: true,
 			allowClear: true,
 		})
 		.on('select2:open', function () {

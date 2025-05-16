@@ -42,10 +42,8 @@ document.addEventListener('DOMContentLoaded', async function () {
 
 	function initCitySelect2() {
 		const selectedCountry = countrySelect.value;
-		// console.log(selectedCountry);
 
 		const options = {
-			tags: true,
 			allowClear: true,
 			language: {
 				noResults: () => 'Город не найден. Введите свой вариант.',
@@ -69,7 +67,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 							.sort((a, b) => b.population - a.population);
 					}
 
-					const results = filteredCities.slice(0, 50).map((city) => {
+					let results = filteredCities.slice(0, 50).map((city) => {
 						if (city.isDualName) {
 							let text = `${city.name} ${city.region.name} ${city.region.typeShort}`;
 
