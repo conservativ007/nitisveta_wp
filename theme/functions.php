@@ -153,13 +153,14 @@ function add_price_widget()
 // include custom scripts
 function nitisveta_scripts()
 {
-    wp_enqueue_style('nitisveta-swiper', get_template_directory_uri() . '/libraries/swiper-bundle.min.css', [], '', 'all');
-    wp_enqueue_style('nitisveta-magnific', get_template_directory_uri() . '/libraries/magnific-popup.css', [], '', 'all');
+    wp_enqueue_style('nitisveta-swiper', get_template_directory_uri() . '/assets/libs/swiper-bundle.min.css', [], '', 'all');
+    wp_enqueue_style('nitisveta-magnific', get_template_directory_uri() . '/assets/libs/magnific-popup.css', [], '', 'all');
     wp_enqueue_style('nitisveta-style', get_stylesheet_uri(), [], filemtime(get_template_directory() . '/style.css'), 'all');
     // wp_enqueue_style('nitisveta-city-selector', get_template_directory_uri() . '/assets/css/city_selector.css', [], '', 'all');
-    wp_enqueue_script('nitisveta-swiper', get_template_directory_uri() . '/libraries/swiper-bundle.min.js', [], NITISVETA_VERSION, true);
-    wp_enqueue_script('nitisveta-magnific', get_template_directory_uri() . '/libraries/jquery.magnific-popup.min.js', [], NITISVETA_VERSION, true);
-    wp_enqueue_script('nitisveta-script', get_template_directory_uri() . '/js/script.min.js', [], NITISVETA_VERSION, true);
+    wp_enqueue_script('nitisveta-swiper', get_template_directory_uri() . '/assets/libs/swiper-bundle.min.js', [], NITISVETA_VERSION, true);
+    wp_enqueue_script('nitisveta-magnific', get_template_directory_uri() . '/assets/libs/jquery.magnific-popup.min.js', [], NITISVETA_VERSION, true);
+    wp_enqueue_script('nitisveta-script', get_template_directory_uri() . '/assets/jsmin/script.min.js', [], NITISVETA_VERSION, true);
+    // wp_enqueue_script('nitisveta-script', get_template_directory_uri() . '/js/script.min.js', [], NITISVETA_VERSION, true);
 
     wp_enqueue_style(
         'select2-css',
@@ -173,6 +174,15 @@ function nitisveta_scripts()
         get_template_directory_uri() . '/assets/libs/select2/js/select2.js',
         ['jquery'],
         '4.1.0',
+        true
+    );
+
+    //
+    wp_enqueue_script(
+        'select2-settings',
+        get_template_directory_uri() . '/assets/js/select2-settings.js',
+        ['jquery', 'select2-js'],
+        null,
         true
     );
 
@@ -195,14 +205,7 @@ function nitisveta_scripts()
         true
     );
 
-    //
-    wp_enqueue_script(
-        'select2-settings',
-        get_template_directory_uri() . '/assets/js/select2-settings.js',
-        ['jquery', 'select2-js'],
-        null,
-        true
-    );
+
 
     // show list of cities and search for cities (custom)
     // wp_enqueue_script(
@@ -296,7 +299,8 @@ function nitisveta_enqueue_block_editor_script()
 {
     wp_enqueue_script(
         'nitisveta-editor',
-        get_template_directory_uri() . '/js/block-editor.min.js',
+        get_template_directory_uri() . '/assets/jsmin/block-editor.min.js',
+        // get_template_directory_uri() . '/js/block-editor.min.js',
         [
             'wp-blocks',
             'wp-edit-post',
@@ -317,7 +321,8 @@ function nitisveta_enqueue_typography_script()
     if (is_admin()) {
         wp_enqueue_script(
             'nitisveta-typography',
-            get_template_directory_uri() . '/js/tailwind-typography-classes.min.js',
+            get_template_directory_uri() . '/assets/jsmin/tailwind-typography-classes.min.js',
+            // get_template_directory_uri() . '/js/tailwind-typography-classes.min.js',
             [
                 'wp-blocks',
                 'wp-edit-post',

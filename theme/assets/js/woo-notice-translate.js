@@ -13,6 +13,25 @@ document.addEventListener('DOMContentLoaded', function () {
 						'.wc-block-components-notice-banner__content'
 					);
 
+					let contentElIsSuccess = document.querySelector(
+						'.wc-block-components-notice-banner.is-success'
+					);
+
+					const couponNotExistRegex =
+						/Coupon\s+"[^"]+"\s+does\s+not\s+exist!/;
+
+					if (contentElIsSuccess) {
+						const textContent = contentElIsSuccess.textContent;
+
+						if (textContent.includes('Coupon has been removed')) {
+							contentElIsSuccess.innerHTML =
+								contentElIsSuccess.innerHTML.replace(
+									'Coupon has been removed',
+									'Купон удалён'
+								);
+						}
+					}
+
 					if (contentEl) {
 						const textContent = contentEl.textContent;
 
@@ -21,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
 						switch (true) {
 							case textContent.includes('removed'):
 								contentEl.innerHTML = contentEl.innerHTML
-									.replace('removed', 'удалён из корзины')
+									.replace('removed', 'удалёно из корзины')
 									.replace('Undo?', 'Отменить?');
 								break;
 							case textContent.includes('Cart updated'):
@@ -65,6 +84,14 @@ document.addEventListener('DOMContentLoaded', function () {
 									contentEl.innerHTML.replace(
 										'Coupon has been removed.',
 										'Купон был удален.'
+									);
+								break;
+
+							case couponNotExistRegex.test(textContent):
+								contentEl.innerHTML =
+									contentEl.innerHTML.replace(
+										couponNotExistRegex,
+										'Купон не найден!'
 									);
 								break;
 							default:
