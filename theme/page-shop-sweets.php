@@ -17,22 +17,28 @@ get_header();
 
 
         <?php
-        $args = array(
+        $args = [
             'post_type' => 'product',
             'posts_per_page' => 17,
-            'tax_query' => array(
-                array(
+            'tax_query' => [
+                [
                     'taxonomy' => 'product_cat', // Укажите таксономию "product_cat" (категории товаров)
                     'field' => 'slug', // Используйте поле "slug" для поиска по slug категории
-                    'terms' => array('sladosti'), // Укажите slug категории "сладости"
+                    'terms' => ['sladosti'], // Укажите slug категории "сладости"
                     'operator' => 'IN', // Выберите товары, **входящие** в категорию "сладости"
-                )
-            ),
-            "facetwp" => true
-        );
-        $query = new WP_Query($args);
-        $i = 0;
-        ?>
+                ]
+            ],
+            'meta_query' => [
+                [
+                    'key' => '_stock_status',
+                    'value' => 'instock',
+                ],
+            ],
+            'facetwp' => true
+        ];
+$query = new WP_Query($args);
+$i = 0;
+?>
 
         <?php if ($query->have_posts()) : ?>
             <div class="container">

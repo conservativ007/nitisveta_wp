@@ -16,19 +16,25 @@ get_header();
     <main id="main">
 
         <?php
-            $args = array(
+            $args = [
                 'post_type' => 'product',
                 'posts_per_page' => 17,
-                'tax_query' => array(
-                    array(
+                'tax_query' => [
+                    [
                         'taxonomy' => 'product_cat',
                         'field' => 'term_id',
-                        'terms' => array(18, 41, 42),
+                        'terms' => [18, 41, 42],
                         'operator' => 'NOT IN',
-                    )
-                ),
-                "facetwp" => true
-            );
+                    ]
+                ],
+                'meta_query' => [
+                    [
+                        'key' => '_stock_status',
+                        'value' => 'instock',
+                    ],
+                ],
+                'facetwp' => true
+            ];
 $query = new WP_Query($args);
 $i = 0;
 ?>

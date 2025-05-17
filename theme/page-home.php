@@ -89,18 +89,24 @@ get_header();
         </section>
 
         <?php
-    $args = array(
+    $args = [
       'post_type' => 'product',
       'posts_per_page' => 15,
-      'tax_query' => array(
-        array(
+      'tax_query' => [
+        [
           'taxonomy' => 'product_cat',
           'field' => 'term_id',
-          'terms' => array(18),
+          'terms' => [18],
           'operator' => 'NOT IN',
-        )
-      ),
-    );
+        ],
+      ],
+      'meta_query' => [
+        [
+            'key' => '_stock_status',
+            'value' => 'instock',
+        ],
+       ],
+    ];
 $i = 1;
 $query = new WP_Query($args); ?>
 
@@ -256,18 +262,18 @@ $query = new WP_Query($args); ?>
 
 
             <?php
-      $args = array(
+      $args = [
         'post_type' => 'product',
         'posts_per_page' => 5,
-        'tax_query' => array(
-          array(
+        'tax_query' => [
+          [
                     'taxonomy' => 'product_cat',
                     'field' => 'term_id',
-                    'terms' => array(18),
+                    'terms' => [18],
                     'operator' => 'IN',
-          )
-        ),
-      );
+          ]
+        ],
+      ];
 $i = 1;
 $query = new WP_Query($args); ?>
 

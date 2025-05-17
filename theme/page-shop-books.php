@@ -16,17 +16,23 @@ get_header();
     <main id="main">
 
         <?php
-        $args = array(
+        $args = [
             'post_type' => 'product',
             'posts_per_page' => 15,
-            'tax_query'     => array(array(
-                'taxonomy'  => 'product_cat',
-                'field'     => 'term_id',
-                'terms'     => array(18),
-                'operator'  => 'IN',
-            )),
-            "facetwp" => true
-        );
+            'tax_query' => [[
+                'taxonomy' => 'product_cat',
+                'field' => 'term_id',
+                'terms' => [18],
+                'operator' => 'IN',
+            ]],
+            'meta_query' => [
+                [
+                    'key' => '_stock_status',
+                    'value' => 'instock',
+                ],
+            ],
+            'facetwp' => true
+        ];
 $i = 1;
 $flag = true;
 $query = new WP_Query($args); ?>
@@ -59,7 +65,7 @@ $query = new WP_Query($args); ?>
                     <div class="pl-0 pt-[60px] pb-[70px] pr-6 flex flex-col justify-between font-poppins space-y-0">
                         <p class="pt-1 font-semibold text-[23px]">ПОДАРОК. БЕСПЛАТНО</p>
                         <p class="text-[20px]">
-                            При покупке любой книги <br>
+                            При покупке любой книги<br>
                             в подарок добавляем книгу <br>
                             «Тибетский буддизм с самых основ» <br>
                             Б. Алана Уоллеса
