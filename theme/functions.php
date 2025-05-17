@@ -205,8 +205,6 @@ function nitisveta_scripts()
         true
     );
 
-
-
     // show list of cities and search for cities (custom)
     // wp_enqueue_script(
     //     'country_city_selector2',
@@ -847,3 +845,14 @@ add_action('rest_api_init', function () {
         'permission_callback' => '__return_true'
     ]);
 });
+
+// очистка корзины после редиректа со внешнего шлюза оплаты
+add_action('template_redirect', 'custom_clear_cart_on_custom_thankyou');
+function custom_clear_cart_on_custom_thankyou()
+{
+    if (is_page('thankyou') && isset($_GET['Success']) && $_GET['Success'] === 'true') {
+        if (WC()->cart && !WC()->cart->is_empty()) {
+            WC()->cart->empty_cart();
+        }
+    }
+}
