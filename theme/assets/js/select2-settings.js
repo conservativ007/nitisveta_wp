@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		.select2({
 			// tags: true,
 			allowClear: true,
+			// minimumResultsForSearch: Infinity,
 		})
 		.on('select2:open', function () {
 			let country = document.querySelector(
@@ -57,4 +58,18 @@ document.addEventListener('DOMContentLoaded', function () {
 				country.classList.remove('rotate-arrow');
 			}
 		});
+
+	// remove input from countries (select2)
+	jQuery(function ($) {
+		setTimeout(function () {
+			const $select = $('#billing_country');
+			if ($select.hasClass('select2-hidden-accessible')) {
+				$select.select2('destroy');
+			}
+			$select.select2({
+				minimumResultsForSearch: Infinity,
+				width: '100%',
+			});
+		}, 100);
+	});
 });
