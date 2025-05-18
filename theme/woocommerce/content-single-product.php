@@ -410,6 +410,12 @@ if (has_term(18, 'product_cat', $product->get_id())) {
                 'operator' => 'IN',
             ]
         ],
+        'meta_query' => [
+            [
+                'key' => '_stock_status',
+                'value' => 'instock',
+            ],
+        ],
     ];
 } else {
     $args = [
@@ -422,6 +428,12 @@ if (has_term(18, 'product_cat', $product->get_id())) {
                 'terms' => [18],
                 'operator' => 'NOT IN',
             ]
+        ],
+        'meta_query' => [
+            [
+                'key' => '_stock_status',
+                'value' => 'instock',
+            ],
         ],
     ];
 }

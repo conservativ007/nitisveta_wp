@@ -14,7 +14,7 @@ foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item) {
 $ucenennyj_value = $product->get_attribute('pa_ucenennyj');
 $ucenenn = '';
 if ('да' === strtolower($ucenennyj_value)) {
-    $ucenenn = "уцененный";
+    $ucenenn = 'уцененный';
 }
 ?>
 <?php global $product; ?>
