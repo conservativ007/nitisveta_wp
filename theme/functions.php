@@ -156,7 +156,7 @@ function nitisveta_scripts()
     wp_enqueue_style('nitisveta-swiper', get_template_directory_uri() . '/assets/libs/swiper-bundle.min.css', [], '', 'all');
     wp_enqueue_style('nitisveta-magnific', get_template_directory_uri() . '/assets/libs/magnific-popup.css', [], '', 'all');
     wp_enqueue_style('nitisveta-style', get_stylesheet_uri(), [], filemtime(get_template_directory() . '/style.css'), 'all');
-    // wp_enqueue_style('nitisveta-city-selector', get_template_directory_uri() . '/assets/css/city_selector.css', [], '', 'all');
+    wp_enqueue_style('cart', get_template_directory_uri() . '/assets/css/cart.css', [], '', 'all');
     wp_enqueue_script('nitisveta-swiper', get_template_directory_uri() . '/assets/libs/swiper-bundle.min.js', [], NITISVETA_VERSION, true);
     wp_enqueue_script('nitisveta-magnific', get_template_directory_uri() . '/assets/libs/jquery.magnific-popup.min.js', [], NITISVETA_VERSION, true);
     wp_enqueue_script('nitisveta-script', get_template_directory_uri() . '/assets/jsmin/script.min.js', [], NITISVETA_VERSION, true);

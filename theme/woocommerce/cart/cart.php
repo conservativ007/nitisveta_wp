@@ -261,7 +261,7 @@ do_action('woocommerce_before_cart'); ?>
         <input type="text" name="coupon_code" class="input-text text-left text-sm md:text-base md:text-center border md:pl-6 border-gray rounded-l rounded-r-none border-r-0 h-full flex w-full max-w-none " id="coupon_code" value="" placeholder="Введите ваш промо код" />
 
         <button type="submit" class="submit_coupon bg-primary shrink-0 px-1 text-white h-full flex items-center justify-center rounded-r w-1/3" name="apply_coupon" value="<?php esc_attr_e('Apply coupon', 'woocommerce'); ?>">
-          <?php esc_html_e('Apply', 'woocommerce'); ?>
+          <?php esc_html_e('Применить', 'woocommerce'); ?>
         </button>
         <?php do_action('woocommerce_cart_coupon'); ?>
       </div>
@@ -305,14 +305,21 @@ function get_discount_total()
 }
 
 ?>
-      <div class="text-center text-lg md:text-xl font-bold mt-4 mb-1 md:mt-6">
+      <div class="text-center text-lg md:text-xl font-bold mt-4 mb-1 md:mt-6 custom-cart">
 
         <div>Товаров на:
           <?php echo get_cart_total(); ?> ₽
         </div>
-        <div>Экономия:
+        <!-- <div>Экономия:
           <?php echo get_discount_total(); ?> ₽
-        </div>
+        </div> -->
+        <?php foreach (WC()->cart->get_coupons() as $code => $coupon) : ?>
+			<tr class="cart-discount coupon-<?php echo esc_attr(sanitize_title($code)); ?>">
+				<td>
+					Купон: <?php echo wc_cart_totals_coupon_html($coupon); ?>
+				</td>
+			</tr>
+		<?php endforeach; ?>
 
       </div>
     </div>
