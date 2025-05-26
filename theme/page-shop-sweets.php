@@ -19,13 +19,14 @@ get_header();
         <?php
         $args = [
             'post_type' => 'product',
-            'posts_per_page' => 17,
+            'posts_per_page' => -1,
+            // 'posts_per_page' => 17,
             'tax_query' => [
                 [
-                    'taxonomy' => 'product_cat', // Укажите таксономию "product_cat" (категории товаров)
-                    'field' => 'slug', // Используйте поле "slug" для поиска по slug категории
-                    'terms' => ['sladosti'], // Укажите slug категории "сладости"
-                    'operator' => 'IN', // Выберите товары, **входящие** в категорию "сладости"
+                    'taxonomy' => 'product_cat',
+                    'field' => 'slug',
+                    'terms' => ['sladosti'],
+                    'operator' => 'IN',
                 ]
             ],
             'meta_query' => [

@@ -18,7 +18,8 @@ get_header();
         <?php
         $args = [
             'post_type' => 'product',
-            'posts_per_page' => 15,
+            'posts_per_page' => -1,
+            // 'posts_per_page' => 15,
             'tax_query' => [[
                 'taxonomy' => 'product_cat',
                 'field' => 'term_id',
