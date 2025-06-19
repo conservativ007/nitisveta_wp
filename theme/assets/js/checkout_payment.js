@@ -21,7 +21,6 @@ document.addEventListener('DOMContentLoaded', function () {
 		}
 
 		// показываем что поля обязательно к заполенению если не заполнено (телефон, имя фамилия)
-
 		const elems = document.querySelectorAll(
 			'#billing_first_name_field, #billing_phone_field'
 		);

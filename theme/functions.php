@@ -248,6 +248,15 @@ function nitisveta_scripts()
         true
     );
 
+    // shippingObserver
+    wp_enqueue_script(
+        'shippingObserver',
+        get_template_directory_uri() . '/assets/js/shippingObserver.js',
+        null,
+        null,
+        true
+    );
+
     // waiting for the #shipping_method block to appear,
     // clones #billing_address_1_field into the first <li> inside this block,
     // and cleans up the clone's style.

@@ -65,6 +65,12 @@
     padding-top: 10px;
 }
 
+
+
+#shipping_method {
+    min-height: 188px;
+}
+
 #shipping_method li {
     position: relative;
     transition: transform 0.3s ease, box-shadow 0.3s ease;

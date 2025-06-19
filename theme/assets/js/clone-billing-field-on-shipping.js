@@ -10,6 +10,11 @@ document.addEventListener('DOMContentLoaded', function () {
 			if (mutation.type === 'childList') {
 				const targetNode = document.querySelector('#shipping_method'); // Пытаемся заново найти элемент
 				if (targetNode) {
+					const billingAddress2 =
+						document.querySelector('#billing_address_2');
+					const billingLastName =
+						document.querySelector('#billing_last_name');
+
 					const firstLi = targetNode.querySelector('li:first-child');
 					const alreadyCloned = firstLi?.querySelector(
 						'[data-cloned="true"]'
@@ -24,35 +29,17 @@ document.addEventListener('DOMContentLoaded', function () {
 							// === Клонируем до изменения оригинала ===
 							const clonedField = billingField.cloneNode(true);
 
-							// === Вставляем клон и отмечаем его как "вставленный" ===
-							clonedField.setAttribute('data-cloned', 'true');
-							firstLi.appendChild(clonedField);
-
-							// Убираем label
-							const label = clonedField.querySelector('label');
-							if (label) {
-								label.remove();
-							}
-
-							// Обновляем стили input
-							const input = clonedField.querySelector('input');
-							if (input) {
-								input.style.visibility = 'visible';
-								input.style.position = 'static';
-								input.id = 'billing_address_1';
-							}
-
-							// Убираем тени у клонированного блока
-							clonedField.style.boxShadow = 'none';
-							clonedField.style.textShadow = 'none';
-
-							// === Меняем id и for в оригинале после клонирования ===
+							// 2. Меняем id и name в оригинале до вставки клона
 							const originalInput =
 								billingField.querySelector(
 									'#billing_address_1'
 								);
 							if (originalInput) {
 								originalInput.id = 'billing_address_1_original';
+								originalInput.setAttribute(
+									'name',
+									'billing_address_1_original'
+								);
 							}
 
 							const originalLabel = billingField.querySelector(
@@ -64,7 +51,41 @@ document.addEventListener('DOMContentLoaded', function () {
 									'billing_address_1_original'
 								);
 							}
+
+							// 3 Вставляем клон и отмечаем его как "вставленный"
+							clonedField.setAttribute('data-cloned', 'true');
+							firstLi.appendChild(clonedField);
+
+							// 4. Настраиваем клон
+							const clonedInput =
+								clonedField.querySelector('input');
+							if (clonedInput) {
+								clonedInput.style.visibility = 'visible';
+								clonedInput.style.position = 'static';
+								clonedInput.id = 'billing_address_1';
+								clonedInput.setAttribute(
+									'name',
+									'billing_address_1'
+								);
+							}
+
+							// Убираем тени у клонированного блока
+							clonedField.style.boxShadow = 'none';
+							clonedField.style.textShadow = 'none';
+
+							const label = clonedField.querySelector('label');
+							if (label) {
+								label.remove();
+							}
 						}
+					}
+
+					// очищаем др спрятанные инпуты
+					if (billingAddress2) {
+						billingAddress2.value = '';
+					}
+					if (billingLastName) {
+						billingLastName.value = '';
 					}
 				}
 			}
