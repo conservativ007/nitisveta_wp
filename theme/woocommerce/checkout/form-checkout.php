@@ -29,6 +29,14 @@ if (!$checkout->is_registration_enabled() && $checkout->is_registration_required
 }
 
 ?>
+<div class="lg:block hidden mb-5">
+	<div class="max-w-[1610px] m-auto"><?php get_template_part('template-parts/banner/holidays'); ?></div>
+</div>
+
+<div class="block lg:hidden mb-5">
+	<div class="container max-w-[1610px] m-auto"><?php get_template_part('template-parts/banner/holidays'); ?></div>
+</div>
+
 
 <form name="checkout" method="post" class="checkout woocommerce-checkout max-lg:px-[10px]" action="<?php echo esc_url(wc_get_checkout_url()); ?>" enctype="multipart/form-data">
 

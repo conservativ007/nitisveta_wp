@@ -14,6 +14,10 @@ get_header();
 <section id="primary">
 
     <main id="main">
+        <div class="container max-w-[1610px] m-auto">
+            <?php get_template_part('template-parts/banner/holidays'); ?>
+        </div>
+		
 
         <?php
             $args = [
@@ -44,6 +48,7 @@ $i = 0;
 
         <?php if ($query->have_posts()) : ?>
             <div class="grid lg:grid-cols-2 2xl:grid-cols-3 container gap-[10px] mb-10 mt-5">
+                
                 <?php while ($query->have_posts()) :
                     $query->the_post();
                     $i++; ?>

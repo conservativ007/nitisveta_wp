@@ -44,7 +44,7 @@
         <a href="#test-popup" class="open-popup-link flex items-center h-14 w-full transition justify-center rounded-[10px] px-3 bg-[#F8F8F8] hover:bg-slate-100"><span>Вход/регистрация</span></a>
       <?php
       }
-?>
+ ?>
     </div>
 
     <div class="grid grid-cols-2 gap-x-4 gap-y-5 mt-6">
@@ -141,10 +141,10 @@
           </svg>
 
           <?php
-    if (function_exists('WC')) {
-        $cart_count = WC()->cart->get_cart_contents_count();
-    }
-?>
+            if (function_exists('WC')) {
+                $cart_count = WC()->cart->get_cart_contents_count();
+            }
+          ?>
 
 
           <div id="your-element-id" class="cart-count <?php if ($cart_count == 0) : ?>hidden<?php endif; ?> flex items-center justify-center rounded-full bg-red-500 text-white absolute top-[-12px] right-[-12px] w-[24px] h-[24px] border-2 border-white text-center text-xs font-bold">
@@ -183,7 +183,7 @@
         <!-- <a href="#test-popup" class="open-popup-link flex items-center h-14 w-full max-w-[215px] transition justify-center rounded-[10px] px-3 bg-[#F8F8F8] hover:bg-slate-100"><span>Вход/регистрация</span></a> -->
       <?php
       }
-?>
+      ?>
     </div>
   </div>
 </nav>
@@ -213,7 +213,7 @@
   if (function_exists('WC')) {
       $cart_count = WC()->cart->get_cart_contents_count();
   }
-?>
+ ?>
 
 
         <div id="your-element-id2" class="cart-count <?php if ($cart_count == 0) : ?>hidden<?php endif; ?> flex items-center justify-center rounded-full bg-red-500 text-white absolute top-[-12px] right-[-12px] w-[24px] h-[24px] border-2 border-white text-center text-xs font-bold">

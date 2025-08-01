@@ -42,7 +42,10 @@ $i = 0;
 ?>
 
         <?php if ($query->have_posts()) : ?>
+            
+            
             <div class="container">
+                <div class="max-w-[1610px] m-auto mb-5"><?php get_template_part('template-parts/banner/holidays'); ?></div>
                 <div class="grid sm:grid-cols-3 grid-cols-1 sm:gap-2 gap-1">
                     <div class="relative flex justify-center items-center ">
                         <img class="h-[144px] object-cover rounded-xl" src="<?php echo get_template_directory_uri(); ?>/images/sweets1.png" alt="">

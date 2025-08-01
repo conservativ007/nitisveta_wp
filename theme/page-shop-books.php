@@ -38,8 +38,11 @@ $i = 1;
 $flag = true;
 $query = new WP_Query($args); ?>
 
-        <div class="container ">
-
+        <div class="container">
+            <div class="mb-5">
+                <?php get_template_part('template-parts/banner/holidays'); ?>
+            </div>
+        
             <div class="bg-white shadow flex flex-col xl:flex-row xl:justify-start rounded-[10px] xl:items-center relative min-h-[215px] mb-3">
                 <img src="<?php echo get_template_directory_uri(); ?>/images/bookmarks-image.png" class="bottom-0 left-0 max-xl:order-2 max-xl:max-h-28 max-xl:w-auto self-start">
 

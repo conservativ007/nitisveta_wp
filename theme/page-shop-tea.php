@@ -40,6 +40,10 @@ $i = 0;
 ?>
 
         <?php if ($query->have_posts()) : ?>
+            <div class="container mb-10">
+                <?php get_template_part('template-parts/banner/holidays'); ?>
+            </div>
+            
             <div class="container max-w-[1640px] max-lg:p-0">
                 <div class="relative pb-[110px] xl:pl-[210px] bg-left xl:pr-[350px] pt-5 xl:pt-16 -mt-6 overflow-hidden ">
                     <div class="object-cover h-full w-full absolute left-0 top-0 overflow-hidden">
