@@ -16,7 +16,7 @@ get_header();
 
         <section class="relative pb-10 md:pb-20 overflow-hidden">
             <div class="container mx-auto lg:pt-2">
-                <?php get_template_part('template-parts/banner/holidays'); ?>
+                <!-- <?php get_template_part('template-parts/banner/holidays'); ?> -->
                 <h1
                     class="text-3xl md:text-4xl xl:text-[65px] mt-0 xl:mt-4 2xl:mt-10 mb-3 lg:mb-10 font-title text-primary">
                     Благотворительный интернет магазин</h1>

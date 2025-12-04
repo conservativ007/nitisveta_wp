@@ -14,9 +14,9 @@ get_header();
 <section id="primary">
 
     <main id="main">
-        <div class="container max-w-[1610px] m-auto">
+        <!-- <div class="container max-w-[1610px] m-auto">
             <?php get_template_part('template-parts/banner/holidays'); ?>
-        </div>
+        </div> -->
 		
 
         <?php
