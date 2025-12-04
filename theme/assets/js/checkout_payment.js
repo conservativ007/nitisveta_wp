@@ -25,16 +25,68 @@ document.addEventListener('DOMContentLoaded', function () {
 			'#billing_first_name_field, #billing_phone_field'
 		);
 
-		elems.forEach((elem) => {
-			const input = elem.querySelector('input');
-
-			if (input.value === '' || input.value === undefined) {
-				elem.classList.add('custom-opacity');
+		const checkFirstNadSecondName = () => {
+			// console.log('checkFirstNadSecondName');
+			const containerFirstAndSecondNameInput = document.querySelector(
+				'#billing_first_name_field'
+			);
+			const firstAndSecondNameInput = document.querySelector(
+				'#billing_first_name'
+			);
+			if (
+				firstAndSecondNameInput.value === '' ||
+				firstAndSecondNameInput.value === undefined
+			) {
+				// console.log(containerFirstAndSecondNameInput);
 				flag = false;
+				containerFirstAndSecondNameInput.classList.add(
+					'custom-opacity'
+				);
 			} else {
-				elem.classList.remove('custom-opacity');
+				containerFirstAndSecondNameInput.classList.remove(
+					'custom-opacity'
+				);
 			}
-		});
+		};
+
+		checkFirstNadSecondName();
+
+		const checkPhone = () => {
+			const containerPhone = document.querySelector(
+				'#billing_phone_field'
+			);
+			const phoneInput = document.querySelector('#billing_phone');
+
+			if (
+				phoneInput.value === '' ||
+				phoneInput.value === undefined ||
+				phoneInput.value.length < 8
+			) {
+				flag = false;
+				containerPhone.classList.add('custom-opacity');
+				phoneInput.classList.add('!border-red-500');
+				containerPhone.style.setProperty(
+					'--custom-content-phone-field',
+					'"минимум 8 цифр"'
+				);
+			} else {
+				containerPhone.classList.remove('custom-opacity');
+				phoneInput.classList.remove('!border-red-500');
+			}
+		};
+
+		checkPhone();
+
+		// elems.forEach((elem) => {
+		// 	const input = elem.querySelector('input');
+
+		// 	if (input.value === '' || input.value === undefined) {
+		// 		elem.classList.add('custom-opacity');
+		// 		flag = false;
+		// 	} else {
+		// 		elem.classList.remove('custom-opacity');
+		// 	}
+		// });
 
 		// поля CDEK
 

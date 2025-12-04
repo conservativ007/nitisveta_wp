@@ -1,441 +1,451 @@
+.woocommerce form .form-row.woocommerce-validated .select2-container,
+.woocommerce form .form-row.woocommerce-validated input.input-text,
+.woocommerce form .form-row.woocommerce-validated select {
+	border-color: inherit;
+}
+
 .woocommerce-billing-fields__field-wrapper p {
-    padding: 0 !important;
-    margin: 0 !important;
+	padding: 0 !important;
+	margin: 0 !important;
 }
 
 .woocommerce-additional-fields {
-    max-width: 330px;
+	max-width: 330px;
 }
 
 .woocommerce-additional-fields p {
-    padding: 0 !important;
+	padding: 0 !important;
 }
 
 .woocommerce-billing-fields__field-wrapper {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
 }
 
 #ks2008_pvz_checkout {
-    position: absolute;
+	position: absolute;
 }
 
-@media (max-width: 1024px){
-    .woocommerce-billing-fields__field-wrapper {
-        
-        grid-template-columns: repeat(1, 1fr);
-        gap: 25px;
-    }
+@media (max-width: 1024px) {
+	.woocommerce-billing-fields__field-wrapper {
+		grid-template-columns: repeat(1, 1fr);
+		gap: 25px;
+	}
 }
-
 
 .select2-selection {
-    /* border-radius: 6px !important; */
-    border-top-left-radius: 6px !important;
-    border-top-right-radius: 6px !important;
+	/* border-radius: 6px !important; */
+	border-top-left-radius: 6px !important;
+	border-top-right-radius: 6px !important;
 }
 
 .select.custom_city_select {
-    border-radius: 6px !important;
-    /* box-shadow: none !important; */
+	border-radius: 6px !important;
+	/* box-shadow: none !important; */
 }
 
 #billing_postcode {
-    border-color: rgb(170, 170, 170) !important;
+	border-color: rgb(170, 170, 170) !important;
 }
 
 #order_comments_field {
-    order: 6;
+	order: 6;
 }
 
 .container_list_of_cities {
-    display: none;
+	display: none;
 }
 
 .checkout > p {
-    display: none;
+	display: none;
 }
 
 #billing_address_2_field {
-    display: none !important;
+	display: none !important;
 }
 
 #order_comments {
-    height: 48px;
-    padding-top: 10px;
+	height: 48px;
+	padding-top: 10px;
 }
 
-
-
 #shipping_method {
-    min-height: 188px;
+	min-height: 188px;
 }
 
 #shipping_method li {
-    position: relative;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+	position: relative;
+	transition:
+		transform 0.3s ease,
+		box-shadow 0.3s ease;
 }
 
 #shipping_method li:first-child:after {
-    content: var(--custom-content);
-    color: #EF3343;
-    position: absolute; 
-    top: 135px; 
-    left: 50%; 
-    transform: translateX(-50%);
-    font-size: 12px; 
-    white-space: nowrap;
-    opacity: 0;
+	content: var(--custom-content);
+	color: #ef3343;
+	position: absolute;
+	top: 135px;
+	left: 50%;
+	transform: translateX(-50%);
+	font-size: 12px;
+	white-space: nowrap;
+	opacity: 0;
 }
 
 #shipping_method li:hover {
-    transform: translateY(-5px); 
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+	transform: translateY(-5px);
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
-
 
 #shipping_method li:nth-child(1) {
-    order: 2; 
-}
-  
-#shipping_method li:nth-child(2) {
-    /* order: 1;  */
-    padding-bottom: 0;
+	order: 2;
 }
 
-@media (max-width: 1024px){
-    #shipping_method li:nth-child(2) {
-       
-        padding-bottom: 2rem;
-    }
+#shipping_method li:nth-child(2) {
+	/* order: 1;  */
+	padding-bottom: 0;
+}
+
+@media (max-width: 1024px) {
+	#shipping_method li:nth-child(2) {
+		padding-bottom: 2rem;
+	}
 }
 
 #select2-billing_country-container {
-    padding: 0;
+	padding: 0;
 }
 
 .woocommerce-shipping-methods li:nth-child(2) {
-    z-index: 200;
+	z-index: 200;
 }
 
 .my-custom-shipping-table .woocommerce-shipping-methods li:nth-child(2):before {
-    content: "или";
-    position: absolute;
-    top: 95px;
-    right: -2.6rem;
-    margin-top: -1.75rem;
-    display: flex;
-    height: 3rem;
-    width: 5rem;
-    align-items: center;
-    justify-content: center;
-    border-radius: 9999px;
-    border-width: 1px;
-    --tw-border-opacity: 1;
-    border-color: rgb(230 230 230 / var(--tw-border-opacity));
-    --tw-bg-opacity: 1;
-    background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-    text-align: center;
-    --tw-text-opacity: 1;
-    color: rgb(170 170 170 / var(--tw-text-opacity));
+	content: "или";
+	position: absolute;
+	top: 95px;
+	right: -2.6rem;
+	margin-top: -1.75rem;
+	display: flex;
+	height: 3rem;
+	width: 5rem;
+	align-items: center;
+	justify-content: center;
+	border-radius: 9999px;
+	border-width: 1px;
+	--tw-border-opacity: 1;
+	border-color: rgb(230 230 230 / var(--tw-border-opacity));
+	--tw-bg-opacity: 1;
+	background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+	text-align: center;
+	--tw-text-opacity: 1;
+	color: rgb(170 170 170 / var(--tw-text-opacity));
 
-    z-index: 100 !important;
+	z-index: 100 !important;
 }
 
-@media (max-width: 1024px){
-    .my-custom-shipping-table .woocommerce-shipping-methods li:nth-child(2):before {
-        top: auto;
-        bottom: -32px;
-        /* left: calc(50% - 2.5rem) ; */
-    }
+@media (max-width: 1024px) {
+	.my-custom-shipping-table
+		.woocommerce-shipping-methods
+		li:nth-child(2):before {
+		top: auto;
+		bottom: -32px;
+		/* left: calc(50% - 2.5rem) ; */
+	}
 }
 
-@media not all and (min-width: 1024px){
-    .my-custom-shipping-table .woocommerce-shipping-methods li:nth-child(2):before{
-      /* margin-left: auto; */
-    }
-  }
-  
-  @media (min-width: 1024px){
-    .my-custom-shipping-table .woocommerce-shipping-methods li:nth-child(2):before{
-      left: auto;
-    }
-  }
+@media not all and (min-width: 1024px) {
+	.my-custom-shipping-table
+		.woocommerce-shipping-methods
+		li:nth-child(2):before {
+		/* margin-left: auto; */
+	}
+}
 
-@media (max-width: 1024px){
-    #shipping_method_0_official_cdek-136:checked ~ .woocommerce-shipping-methods li:nth-child(2)::before {
-        top: 100%;
-    }
+@media (min-width: 1024px) {
+	.my-custom-shipping-table
+		.woocommerce-shipping-methods
+		li:nth-child(2):before {
+		left: auto;
+	}
+}
 
-    .woocommerce ul#shipping_method li label {
-        flex-direction: row !important;
-    }
+@media (max-width: 1024px) {
+	#shipping_method_0_official_cdek-136:checked
+		~ .woocommerce-shipping-methods
+		li:nth-child(2)::before {
+		top: 100%;
+	}
+
+	.woocommerce ul#shipping_method li label {
+		flex-direction: row !important;
+	}
 }
 
 #billing_phone_field,
 #billing_city_field {
-    position: relative;
+	position: relative;
 }
 
 #billing_first_name_field {
-    position: relative;
-    order: 3;
+	position: relative;
+	order: 3;
 }
 
+#billing_phone_field::before {
+	content: var(--custom-content-phone-field);
+	color: #ef3343;
+	position: absolute;
+	top: -20px;
+	left: 50%;
+	transform: translateX(-50%);
+	font-size: 12px;
+	white-space: nowrap;
+	opacity: 0;
+}
+
+/* #billing_phone_field::before, */
 #billing_first_name_field::before,
-#billing_phone_field::before,
 #billing_city_field::before {
-    content: "Обязательно для заполнения *"; 
-    color: #EF3343; 
-    position: absolute;
-    top: -20px; 
-    left: 50%; 
-    transform: translateX(-50%);
-    font-size: 12px; 
-    white-space: nowrap;
-    opacity: 0;
-}
-  
-@media (min-width: 1024px){
-    #billing_first_name_field{
-        order: 1;
-    }
+	content: "Обязательно для заполнения *";
+	color: #ef3343;
+	position: absolute;
+	top: -20px;
+	left: 50%;
+	transform: translateX(-50%);
+	font-size: 12px;
+	white-space: nowrap;
+	opacity: 0;
 }
 
+@media (min-width: 1024px) {
+	#billing_first_name_field {
+		order: 1;
+	}
+}
 
 .custom-opacity::before {
-    opacity: 1 !important;
+	opacity: 1 !important;
 }
 
 .custom-opacity-after::after {
-    opacity: 1 !important;
+	opacity: 1 !important;
 }
 
 /* выбор города из списка */
 .select2-search__field {
-    outline: none;
+	outline: none;
 }
 
 #select2-billing_city-results {
-    max-height: 500px;
+	max-height: 500px;
 }
 
 .select2-container .select2-results__options li {
-    text-align: center;
+	text-align: center;
 }
 
 .select2-container .select2-results__options li:hover {
-    background-color: transparent;
-    color: #EF3343;
-    /* color: white; */
+	background-color: transparent;
+	color: #ef3343;
+	/* color: white; */
 }
-  
+
 #select2-billing_city-container {
-    height: 100%;
-    display: flex !important;
-    justify-content: center;
-    align-items: center;
+	height: 100%;
+	display: flex !important;
+	justify-content: center;
+	align-items: center;
 }
 
 .select2-selection__clear,
 .select2-selection__arrow {
-    display: none;
+	display: none;
 }
 
 #billing_address_1 {
-    border-color: rgb(170, 170, 170) !important;
+	border-color: rgb(170, 170, 170) !important;
 }
 
-
 #billing_address_1_field label {
-    display: none;
+	display: none;
 }
 
 #billing_address_1_field {
-    max-width: 430px;
-    margin: 0 auto;
+	max-width: 430px;
+	margin: 0 auto;
 }
 
 #billing_address_1_field_clone #billing_address_1 {
-    visibility: visible !important;
-  }
+	visibility: visible !important;
+}
 
 #billing_city_field {
+	/* border: 1px solid silver; */
+	/* border-radius: 4px; */
+	max-height: 48px;
 
-    /* border: 1px solid silver; */
-    /* border-radius: 4px; */
-    max-height: 48px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 #billing_postcode_field label {
-    order: 3;
-    display: none;
+	order: 3;
+	display: none;
 }
 
 #billing_city {
-    /* background: url('/wp-content/themes/nitisveta/theme/images/arrow-down.svg') no-repeat right 0px center; */
-    /* background-size: 0; */
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;  
+	/* background: url('/wp-content/themes/nitisveta/theme/images/arrow-down.svg') no-repeat right 0px center; */
+	/* background-size: 0; */
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
 }
 
-
 .select2-search__field {
-    border: none !important;
+	border: none !important;
 }
 
 #billing_city_field #billing_city {
-    position: relative;
-    text-align: center;
-    outline: none;
+	position: relative;
+	text-align: center;
+	outline: none;
 
-    border: 1px solid #aaa;
-    border-radius: 4px;
-    max-height: 48px;
+	border: 1px solid #aaa;
+	border-radius: 4px;
+	max-height: 48px;
 }
 
 .woocommerce-billing-fields__field-wrapper > :nth-child(5) {
-    position: relative;
+	position: relative;
 }
 
 #billing_country_field {
-    position: relative;
+	position: relative;
 }
 
 #select2-billing_city-container::after,
 #select2-billing_country-container::after {
-    content: '';
-    border-color: #888 transparent transparent transparent;
-    border-style: solid;
-    border-width: 5px 4px 0 4px;
-    height: 0;
-    position: absolute;
-    top: 50%;
-    right: 15px;
-    width: 0;
-    transition: transform 0.3s ease; 
+	content: "";
+	border-color: #888 transparent transparent transparent;
+	border-style: solid;
+	border-width: 5px 4px 0 4px;
+	height: 0;
+	position: absolute;
+	top: 50%;
+	right: 15px;
+	width: 0;
+	transition: transform 0.3s ease;
 }
 
 #select2-billing_city-container.rotate-arrow::after,
 #select2-billing_country-container.rotate-arrow::after {
-    transform: rotate(180deg);
+	transform: rotate(180deg);
 }
 
-
 .woocommerce-input-wrapper {
-    width: 100% !important;
+	width: 100% !important;
 }
 
 .woocommerce-input-wrapper select.custom_city_select {
-    width: 100% !important;
-    height: 48px;
+	width: 100% !important;
+	height: 48px;
 }
-
 
 @media (min-width: 1024px) {
-    .cdek-office-info {
-        display: inline-block;
-    }
+	.cdek-office-info {
+		display: inline-block;
+	}
 }
-
-
 
 /* list_of_cities */
 
-
 .container_list_of_cities {
-    position: absolute;
-    left: -350px;
-    background-color: white;
-    border: 1px solid silver;
-    border-radius: 5px;
-    width: 325px;
-    /* max-height: 500px; */
-    overflow-y: hidden;
-    z-index: 10;
-    padding-right: 5px;
-    padding-bottom: 10px;
+	position: absolute;
+	left: -350px;
+	background-color: white;
+	border: 1px solid silver;
+	border-radius: 5px;
+	width: 325px;
+	/* max-height: 500px; */
+	overflow-y: hidden;
+	z-index: 10;
+	padding-right: 5px;
+	padding-bottom: 10px;
 }
 
 .custom_input_of_cities {
-    outline: none;
-    border: none;
-    border-bottom: 1px solid silver;
-    font-size: 18px;
-    text-align: center;
-    font-family: 'Open Sans', sans-serif;
+	outline: none;
+	border: none;
+	border-bottom: 1px solid silver;
+	font-size: 18px;
+	text-align: center;
+	font-family: "Open Sans", sans-serif;
 
-    border-bottom: 1px solid silver;
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
+	border-bottom: 1px solid silver;
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 10px;
 }
 
 .custom_list_of_cities {
-    max-height: 450px;
-    overflow-y: auto;
-    list-style-type: none;
-    padding: 0 !important;
-    margin: 0 !important;
+	max-height: 450px;
+	overflow-y: auto;
+	list-style-type: none;
+	padding: 0 !important;
+	margin: 0 !important;
 }
 
 .custom_list_of_cities li {
-    list-style-type: none;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 0 !important;
-    margin: 0;
+	list-style-type: none;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 0 !important;
+	margin: 0;
 
-    text-align: center;
+	text-align: center;
 }
 
 .custom_list_of_cities li:hover {
-    cursor: pointer;
-    color: red;
+	cursor: pointer;
+	color: red;
 }
 
 /* scrollbar */
 
 .custom-scrollbar::-webkit-scrollbar {
-    width: 14px;
+	width: 14px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-    background: #f5f5f5;
-    border-radius: 10px;
-    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+	background: #f5f5f5;
+	border-radius: 10px;
+	box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: #F3B1B6; 
-    border-radius: 10px;
-    border: 4px solid #f5f5f5; 
+	background: #f3b1b6;
+	border-radius: 10px;
+	border: 4px solid #f5f5f5;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: #d32f2f;
+	background: #d32f2f;
 }
-
 
 /*  */
 .woocommerce-billing-fields__field-wrapper {
-    height: 100%;
+	height: 100%;
 }
 
 .html-overflow-x {
-    overflow-x: hidden;
+	overflow-x: hidden;
 }
-
 
 @media (min-width: 1024px) {
-    .woocommerce-billing-fields__field-wrapper {
-        row-gap: 30px;
-        column-gap: 20px;
-    }
+	.woocommerce-billing-fields__field-wrapper {
+		row-gap: 30px;
+		column-gap: 20px;
+	}
 }
-

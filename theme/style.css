@@ -3216,6 +3216,11 @@ ul#ui-id-1 {
   margin-right: auto;
 }
 
+.my-0{
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
 .my-2{
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
@@ -3224,11 +3229,6 @@ ul#ui-id-1 {
 .my-\[50px\]{
   margin-top: 50px;
   margin-bottom: 50px;
-}
-
-.my-0{
-  margin-top: 0px;
-  margin-bottom: 0px;
 }
 
 .-mt-3{
@@ -3529,10 +3529,6 @@ ul#ui-id-1 {
 
 .max-h-full{
   max-height: 100%;
-}
-
-.max-h-\[118px\]{
-  max-height: 118px;
 }
 
 .min-h-\[120px\]{
@@ -4151,6 +4147,21 @@ ul#ui-id-1 {
 .border-white{
   --tw-border-opacity: 1;
   border-color: rgb(255 255 255 / var(--tw-border-opacity));
+}
+
+.border-red-50{
+  --tw-border-opacity: 1;
+  border-color: rgb(254 242 242 / var(--tw-border-opacity));
+}
+
+.border-red-500{
+  --tw-border-opacity: 1;
+  border-color: rgb(239 68 68 / var(--tw-border-opacity));
+}
+
+.\!border-red-500{
+  --tw-border-opacity: 1 !important;
+  border-color: rgb(239 68 68 / var(--tw-border-opacity)) !important;
 }
 
 .border-opacity-50{
