@@ -5,20 +5,20 @@ document.addEventListener('DOMContentLoaded', function () {
 		let flag = true;
 
 		// показываем что поле обязательно к заполенению если не заполнено (город)
-		const elem = document.querySelector('#billing_city');
+		// const elem = document.querySelector('#billing_city');
 
-		if (elem.value === 'город') {
-			const parent = elem.closest('#billing_city_field');
+		// if (elem.value === 'город') {
+		// 	const parent = elem.closest('#billing_city_field');
 
-			if (parent) {
-				parent.classList.add('custom-opacity');
-				flag = false;
-			}
-		} else {
-			elem.closest('#billing_city_field').classList.remove(
-				'custom-opacity'
-			);
-		}
+		// 	if (parent) {
+		// 		parent.classList.add('custom-opacity');
+		// 		flag = false;
+		// 	}
+		// } else {
+		// 	elem.closest('#billing_city_field').classList.remove(
+		// 		'custom-opacity'
+		// 	);
+		// }
 
 		// показываем что поля обязательно к заполенению если не заполнено (телефон, имя фамилия)
 		const elems = document.querySelectorAll(

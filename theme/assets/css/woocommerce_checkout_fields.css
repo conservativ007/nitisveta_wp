@@ -1,3 +1,38 @@
+.woocommerce-checkout .woocommerce-NoticeGroup-checkout {
+  display: none !important;
+}
+
+#billing_city_field .city-hint {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  color: #118a7e;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+#billing_city_field,
+#billing_city_field * {
+  border: none !important;        /* убирает рамки */
+  outline: none !important;       /* убирает outline при фокусе */
+  box-shadow: none !important;    /* убирает тени (часто у Select2) */
+}
+
+#billing_city_field .select2-selection {
+	border: 1px solid #118a7e !important;
+  border-top-left-radius: 6px !important;
+	border-top-right-radius: 6px !important;  /* рамка для select2 */
+  /* border-radius: 6px !important; */
+  box-shadow: none !important;            /* убираем тени */
+}
+
+#select2-billing_city-container {
+	color: #118a7e;
+}
+
+
 .woocommerce form .form-row.woocommerce-validated .select2-container,
 .woocommerce form .form-row.woocommerce-validated input.input-text,
 .woocommerce form .form-row.woocommerce-validated select {
@@ -205,8 +240,7 @@
 }
 
 /* #billing_phone_field::before, */
-#billing_first_name_field::before,
-#billing_city_field::before {
+#billing_first_name_field::before {
 	content: "Обязательно для заполнения *";
 	color: #ef3343;
 	position: absolute;
@@ -216,6 +250,17 @@
 	font-size: 12px;
 	white-space: nowrap;
 	opacity: 0;
+}
+
+#billing_city_field::before {
+	content: "Обязательно для заполнения *";
+	color: #ef3343;
+	position: absolute;
+	top: -20px;
+	left: 50%;
+	transform: translateX(-50%);
+	font-size: 12px;
+	white-space: nowrap;
 }
 
 @media (min-width: 1024px) {
@@ -448,4 +493,8 @@
 		row-gap: 30px;
 		column-gap: 20px;
 	}
+}
+
+.woocommerce-page #payment #place_order.checkout-btn-disabled {
+	background-color: #606470;
 }

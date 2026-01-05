@@ -7,6 +7,9 @@
  *
  * @package Нити_Света
  */
+$inc_path = get_template_directory() . '/inc/';
+//  custom scripts
+require_once $inc_path . 'scripts.php';
 
 if (!defined('NITISVETA_VERSION')) {
     /*
@@ -43,7 +46,7 @@ if (!defined('NITISVETA_TYPOGRAPHY_CLASSES')) {
     );
 }
 
-if (!function_exists('nitisveta_setup')) :
+if (!function_exists('nitisveta_setup')):
     /**
      * Sets up theme defaults and registers support for various WordPress features.
      *
@@ -125,179 +128,26 @@ add_action('after_setup_theme', 'nitisveta_setup');
 function add_price_widget()
 {
     $product = wc_get_product(get_the_ID());
-    $thePrice = $product->get_price(); //will give raw price
-    $regularPrice = $product->get_regular_price(); //will give raw price
-    $discountValue = $regularPrice - $thePrice; //will give raw price
+    $thePrice = $product->get_price();  // will give raw price
+    $regularPrice = $product->get_regular_price();  // will give raw price
+    $discountValue = $regularPrice - $thePrice;  // will give raw price
 
     $percent = (($regularPrice - $thePrice) / $regularPrice) * 100;
 
     if ($regularPrice != $thePrice) {
         echo "<div class='product-price-wrapper'>"
-            .
-            "<span class='sale-price'>" . $thePrice . ' ₽</span>'
-            .
-            "<span class='regular-price'>" . $regularPrice . ' ₽</span>'
-            .
-            "<span class='discount-percent'>-" . round($percent) . '% </span>'
-            .
-            '</div>';
+            . "<span class='sale-price'>" . $thePrice . ' ₽</span>'
+            . "<span class='regular-price'>" . $regularPrice . ' ₽</span>'
+            . "<span class='discount-percent'>-" . round($percent) . '% </span>'
+            . '</div>';
     } else {
         echo "<div class='product-price-wrapper'>"
-            .
-            "<span class='sale-price'>" . $thePrice . ' ₽</span>'
-            .
-            '</div>';
+            . "<span class='sale-price'>" . $thePrice . ' ₽</span>'
+            . '</div>';
     }
 }
 
-// include custom scripts
-function nitisveta_scripts()
-{
-    wp_enqueue_style('nitisveta-swiper', get_template_directory_uri() . '/assets/libs/swiper-bundle.min.css', [], '', 'all');
-    wp_enqueue_style('nitisveta-magnific', get_template_directory_uri() . '/assets/libs/magnific-popup.css', [], '', 'all');
-    wp_enqueue_style('nitisveta-style', get_stylesheet_uri(), [], filemtime(get_template_directory() . '/style.css'), 'all');
-    wp_enqueue_style('cart', get_template_directory_uri() . '/assets/css/cart.css', [], '', 'all');
-    wp_enqueue_script('nitisveta-swiper', get_template_directory_uri() . '/assets/libs/swiper-bundle.min.js', [], NITISVETA_VERSION, true);
-    wp_enqueue_script('nitisveta-magnific', get_template_directory_uri() . '/assets/libs/jquery.magnific-popup.min.js', [], NITISVETA_VERSION, true);
-    wp_enqueue_script('nitisveta-script', get_template_directory_uri() . '/assets/jsmin/script.min.js', [], NITISVETA_VERSION, true);
-    // wp_enqueue_script('nitisveta-script', get_template_directory_uri() . '/js/script.min.js', [], NITISVETA_VERSION, true);
-
-    wp_enqueue_style(
-        'select2-css',
-        get_template_directory_uri() . '/assets/libs/select2/css/select2.css',
-        [],
-        '4.1.0'
-    );
-
-    wp_enqueue_script(
-        'select2-js',
-        get_template_directory_uri() . '/assets/libs/select2/js/select2.js',
-        ['jquery'],
-        '4.1.0',
-        true
-    );
-
-    //
-    wp_enqueue_script(
-        'select2-settings',
-        get_template_directory_uri() . '/assets/js/select2-settings.js',
-        ['jquery', 'select2-js'],
-        null,
-        true
-    );
-
-    wp_localize_script('nitisveta-script', 'ajax_object', ['ajax_url' => admin_url('admin-ajax.php')]);
-
-    wp_enqueue_script(
-        'share-button',
-        get_template_directory_uri() . '/assets/js/share-button.js',
-        null,
-        null,
-        true
-    );
-
-    // rotate arrow in (cities and countries) for the select2
-    wp_enqueue_script(
-        'country_city_selector',
-        get_template_directory_uri() . '/assets/js/country_city_selector.js',
-        ['jquery', 'select2-js'],
-        null,
-        true
-    );
-
-    // show list of cities and search for cities (custom)
-    // wp_enqueue_script(
-    //     'country_city_selector2',
-    //     get_template_directory_uri() . '/assets/js/country_city_selector2.js',
-    //     [],
-    //     null,
-    //     true
-    // );
-
-    wp_enqueue_script(
-        'update_cdek_fields',
-        get_template_directory_uri() . '/assets/js/update_cdek_fields.js',
-        null,
-        null,
-        true
-    );
-
-    wp_enqueue_script(
-        'woocommerce_checkout_fields',
-        get_template_directory_uri() . '/assets/js/woocommerce_checkout_fields.js',
-        null,
-        null,
-        true
-    );
-
-    // кликабельные плашки в методах доставки СДЕК
-    wp_enqueue_script(
-        'clickable_shipping',
-        get_template_directory_uri() . '/assets/js/clickable_shipping.js',
-        null,
-        null,
-        true
-    );
-
-    // проверка после того как нажата кнопка "Оплатить картой или через СБП по QR коду"W
-    wp_enqueue_script(
-        'checkout_payment',
-        get_template_directory_uri() . '/assets/js/checkout_payment.js',
-        null,
-        null,
-        true
-    );
-
-    // shippingObserver
-    wp_enqueue_script(
-        'shippingObserver',
-        get_template_directory_uri() . '/assets/js/shippingObserver.js',
-        null,
-        null,
-        true
-    );
-
-    // waiting for the #shipping_method block to appear,
-    // clones #billing_address_1_field into the first <li> inside this block,
-    // and cleans up the clone's style.
-    wp_enqueue_script(
-        'clone-billing-field-on-shipping',
-        get_template_directory_uri() . '/assets/js/clone-billing-field-on-shipping.js',
-        ['jquery'],
-        null,
-        true
-    );
-
-    wp_enqueue_script(
-        'translate_country_options.js',
-        get_template_directory_uri() . '/assets/js/translate_country_options.js',
-        ['jquery'],
-        null,
-        true
-    );
-
-    wp_enqueue_script(
-        'custom-city-select-placeholder',
-        get_template_directory_uri() . '/assets/js/custom-city-select-placeholder.js',
-        ['jquery'],
-        null,
-        true
-    );
-
-    // translated the some woocommerce notifies
-    wp_enqueue_script(
-        'woo-notice-translate',
-        get_stylesheet_directory_uri() . '/assets/js/woo-notice-translate.js',
-        [],
-        null,
-        true
-    );
-
-    if (is_singular() && comments_open() && get_option('thread_comments')) {
-        wp_enqueue_script('comment-reply');
-    }
-}
-add_action('wp_enqueue_scripts', 'nitisveta_scripts', 20);
+// add_action('wp_enqueue_scripts', 'nitisveta_scripts', 20);
 
 /**
  * Enqueue the block editor script.
@@ -316,6 +166,7 @@ function nitisveta_enqueue_block_editor_script()
         true
     );
 }
+
 add_action('enqueue_block_editor_assets', 'nitisveta_enqueue_block_editor_script');
 
 /**
@@ -340,6 +191,7 @@ function nitisveta_enqueue_typography_script()
         wp_add_inline_script('nitisveta-typography', "tailwindTypographyClasses = '" . esc_attr(NITISVETA_TYPOGRAPHY_CLASSES) . "'.split(' ');", 'before');
     }
 }
+
 add_action('enqueue_block_assets', 'nitisveta_enqueue_typography_script');
 
 /**
@@ -353,16 +205,13 @@ function nitisveta_tinymce_add_class($settings)
     $settings['body_class'] = NITISVETA_TYPOGRAPHY_CLASSES;
     return $settings;
 }
+
 add_filter('tiny_mce_before_init', 'nitisveta_tinymce_add_class');
 
-/**
- * Custom template tags for this theme.
- */
+/** Custom template tags for this theme. */
 require get_template_directory() . '/inc/template-tags.php';
 
-/**
- * Functions which enhance the theme by hooking into WordPress.
- */
+/** Functions which enhance the theme by hooking into WordPress. */
 require get_template_directory() . '/inc/template-functions.php';
 
 add_action('wp_ajax_get_cart_count', 'get_cart_count');
@@ -381,6 +230,7 @@ function add_cart_count_fragment($fragments)
     $fragments['cart_count'] = WC()->cart->get_cart_contents_count();
     return $fragments;
 }
+
 add_filter('woocommerce_add_to_cart_fragments', 'add_cart_count_fragment');
 
 if (defined('YITH_WCWL') && !function_exists('yith_wcwl_get_items_count')) {
@@ -392,11 +242,11 @@ if (defined('YITH_WCWL') && !function_exists('yith_wcwl_get_items_count')) {
         if ($favCount == 0) {
             $hiddenClass = 'hidden';
         }
-        ?>		
-			<span class="yith-wcwl-items-count flex items-center justify-center rounded-full bg-red-500 text-white absolute top-[-12px] right-[-12px] w-[24px] h-[24px] border-2 border-white text-center text-xs font-bold <?php echo $hiddenClass; ?>">
-				<?php echo $favCount; ?>
-			</span>
-		<?php
+?>
+<span class="yith-wcwl-items-count flex items-center justify-center rounded-full bg-red-500 text-white absolute top-[-12px] right-[-12px] w-[24px] h-[24px] border-2 border-white text-center text-xs font-bold <?php echo $hiddenClass; ?>">
+  <?php echo $favCount; ?>
+</span>
+<?php
         return ob_get_clean();
     }
 
@@ -425,22 +275,22 @@ if (defined('YITH_WCWL') && !function_exists('yith_wcwl_enqueue_custom_script'))
         wp_add_inline_script(
             'jquery-yith-wcwl',
             "
-		  jQuery( function( $ ) {
-			$( document ).on( 'added_to_wishlist removed_from_wishlist', function() {
-			  $.get( yith_wcwl_l10n.ajax_url, {
-				action: 'yith_wcwl_update_wishlist_count'
-			  }, function( data ) {
-				var countEl = $('.yith-wcwl-items-count'); // Исправлено здесь
+\t\t  jQuery( function( \$ ) {
+\t\t\t\$( document ).on( 'added_to_wishlist removed_from_wishlist', function() {
+\t\t\t  \$.get( yith_wcwl_l10n.ajax_url, {
+\t\t\t\taction: 'yith_wcwl_update_wishlist_count'
+\t\t\t  }, function( data ) {
+\t\t\t\tvar countEl = \$('.yith-wcwl-items-count'); // Исправлено здесь
                         countEl.html( data.count ); // Исправлено здесь
                         if (data.hide) {
                             countEl.addClass('hidden'); // Исправлено здесь
                         } else {
                             countEl.removeClass('hidden'); // Исправлено здесь
                         }
-			  } );
-			} );
-		  } );
-		"
+\t\t\t  } );
+\t\t\t} );
+\t\t  } );
+\t\t"
         );
     }
 
@@ -467,6 +317,7 @@ function get_product_quantity_in_cart($product_id)
 }
 
 add_filter('woocommerce_billing_fields', 'custom_override_billing_fields');
+
 function custom_override_billing_fields($address_fields)
 {
     $address_fields['billing_postcode']['required'] = false;
@@ -486,12 +337,13 @@ function custom_override_billing_fields($address_fields)
     // unset($address_fields['billing_last_name']);
     unset($address_fields['billing_company']);
     // unset( $address_fields ['billing_phone'] );
-    //не сработает unset( $address_fields ['billing_country'] );
+    // не сработает unset( $address_fields ['billing_country'] );
 
     return $address_fields;
 }
 
 add_filter('woocommerce_checkout_fields', 'customize_woo_checkout_fields', 99);
+
 function customize_woo_checkout_fields($fields)
 {
     $fields['billing']['billing_first_name']['placeholder'] = 'Фамилия и имя';
@@ -580,9 +432,10 @@ function disable_autocomplete_checkout_fields($fields)
 
 // Single Product
 add_filter('woocommerce_product_single_add_to_cart_text', 'custom_single_add_to_cart_text');
+
 function custom_single_add_to_cart_text()
 {
-    return 'В корзину'; // Change this to change the text on the Single Product Add to cart button.
+    return 'В корзину';  // Change this to change the text on the Single Product Add to cart button.
 }
 
 // Перевод "Checkout is not available whilst your cart is empty."
@@ -623,18 +476,20 @@ add_filter('woocommerce_order_button_text', function () {
 function my_custom_shipping_table_update($fragments)
 {
     ob_start();
-    ?>
-	<div class="my-custom-shipping-table">
-		<?php wc_cart_totals_shipping_html(); ?>
-	</div>
+?>
+<div class="my-custom-shipping-table">
+  <?php wc_cart_totals_shipping_html(); ?>
+</div>
 <?php
     $woocommerce_shipping_methods = ob_get_clean();
     $fragments['.my-custom-shipping-table'] = $woocommerce_shipping_methods;
     return $fragments;
 }
+
 add_filter('woocommerce_update_order_review_fragments', 'my_custom_shipping_table_update');
 
 add_filter('woocommerce_default_address_fields', 'custom_woocommerce_default_address_fields', 20);
+
 function custom_woocommerce_default_address_fields($fields)
 {
     $fields['city']['label'] = '';
@@ -651,22 +506,24 @@ function change_view_cart($params, $handle)
 {
     switch ($handle) {
         case 'wc-add-to-cart':
-            $params['i18n_view_cart'] = 'Уже в корзине'; //chnage Name of view cart button
+            $params['i18n_view_cart'] = 'Уже в корзине';  // chnage Name of view cart button
             break;
     }
     return $params;
 }
+
 add_filter('woocommerce_get_script_data', 'change_view_cart', 10, 2);
 
 function change_view_cart_2($params, $handle)
 {
     switch ($handle) {
         case 'wc-add-to-cart-2':
-            $params['i18n_view_cart'] = 'Уже в корзине'; //chnage Name of view cart button
+            $params['i18n_view_cart'] = 'Уже в корзине';  // chnage Name of view cart button
             break;
     }
     return $params;
 }
+
 add_filter('woocommerce_get_script_data', 'change_view_cart_2', 10, 2);
 
 function echo_1($data)
@@ -693,10 +550,11 @@ add_action('my_hook', 'echo_1');
 // add_filter('woocommerce_get_script_data', 'my_custom_function', 10, 2);
 
 add_filter('woocommerce_cart_shipping_method_full_label', 'custom_shipping_label', 10, 2);
+
 function custom_shipping_label($label, $method)
 {
     if (strpos($label, 'Доставка') !== false) {
-        $label = str_replace('Доставка', '', $label); // Удаление или замена текста "Доставка"
+        $label = str_replace('Доставка', '', $label);  // Удаление или замена текста "Доставка"
     }
     return $label;
 }
@@ -706,7 +564,7 @@ function custom_shipping_label($label, $method)
 function redirectcustom($order_id)
 {
     $order = wc_get_order($order_id);
-    $url = '/thank-you'; // Относительный URL
+    $url = '/thank-you';  // Относительный URL
     if (!$order->has_status('failed')) {
         wp_safe_redirect($url);
         exit;
@@ -720,6 +578,7 @@ function filter_woocommerce_cart_totals_coupon_html($coupon_html, $coupon, $disc
 
     return $coupon_html;
 }
+
 add_filter('woocommerce_cart_totals_coupon_html', 'filter_woocommerce_cart_totals_coupon_html', 10, 3);
 
 function handle_profile_update()
@@ -759,18 +618,19 @@ function handle_profile_update()
 
     wp_send_json_success('Профиль успешно обновлен.');
 }
+
 add_action('wp_ajax_handle_profile_update', 'handle_profile_update');
 
 add_filter('woocommerce_package_rates', 'limit_shipping_to_cities', 10, 2);
 
 function limit_shipping_to_cities($rates, $package)
 {
-    $allowed_cities = ['Москва', 'Санкт-Петербург']; // Разрешённые города
-    $customer_city = WC()->customer->get_shipping_city(); // Получаем город доставки клиента
+    $allowed_cities = ['Москва', 'Санкт-Петербург'];  // Разрешённые города
+    $customer_city = WC()->customer->get_shipping_city();  // Получаем город доставки клиента
 
     foreach ($rates as $rate_id => $rate) {
         if ($rate->method_id === 'flat_rate:10' && !in_array($customer_city, $allowed_cities)) {
-            unset($rates[$rate_id]); // Удаляем метод доставки, если город не входит в список
+            unset($rates[$rate_id]);  // Удаляем метод доставки, если город не входит в список
         }
     }
 
@@ -781,6 +641,7 @@ function enqueue_theme_styles()
 {
     wp_enqueue_style('theme-main', get_template_directory_uri() . '/assets/css/woocommerce_checkout_fields.css', [], '1.0.0');
 }
+
 add_action('wp_enqueue_scripts', 'enqueue_theme_styles');
 
 // add_action('um_registration_complete', 'custom_um_registration_redirect', 10, 1);
@@ -857,6 +718,7 @@ add_action('rest_api_init', function () {
 
 // очистка корзины после редиректа со внешнего шлюза оплаты
 add_action('template_redirect', 'custom_clear_cart_on_custom_thankyou');
+
 function custom_clear_cart_on_custom_thankyou()
 {
     if (is_page('thankyou') && isset($_GET['Success']) && $_GET['Success'] === 'true') {

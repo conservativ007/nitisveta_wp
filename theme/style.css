@@ -4081,6 +4081,11 @@ ul#ui-id-1 {
   border-style: none;
 }
 
+.\!border-red-500{
+  --tw-border-opacity: 1 !important;
+  border-color: rgb(239 68 68 / var(--tw-border-opacity)) !important;
+}
+
 .border-\[\#142346\]{
   --tw-border-opacity: 1;
   border-color: rgb(20 35 70 / var(--tw-border-opacity));
@@ -4147,21 +4152,6 @@ ul#ui-id-1 {
 .border-white{
   --tw-border-opacity: 1;
   border-color: rgb(255 255 255 / var(--tw-border-opacity));
-}
-
-.border-red-50{
-  --tw-border-opacity: 1;
-  border-color: rgb(254 242 242 / var(--tw-border-opacity));
-}
-
-.border-red-500{
-  --tw-border-opacity: 1;
-  border-color: rgb(239 68 68 / var(--tw-border-opacity));
-}
-
-.\!border-red-500{
-  --tw-border-opacity: 1 !important;
-  border-color: rgb(239 68 68 / var(--tw-border-opacity)) !important;
 }
 
 .border-opacity-50{
