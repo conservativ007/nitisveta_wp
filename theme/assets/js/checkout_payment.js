@@ -21,11 +21,11 @@ document.addEventListener('DOMContentLoaded', function () {
 		// }
 
 		// показываем что поля обязательно к заполенению если не заполнено (телефон, имя фамилия)
-		const elems = document.querySelectorAll(
-			'#billing_first_name_field, #billing_phone_field'
-		);
+		// const elems = document.querySelectorAll(
+		// 	'#billing_first_name_field, #billing_phone_field'
+		// );
 
-		const checkFirstNadSecondName = () => {
+		const checkFirstNameAndSecondName = () => {
 			// console.log('checkFirstNadSecondName');
 			const containerFirstAndSecondNameInput = document.querySelector(
 				'#billing_first_name_field'
@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
 				containerFirstAndSecondNameInput.classList.add(
 					'custom-opacity'
 				);
+				toast.error('Фамилия или имя не заполнены');
 			} else {
 				containerFirstAndSecondNameInput.classList.remove(
 					'custom-opacity'
@@ -49,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			}
 		};
 
-		checkFirstNadSecondName();
+		checkFirstNameAndSecondName();
 
 		const checkPhone = () => {
 			const containerPhone = document.querySelector(
@@ -69,6 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
 					'--custom-content-phone-field',
 					'"минимум 8 цифр"'
 				);
+				toast.error('Телефон не введен');
 			} else {
 				containerPhone.classList.remove('custom-opacity');
 				phoneInput.classList.remove('!border-red-500');
@@ -135,6 +137,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			) {
 				flag = false;
 				let elemOfMessage = document.querySelector('#pick-up-point');
+				toast.error('Обязательно выбрать пункт выдачи');
 				elemOfMessage.classList.remove('hidden');
 			}
 		}

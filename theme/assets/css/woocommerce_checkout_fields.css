@@ -2,6 +2,10 @@
   display: none !important;
 }
 
+.woocommerce #payment #place_order, .woocommerce-page #payment #place_order {
+	margin-bottom: 0 !important;
+}
+
 #billing_city_field .city-hint {
   position: absolute;
   top: -20px;
