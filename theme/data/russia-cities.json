@@ -78315,5 +78315,76 @@
         "contentType": "city"
       }
     }
+  },
+
+  {
+    "name": "Севастополь",
+    "region": { "name": "", "typeShort": "" }
+  },
+  {
+    "name": "Симферополь",
+    "region": { "name": "", "typeShort": "" }
+  },
+  {
+    "name": "Ялта",
+    "region": { "name": "", "typeShort": "" }
+  },
+  {
+    "name": "Евпатория",
+    "region": { "name": "", "typeShort": "" }
+  },
+  {
+    "name": "Керчь",
+    "region": { "name": "", "typeShort": "" }
+  },
+  {
+    "name": "Феодосия",
+    "region": { "name": "", "typeShort": "" }
+  },
+  {
+    "name": "Алушта",
+    "region": { "name": "", "typeShort": "" }
+  },
+  {
+    "name": "Бахчисарай",
+    "region": { "name": "", "typeShort": "" }
+  },
+  {
+    "name": "Судак",
+    "region": { "name": "", "typeShort": "" }
+  },
+  {
+    "name": "Джанкой",
+    "region": { "name": "", "typeShort": "" }
+  },
+  {
+    "name": "Красноперекопск",
+    "region": { "name": "", "typeShort": "" }
+  },
+  {
+    "name": "Армянск",
+    "region": { "name": "", "typeShort": "" }
+  },
+  {
+    "name": "Старый Крым",
+    "region": { "name": "", "typeShort": "" }
+  },
+  {
+    "name": "Инкерман",
+    "region": { "name": "", "typeShort": "" }
+  },
+  {
+    "name": "Щёлкино",
+    "region": { "name": "", "typeShort": "" }
+  },
+  {
+    "name": "Белогорск",
+    "region": { "name": "", "typeShort": "" }
   }
+  ,
+  {
+    "name": "Салават",
+    "region": { "name": "", "typeShort": "" }
+  }
+
 ]
