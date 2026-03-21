@@ -116,6 +116,7 @@ document.addEventListener('DOMContentLoaded', function () {
 					'"Обязательно для заполнения"'
 				);
 				flag = false;
+				toast.error('Куда везём ?');
 			} else if (billingAddress.value.length < 10) {
 				elemOfMessage.classList.add('custom-opacity-after');
 				elemOfMessage.style.setProperty(
@@ -123,6 +124,7 @@ document.addEventListener('DOMContentLoaded', function () {
 					'"Минимум 10 символов"'
 				);
 				flag = false;
+				toast.error('Адрес: от 10 символов');
 			} else if (billingAddress.value.length >= 10) {
 				elemOfMessage.classList.remove('custom-opacity-after');
 			}
