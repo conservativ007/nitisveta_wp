@@ -5,8 +5,8 @@
       <img src="<?php echo get_the_post_thumbnail_url($product->ID); ?>" class="object-cover object-center h-full w-full" />
     </div> -->
 
-    <div class="swiper-slide flex items-center justify-center h-[340px] xl:h-[560px] w-full bg-gray-50">
-      <img src="<?php echo get_the_post_thumbnail_url($product->ID, 'large'); ?>" class="max-h-full max-w-full object-contain" loading="lazy" />
+    <div class="swiper-slide flex items-center justify-center xl:h-full w-full bg-gray-50">
+      <img src="<?php echo get_the_post_thumbnail_url($product->ID, 'large'); ?>" class="w-full h-full object-cover" loading="lazy" />
     </div>
 
     <?php foreach ($attachment_ids as $attachment_id) { ?>
@@ -14,8 +14,8 @@
       <img src="<?php echo wp_get_attachment_url($attachment_id); ?>" class='object-cover object-center h-full w-full block' />
     </div> -->
 
-    <div class="swiper-slide flex items-center justify-center h-[340px] xl:h-[560px] w-full bg-gray-50">
-      <img src="<?php echo wp_get_attachment_url($attachment_id); ?>" class="max-h-full max-w-full object-contain" loading="lazy" />
+    <div class="swiper-slide flex items-center justify-center xl:h-full w-full bg-gray-50">
+      <img src="<?php echo wp_get_attachment_url($attachment_id); ?>" class="w-full h-full object-cover" loading="lazy" />
     </div>
     <?php } ?>
 

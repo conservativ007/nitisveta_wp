@@ -3523,6 +3523,10 @@ ul#ui-id-1 {
   height: 100%;
 }
 
+.h-\[470px\]{
+  height: 470px;
+}
+
 .max-h-\[50px\]{
   max-height: 50px;
 }
@@ -5533,6 +5537,10 @@ ul#ui-id-1 {
 
   .xl\:h-\[890px\]{
     height: 890px;
+  }
+
+  .xl\:h-full{
+    height: 100%;
   }
 
   .xl\:w-2\/3{
