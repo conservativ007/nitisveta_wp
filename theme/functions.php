@@ -11,6 +11,8 @@ $inc_path = get_template_directory() . '/inc/';
 //  custom scripts
 require_once $inc_path . 'scripts.php';
 
+// require_once $inc_path . 'woocommerce/order-statuses.php';
+
 if (!defined('NITISVETA_VERSION')) {
     /*
      * Set the theme’s version number.
