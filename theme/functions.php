@@ -694,18 +694,51 @@ add_action('woocommerce_payment_complete', function ($order_id) {
     }
 });
 
+function nitisveta_get_russia_cities()
+{
+    $json_path = get_template_directory() . '/data/russia-cities.json';
+
+    if (!file_exists($json_path)) {
+        return new WP_Error('not_found', 'Файл не найден', ['status' => 404]);
+    }
+
+    $cache_key = 'nitisveta_russia_cities';
+    $file_mtime = filemtime($json_path);
+    $cached = get_transient($cache_key);
+
+    if (
+        is_array($cached)
+        && isset($cached['mtime'], $cached['data'])
+        && (int) $cached['mtime'] === (int) $file_mtime
+    ) {
+        return $cached['data'];
+    }
+
+    $json = file_get_contents($json_path);
+    $data = json_decode($json, true);
+
+    if (json_last_error() !== JSON_ERROR_NONE || !is_array($data)) {
+        return new WP_Error('invalid_json', 'Не удалось прочитать список городов', ['status' => 500]);
+    }
+
+    set_transient(
+        $cache_key,
+        [
+            'mtime' => $file_mtime,
+            'data' => $data,
+        ],
+        WEEK_IN_SECONDS
+    );
+
+    return $data;
+}
+
 // кастомная REST API точка с российскими городами
 add_action('rest_api_init', function () {
     register_rest_route('custom/v1', '/cities', [
         'methods' => 'GET',
         'callback' => function () {
-            $json_path = get_template_directory() . '/data/russia-cities.json';
-            if (!file_exists($json_path)) {
-                return new WP_Error('not_found', 'Файл не найден', ['status' => 404]);
-            }
-
-            $data = json_decode(file_get_contents($json_path), true);
-            return rest_ensure_response($data);
+            return rest_ensure_response(nitisveta_get_russia_cities());
         },
         'permission_callback' => '__return_true'
     ]);
