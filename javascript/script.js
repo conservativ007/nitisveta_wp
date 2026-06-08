@@ -9,34 +9,34 @@
  * https://esbuild.github.io/
  */
 
-document.addEventListener('DOMContentLoaded', function () {
-	const initSwiper = (selector, options) => {
-		const elements = document.querySelectorAll(selector);
+const initSwiper = (selector, options) => {
+	const elements = document.querySelectorAll(selector);
 
-		if (!elements.length || typeof Swiper === 'undefined') {
-			return [];
+	if (!elements.length || typeof Swiper === 'undefined') {
+		return [];
+	}
+
+	return Array.from(elements, (element) => {
+		if (element.swiper) {
+			element.swiper.destroy(true, true);
 		}
 
-		return Array.from(elements, (element) => {
-			if (element.swiper) {
-				element.swiper.destroy(true, true);
-			}
+		return new Swiper(element, options);
+	});
+};
 
-			return new Swiper(element, options);
-		});
-	};
+const initGalleryCart = () => {
+	initSwiper('.gallery-cart', {
+		spaceBetween: 10,
+		slidesPerView: 1,
+		navigation: {
+			nextEl: '.swiper-button-next',
+			prevEl: '.swiper-button-prev',
+		},
+	});
+};
 
-	const initGalleryCart = () => {
-		initSwiper('.gallery-cart', {
-			spaceBetween: 10,
-			slidesPerView: 1,
-			navigation: {
-				nextEl: '.swiper-button-next',
-				prevEl: '.swiper-button-prev',
-			},
-		});
-	};
-
+document.addEventListener('DOMContentLoaded', function () {
 	initSwiper('.swiper-products-standard', {
 		// Optional parameters
 		loop: false,

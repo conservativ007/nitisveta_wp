@@ -74,12 +74,32 @@ do_action('woocommerce_before_cart'); ?>
               <div class="swiper-wrapper">
 
                 <div class="swiper-slide h-64 md:h-80 w-full">
-                  <img src="<?php echo get_the_post_thumbnail_url($product_id); ?>" class="object-contain object-center h-full w-full m-0" />
+                  <?php
+                  echo wp_get_attachment_image(
+                      $_product->get_image_id(),
+                      'medium_large',
+                      false,
+                      [
+                          'class' => 'object-contain object-center h-full w-full m-0',
+                          'loading' => 'lazy',
+                      ]
+                  );
+          ?>
                 </div>
 
                 <?php foreach ($attachment_ids as $attachment_id) { ?>
                   <div class="swiper-slide h-80 w-full">
-                    <img src="<?php echo wp_get_attachment_url($attachment_id); ?>" class='object-cover object-center h-full w-full block m-0' />
+                    <?php
+                    echo wp_get_attachment_image(
+                        $attachment_id,
+                        'medium_large',
+                        false,
+                        [
+                            'class' => 'object-cover object-center h-full w-full block m-0',
+                            'loading' => 'lazy',
+                        ]
+                    );
+                    ?>
                   </div>
                 <?php } ?>
 
