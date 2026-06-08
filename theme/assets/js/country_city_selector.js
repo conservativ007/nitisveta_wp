@@ -6,6 +6,10 @@ document.addEventListener('DOMContentLoaded', async function () {
 	let updateCheckoutTimeout = null;
 	let lastSelectedCity = ''; // Сохраняем последний выбранный город
 
+	if (!countrySelect || !citySelect || typeof jQuery === 'undefined') {
+		return;
+	}
+
 	// Перехватываем и исправляем запрос ks2008_city_autocomplete
 	jQuery(document).ajaxSend(function (event, jqxhr, settings) {
 		if (

@@ -10,7 +10,34 @@
  */
 
 document.addEventListener('DOMContentLoaded', function () {
-	const swiper = new Swiper('.swiper-products-standard', {
+	const initSwiper = (selector, options) => {
+		const elements = document.querySelectorAll(selector);
+
+		if (!elements.length || typeof Swiper === 'undefined') {
+			return [];
+		}
+
+		return Array.from(elements, (element) => {
+			if (element.swiper) {
+				element.swiper.destroy(true, true);
+			}
+
+			return new Swiper(element, options);
+		});
+	};
+
+	const initGalleryCart = () => {
+		initSwiper('.gallery-cart', {
+			spaceBetween: 10,
+			slidesPerView: 1,
+			navigation: {
+				nextEl: '.swiper-button-next',
+				prevEl: '.swiper-button-prev',
+			},
+		});
+	};
+
+	initSwiper('.swiper-products-standard', {
 		// Optional parameters
 		loop: false,
 		autoHeight: false,
@@ -51,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		speed: 800,
 	});
 
-	const swiperHorizontal = new Swiper('.swiper-products-horizontal', {
+	initSwiper('.swiper-products-horizontal', {
 		// Optional parameters
 		loop: false,
 		initialSlide: 2,
@@ -92,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		speed: 800,
 	});
 
-	const swiperAbout = new Swiper('.swiper-about', {
+	initSwiper('.swiper-about', {
 		// Optional parameters
 		loop: false,
 		initialSlide: 3,
@@ -124,7 +151,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		speed: 800,
 	});
 
-	const swiperThumbs = new Swiper('.swiper-thumbs', {
+	const swiperThumbs = initSwiper('.swiper-thumbs', {
 		spaceBetween: 10,
 		slidesPerView: 3,
 		// freeMode: true,
@@ -134,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			prevEl: '.swiper-thumb-button-prev',
 		},
 	});
-	const swiperProduct = new Swiper('.swiper-product', {
+	initSwiper('.swiper-product', {
 		spaceBetween: 0,
 		navigation: {
 			nextEl: '.swiper-sprod-button-next',
@@ -155,36 +182,14 @@ document.addEventListener('DOMContentLoaded', function () {
 			},
 		},
 		thumbs: {
-			swiper: swiperThumbs,
+			swiper: swiperThumbs[0],
 		},
 		pagination: {
 			el: '.swiper-pagination',
 		},
 	});
 
-	const galleryCart = new Swiper('.gallery-cart', {
-		spaceBetween: 10,
-		slidesPerView: 1,
-		navigation: {
-			nextEl: '.swiper-button-next',
-			prevEl: '.swiper-button-prev',
-		},
-	});
-
-	jQuery(document.body).on('updated_cart_totals', function () {
-		jQuery.ajax({
-			type: 'POST',
-			url: wc_add_to_cart_params.ajax_url,
-			data: {
-				action: 'get_cart_count',
-			},
-			success: function (response) {
-				// Обновляем элемент с новым числом товаров
-				jQuery('.cart-count').text(response);
-				console.log(response);
-			},
-		});
-	});
+	initGalleryCart();
 
 	jQuery(document.body).on(
 		'added_to_cart',
@@ -195,7 +200,9 @@ document.addEventListener('DOMContentLoaded', function () {
 				// Если у .cart-count есть класс hidden
 				$cartCount.removeClass('hidden'); // Удаляем класс hidden
 			}
-			$cartCount.text(fragments['cart_count']); // Обновляем текст в .cart-count
+			if (fragments && fragments['cart_count'] !== undefined) {
+				$cartCount.text(fragments['cart_count']); // Обновляем текст в .cart-count
+			}
 		}
 	);
 
@@ -318,24 +325,24 @@ jQuery(document).ready(function ($) {
 		}, 2000); // Вернуть прозрачность обратно через 2 секунды
 	});
 
+	let cartUpdateTimeout = null;
+
+	const scheduleCartUpdate = function () {
+		clearTimeout(cartUpdateTimeout);
+		cartUpdateTimeout = setTimeout(function () {
+			$('button[name="update_cart"]').trigger('click');
+		}, 350);
+	};
+
 	// Обновляем слайдеры при обновлении корзины
-	$(document.body).on('updated_cart_totals', function () {
-		const galleryCart = new Swiper('.gallery-cart', {
-			spaceBetween: 10,
-			slidesPerView: 1,
-			navigation: {
-				nextEl: '.swiper-button-next',
-				prevEl: '.swiper-button-prev',
-			},
-		});
-	});
+	$(document.body).on('updated_cart_totals', initGalleryCart);
 
 	$(document).on('click', '.quantity-increase', function () {
 		var $qtyInput = $(this).prev('.quantity').find('.input-text.qty');
 		var currentQty = parseInt($qtyInput.val(), 10);
 		$qtyInput.val(currentQty + 1);
 		$qtyInput.trigger('change'); // Срабатывание события изменения (если требуется)
-		$('button[name="update_cart"]').trigger('click');
+		scheduleCartUpdate();
 	});
 
 	// Уменьшаем количество товара на 1, но не меньше минимального значения
@@ -345,7 +352,7 @@ jQuery(document).ready(function ($) {
 		if (currentQty > parseInt($qtyInput.attr('min'), 10)) {
 			$qtyInput.val(currentQty - 1);
 			$qtyInput.trigger('change'); // Срабатывание события изменения (если требуется)
-			$('button[name="update_cart"]').trigger('click');
+			scheduleCartUpdate();
 		}
 	});
 
@@ -364,14 +371,7 @@ jQuery(document).ready(function ($) {
 	jQuery(document).ajaxComplete(function (event, xhr, settings) {
 		// Проверяем, связан ли AJAX-запрос с обновлением количества в Wishlist
 		if (settings.url.includes('yith_wcwl_update_wishlist_count')) {
-			const galleryCart = new Swiper('.gallery-cart', {
-				spaceBetween: 10,
-				slidesPerView: 1,
-				navigation: {
-					nextEl: '.swiper-button-next',
-					prevEl: '.swiper-button-prev',
-				},
-			});
+			initGalleryCart();
 
 			tippy('.share-link', {
 				content(reference) {

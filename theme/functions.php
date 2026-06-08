@@ -639,13 +639,6 @@ function limit_shipping_to_cities($rates, $package)
     return $rates;
 }
 
-function enqueue_theme_styles()
-{
-    wp_enqueue_style('theme-main', get_template_directory_uri() . '/assets/css/woocommerce_checkout_fields.css', [], '1.0.0');
-}
-
-add_action('wp_enqueue_scripts', 'enqueue_theme_styles');
-
 // add_action('um_registration_complete', 'custom_um_registration_redirect', 10, 1);
 // function custom_um_registration_redirect($user_id)
 // {

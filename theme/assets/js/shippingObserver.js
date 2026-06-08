@@ -16,12 +16,14 @@ document.addEventListener('DOMContentLoaded', function () {
 						document.querySelector('#billing_address_1');
 
 					if (
+						elemOfShippingMetgod137 &&
 						!elemOfShippingMetgod137.checked &&
 						elemOfBillingAddress1
 					) {
 						elemOfBillingAddress1.style.display = 'none';
 					}
 					if (
+						elemOfShippingMetgod137 &&
 						elemOfShippingMetgod137.checked &&
 						elemOfBillingAddress1
 					) {
