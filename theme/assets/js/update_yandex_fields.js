@@ -62,34 +62,16 @@ document.addEventListener('DOMContentLoaded', function () {
 		}, 100);
 	};
 
-	const parentNode = document.body;
+	const updateYandexLabel = () => {
+		const targetNode = document.querySelector(
+			`label[for="shipping_method_0_flat_rate-10"]`
+		);
 
-	// Функция, которая будет вызываться при изменениях в DOM
-	const callback = function (mutationsList, observer) {
-		mutationsList.forEach((mutation) => {
-			if (mutation.type === 'childList') {
-				// const targetNode = document.querySelector('shipping_method_0_flat_rate-10'); // Пытаемся заново найти элемент
-				const targetNode = document.querySelector(
-					`label[for="shipping_method_0_flat_rate-10"]`
-				);
-
-				if (targetNode) {
-					// console.log(
-					// 	'Элемент #shipping_method был добавлен или изменен'
-					// );
-
-					updateLabelText(targetNode);
-				}
-			}
-		});
+		if (targetNode) {
+			updateLabelText(targetNode);
+		}
 	};
 
-	// Создаем MutationObserver
-	const observer = new MutationObserver(callback);
-
-	// Настройки для отслеживания добавлений и удалений элементов
-	const config = { childList: true, subtree: true };
-
-	// Начинаем наблюдение за изменениями в родительском элементе или документе
-	observer.observe(parentNode, config);
+	updateYandexLabel();
+	jQuery(document.body).on('updated_checkout', updateYandexLabel);
 });

@@ -1,6 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-	const button = document.querySelector('#place_order');
-
 	const handleClick = (e) => {
 		let flag = true;
 
@@ -33,6 +31,11 @@ document.addEventListener('DOMContentLoaded', function () {
 			const firstAndSecondNameInput = document.querySelector(
 				'#billing_first_name'
 			);
+
+			if (!containerFirstAndSecondNameInput || !firstAndSecondNameInput) {
+				return;
+			}
+
 			if (
 				firstAndSecondNameInput.value === '' ||
 				firstAndSecondNameInput.value === undefined
@@ -57,6 +60,10 @@ document.addEventListener('DOMContentLoaded', function () {
 				'#billing_phone_field'
 			);
 			const phoneInput = document.querySelector('#billing_phone');
+
+			if (!containerPhone || !phoneInput) {
+				return;
+			}
 
 			if (
 				phoneInput.value === '' ||
@@ -94,7 +101,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
 		let elemOfCDEK = document.querySelector('#shipping_method');
 
-		if (!elemOfCDEK) return;
+		if (!elemOfCDEK) {
+			if (!flag) {
+				e.preventDefault();
+			}
+			return;
+		}
 
 		let inputOfMethodDelivery1 = elemOfCDEK.querySelector(
 			'#shipping_method_0_official_cdek-137'
@@ -104,12 +116,13 @@ document.addEventListener('DOMContentLoaded', function () {
 			'#shipping_method_0_official_cdek-136'
 		);
 
-		if (inputOfMethodDelivery1.checked === true) {
+		if (inputOfMethodDelivery1?.checked === true) {
 			const billingAddress = document.querySelector('#billing_address_1');
 
 			let elemOfMessage = elemOfCDEK.firstElementChild;
+			if (!elemOfMessage) return;
 
-			if (billingAddress.value.length === 0) {
+			if (!billingAddress || billingAddress.value.length === 0) {
 				elemOfMessage.classList.add('custom-opacity-after');
 				elemOfMessage.style.setProperty(
 					'--custom-content',
@@ -130,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			}
 		}
 
-		if (inputOfMethodDelivery2.checked === true) {
+		if (inputOfMethodDelivery2?.checked === true) {
 			let billingDddres = document.querySelector('.cdek-office-info');
 
 			if (
@@ -140,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function () {
 				flag = false;
 				let elemOfMessage = document.querySelector('#pick-up-point');
 				toast.error('Обязательно выбрать пункт выдачи');
-				elemOfMessage.classList.remove('hidden');
+				elemOfMessage?.classList.remove('hidden');
 			}
 		}
 
@@ -149,31 +162,14 @@ document.addEventListener('DOMContentLoaded', function () {
 		}
 	};
 
-	// Observer
-	const parentNode = document.body;
+	const bindPlaceOrderValidation = () => {
+		const button = document.querySelector('#place_order');
+		if (!button) return;
 
-	// Функция, которая будет вызываться при изменениях в DOM
-	const callback = function (mutationsList, observer) {
-		mutationsList.forEach((mutation) => {
-			if (mutation.type === 'childList') {
-				const button = document.querySelector('#place_order'); // Пытаемся заново найти элемент
-				if (button) {
-					// Удаляем обработчик, если он уже был добавлен
-					button.removeEventListener('click', handleClick);
-
-					// Вешаем новый обработчик
-					button.addEventListener('click', handleClick);
-				}
-			}
-		});
+		button.removeEventListener('click', handleClick);
+		button.addEventListener('click', handleClick);
 	};
 
-	// Создаем MutationObserver
-	const observer = new MutationObserver(callback);
-
-	// Настройки для отслеживания добавлений и удалений элементов
-	const config = { childList: true, subtree: true };
-
-	// Начинаем наблюдение за изменениями в родительском элементе или документе
-	observer.observe(parentNode, config);
+	bindPlaceOrderValidation();
+	jQuery(document.body).on('updated_checkout', bindPlaceOrderValidation);
 });

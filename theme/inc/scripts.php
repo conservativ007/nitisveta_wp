@@ -67,7 +67,7 @@ function nitisveta_scripts()
     wp_enqueue_script(
       'update_cdek_fields',
       get_template_directory_uri() . '/assets/js/update_cdek_fields.js',
-      [],
+      ['jquery'],
       null,
       true
     );
@@ -75,7 +75,7 @@ function nitisveta_scripts()
     wp_enqueue_script(
       'woocommerce_checkout_fields',
       get_template_directory_uri() . '/assets/js/woocommerce_checkout_fields.js',
-      [],
+      ['jquery'],
       null,
       true
     );
@@ -84,7 +84,7 @@ function nitisveta_scripts()
     wp_enqueue_script(
       'clickable_shipping',
       get_template_directory_uri() . '/assets/js/clickable_shipping.js',
-      [],
+      ['jquery'],
       null,
       true
     );
@@ -93,7 +93,7 @@ function nitisveta_scripts()
     wp_enqueue_script(
       'checkout_payment',
       get_template_directory_uri() . '/assets/js/checkout_payment.js',
-      [],
+      ['jquery', 'toast-helper'],
       null,
       true
     );
@@ -102,7 +102,7 @@ function nitisveta_scripts()
     wp_enqueue_script(
       'shippingObserver',
       get_template_directory_uri() . '/assets/js/shippingObserver.js',
-      [],
+      ['jquery'],
       null,
       true
     );
@@ -138,7 +138,7 @@ function nitisveta_scripts()
     wp_enqueue_script(
       'woo-notice-translate',
       get_stylesheet_directory_uri() . '/assets/js/woo-notice-translate.js',
-      [],
+      ['jquery'],
       null,
       true
     );
@@ -146,7 +146,7 @@ function nitisveta_scripts()
     wp_enqueue_script(
       'billing-city-placeholder',
       get_stylesheet_directory_uri() . '/assets/js/billing-city-placeholder.js',
-      [],
+      ['jquery'],
       null,
       true
     );
@@ -154,7 +154,7 @@ function nitisveta_scripts()
     wp_enqueue_script(
       'checkout-city-toggle-button',
       get_stylesheet_directory_uri() . '/assets/js/checkout-city-toggle-button.js',
-      [],
+      ['jquery'],
       null,
       true
     );

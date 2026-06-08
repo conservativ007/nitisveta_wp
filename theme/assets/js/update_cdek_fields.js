@@ -48,30 +48,14 @@ document.addEventListener('DOMContentLoaded', function () {
 		}, 100);
 	};
 
-	const parentNode = document.body;
+	const updateCdekLabels = () => {
+		const targetNode = document.querySelector('#shipping_method');
+		if (!targetNode) return;
 
-	// Функция, которая будет вызываться при изменениях в DOM
-	const callback = function (mutationsList, observer) {
-		mutationsList.forEach((mutation) => {
-			if (mutation.type === 'childList') {
-				const targetNode = document.querySelector('#shipping_method'); // Пытаемся заново найти элемент
-				if (targetNode) {
-					// console.log(
-					// 	'Элемент #shipping_method был добавлен или изменен'
-					// );
-					updateLabelText('shipping_method_0_official_cdek-137', 22);
-					updateLabelText('shipping_method_0_official_cdek-136', 29);
-				}
-			}
-		});
+		updateLabelText('shipping_method_0_official_cdek-137', 22);
+		updateLabelText('shipping_method_0_official_cdek-136', 29);
 	};
 
-	// Создаем MutationObserver
-	const observer = new MutationObserver(callback);
-
-	// Настройки для отслеживания добавлений и удалений элементов
-	const config = { childList: true, subtree: true };
-
-	// Начинаем наблюдение за изменениями в родительском элементе или документе
-	observer.observe(parentNode, config);
+	updateCdekLabels();
+	jQuery(document.body).on('updated_checkout', updateCdekLabels);
 });

@@ -1,5 +1,14 @@
 document.addEventListener('DOMContentLoaded', function () {
-	const parentNode = document.body;
+	const setSearchPlaceholder = () => {
+		let searchField = document.querySelector('.select2-search__field');
+
+		if (searchField) {
+			searchField.setAttribute('placeholder', 'Начните вводить название');
+			searchField.style.textAlign = 'center';
+
+			searchField.focus();
+		}
+	};
 
 	let addCountryPlaceholder = () => {
 		let countrySelect = document.querySelector(
@@ -7,32 +16,8 @@ document.addEventListener('DOMContentLoaded', function () {
 		);
 
 		if (countrySelect) {
-			countrySelect.addEventListener('click', function () {
-				let searchField = document.querySelector(
-					'.select2-search__field'
-				);
-
-				if (searchField) {
-					searchField.setAttribute(
-						'placeholder',
-						'Начните вводить название'
-					);
-					searchField.style.textAlign = 'center';
-
-					searchField.focus();
-				}
-			});
-		}
-	};
-
-	let addCityPlaceholder = () => {
-		let searchField = document.querySelector('.select2-search__field');
-
-		if (searchField) {
-			searchField.setAttribute('placeholder', 'Начните вводить название');
-
-			searchField.style.textAlign = 'center';
-			searchField.focus();
+			countrySelect.removeEventListener('click', setSearchPlaceholder);
+			countrySelect.addEventListener('click', setSearchPlaceholder);
 		}
 	};
 
@@ -52,29 +37,18 @@ document.addEventListener('DOMContentLoaded', function () {
 		}
 	};
 
-	const callback = function (mutationsList, observer) {
-		mutationsList.forEach((mutation) => {
-			if (mutation.type === 'childList') {
-				const targetNode = document.querySelector(
-					'#select2-billing_city-container'
-				);
-				if (targetNode) {
-					addCountryPlaceholder();
-					addCityPlaceholder();
-					targetNode.addEventListener('click', function () {
-						addSomeClassToCitySelect();
-					});
-				}
-			}
-		});
+	const initSelectPlaceholders = () => {
+		const targetNode = document.querySelector(
+			'#select2-billing_city-container'
+		);
+		if (!targetNode) return;
+
+		addCountryPlaceholder();
+		setSearchPlaceholder();
+		addSomeClassToCitySelect();
 	};
 
-	// Создаем MutationObserver
-	const observer = new MutationObserver(callback);
-
-	// Настройки для отслеживания добавлений и удалений элементов
-	const config = { childList: true, subtree: true };
-
-	// Начинаем наблюдение за изменениями в родительском элементе или документе
-	observer.observe(parentNode, config);
+	initSelectPlaceholders();
+	jQuery(document.body).on('updated_checkout', initSelectPlaceholders);
+	jQuery(document).on('select2:open', '#billing_city, #billing_country', initSelectPlaceholders);
 });
