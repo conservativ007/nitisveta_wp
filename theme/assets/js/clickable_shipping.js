@@ -14,8 +14,6 @@ document.addEventListener('DOMContentLoaded', function () {
 		}
 	};
 
-	let flag = true;
-
 	const initClickableShipping = () => {
 		const targetNode = document.querySelector('#shipping_method');
 		if (!targetNode) return;
@@ -28,11 +26,6 @@ document.addEventListener('DOMContentLoaded', function () {
 			if (!li.dataset.clickableShippingBound) {
 				li.dataset.clickableShippingBound = 'true';
 				li.addEventListener('click', test);
-			}
-
-			if (index === 1 && flag === true) {
-				li.click();
-				flag = false;
 			}
 
 			let firstChild = li.querySelector('input[type="hidden"]');

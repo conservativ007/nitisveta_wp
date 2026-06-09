@@ -561,6 +561,32 @@ function custom_shipping_label($label, $method)
     return $label;
 }
 
+add_filter('woocommerce_shipping_chosen_method', 'nitisveta_default_cdek_pickup_shipping', 10, 2);
+
+function nitisveta_default_cdek_pickup_shipping($chosen_method, $available_methods)
+{
+    $pickup_method = 'official_cdek:136';
+    $courier_method = 'official_cdek:137';
+
+    if (!isset($available_methods[$pickup_method], $available_methods[$courier_method])) {
+        return $chosen_method;
+    }
+
+    $posted_shipping_methods = isset($_POST['shipping_method']) && is_array($_POST['shipping_method'])
+        ? wc_clean(wp_unslash($_POST['shipping_method']))
+        : [];
+
+    if (!empty($posted_shipping_methods)) {
+        return $chosen_method;
+    }
+
+    if (!$chosen_method || $chosen_method === $courier_method) {
+        return $pickup_method;
+    }
+
+    return $chosen_method;
+}
+
 // add_action('woocommerce_thankyou', 'redirectcustom');
 
 function redirectcustom($order_id)
