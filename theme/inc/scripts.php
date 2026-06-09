@@ -48,112 +48,104 @@ function nitisveta_scripts()
     );
 
     wp_enqueue_script(
-      'select2-settings',
-      get_template_directory_uri() . '/assets/js/select2-settings.js',
-      ['jquery', 'select2-js'],
-      null,
-      true
-    );
-
-    // rotate arrow in (cities and countries) for the select2
-    wp_enqueue_script(
-      'country_city_selector',
-      get_template_directory_uri() . '/assets/js/country_city_selector.js',
+      'checkout-select2-settings',
+      get_template_directory_uri() . '/assets/js/checkout-select2-settings.js',
       ['jquery', 'select2-js'],
       null,
       true
     );
 
     wp_enqueue_script(
-      'update_cdek_fields',
-      get_template_directory_uri() . '/assets/js/update_cdek_fields.js',
+      'checkout-city-select',
+      get_template_directory_uri() . '/assets/js/checkout-city-select.js',
+      ['jquery', 'select2-js'],
+      null,
+      true
+    );
+
+    wp_enqueue_script(
+      'cdek-shipping-labels',
+      get_template_directory_uri() . '/assets/js/cdek-shipping-labels.js',
       ['jquery'],
       null,
       true
     );
 
     wp_enqueue_script(
-      'woocommerce_checkout_fields',
-      get_template_directory_uri() . '/assets/js/woocommerce_checkout_fields.js',
+      'cdek-pickup-notice',
+      get_template_directory_uri() . '/assets/js/cdek-pickup-notice.js',
       ['jquery'],
       null,
       true
     );
 
-    // кликабельные плашки в методах доставки СДЕК
     wp_enqueue_script(
-      'clickable_shipping',
-      get_template_directory_uri() . '/assets/js/clickable_shipping.js',
+      'checkout-shipping-cards',
+      get_template_directory_uri() . '/assets/js/checkout-shipping-cards.js',
       ['jquery'],
       null,
       true
     );
 
-    // проверка после того как нажата кнопка "Оплатить картой или через СБП по QR коду"
     wp_enqueue_script(
-      'checkout_payment',
-      get_template_directory_uri() . '/assets/js/checkout_payment.js',
+      'checkout-place-order-validation',
+      get_template_directory_uri() . '/assets/js/checkout-place-order-validation.js',
       ['jquery', 'toast-helper'],
       null,
       true
     );
 
-    // shippingObserver
     wp_enqueue_script(
-      'shippingObserver',
-      get_template_directory_uri() . '/assets/js/shippingObserver.js',
-      ['jquery'],
-      null,
-      true
-    );
-
-    // waiting for the #shipping_method block to appear,
-    // clones #billing_address_1_field into the first <li> inside this block,
-    // and cleans up the clone's style.
-    wp_enqueue_script(
-      'clone-billing-field-on-shipping',
-      get_template_directory_uri() . '/assets/js/clone-billing-field-on-shipping.js',
+      'cdek-courier-address-toggle',
+      get_template_directory_uri() . '/assets/js/cdek-courier-address-toggle.js',
       ['jquery'],
       null,
       true
     );
 
     wp_enqueue_script(
-      'translate_country_options',
-      get_template_directory_uri() . '/assets/js/translate_country_options.js',
+      'cdek-courier-address-field',
+      get_template_directory_uri() . '/assets/js/cdek-courier-address-field.js',
       ['jquery'],
       null,
       true
     );
 
     wp_enqueue_script(
-      'custom-city-select-placeholder',
-      get_template_directory_uri() . '/assets/js/custom-city-select-placeholder.js',
-      ['jquery'],
-      null,
-      true
-    );
-
-    // translated the some woocommerce notifies
-    wp_enqueue_script(
-      'woo-notice-translate',
-      get_stylesheet_directory_uri() . '/assets/js/woo-notice-translate.js',
+      'checkout-country-labels',
+      get_template_directory_uri() . '/assets/js/checkout-country-labels.js',
       ['jquery'],
       null,
       true
     );
 
     wp_enqueue_script(
-      'billing-city-placeholder',
-      get_stylesheet_directory_uri() . '/assets/js/billing-city-placeholder.js',
+      'checkout-select2-placeholders',
+      get_template_directory_uri() . '/assets/js/checkout-select2-placeholders.js',
       ['jquery'],
       null,
       true
     );
 
     wp_enqueue_script(
-      'checkout-city-toggle-button',
-      get_stylesheet_directory_uri() . '/assets/js/checkout-city-toggle-button.js',
+      'checkout-notice-translations',
+      get_stylesheet_directory_uri() . '/assets/js/checkout-notice-translations.js',
+      ['jquery'],
+      null,
+      true
+    );
+
+    wp_enqueue_script(
+      'checkout-city-placeholder',
+      get_stylesheet_directory_uri() . '/assets/js/checkout-city-placeholder.js',
+      ['jquery'],
+      null,
+      true
+    );
+
+    wp_enqueue_script(
+      'checkout-city-submit-toggle',
+      get_stylesheet_directory_uri() . '/assets/js/checkout-city-submit-toggle.js',
       ['jquery'],
       null,
       true

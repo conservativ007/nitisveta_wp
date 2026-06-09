@@ -388,8 +388,7 @@ function customize_woo_checkout_fields($fields)
     $cities_by_country = get_cities_by_country();
 
     // pass the array of cities to JS file
-    wp_localize_script('country_city_selector', 'citiesData', $cities_by_country);
-    wp_localize_script('country_city_selector2', 'citiesData', $cities_by_country);
+    wp_localize_script('checkout-city-select', 'citiesData', $cities_by_country);
 
     // Плейсхолдер списка городов
     $fields['billing']['billing_city'] = [
