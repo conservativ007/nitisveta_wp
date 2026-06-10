@@ -34,7 +34,8 @@ document.addEventListener('DOMContentLoaded', function () {
 				firstChild.nodeType === 1 && // проверка, что это элемент (не текст)
 				firstChild.tagName === 'INPUT' &&
 				firstChild.type === 'hidden' &&
-				newItems.length < 2
+				newItems.length < 2 &&
+				firstChild.value !== 'nitisveta_yandex_pickup'
 			) {
 				const shippingTable = document.querySelector(
 					'.my-custom-shipping-table'

@@ -200,6 +200,6 @@ document.addEventListener('DOMContentLoaded', async function () {
 				updateCities();
 			});
 
-		$(document).off('change', '#billing_city');
+		$(document).off('change.customCitySelect', '#billing_city');
 	});
 });
