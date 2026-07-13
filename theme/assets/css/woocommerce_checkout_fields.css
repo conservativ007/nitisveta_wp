@@ -149,6 +149,10 @@
 	#shipping_method li:nth-child(2) {
 		padding-bottom: 2rem;
 	}
+
+	.woocommerce-shipping-methods li.nitisveta-yandex-pickup-shipping-method {
+		padding-bottom: 2rem !important;
+	}
 }
 
 #select2-billing_country-container {
@@ -256,7 +260,7 @@
 	opacity: 0;
 }
 
-#billing_city_field::before {
+#billing_city_field:not(.has-city)::before {
 	content: "Обязательно для заполнения *";
 	color: #ef3343;
 	position: absolute;

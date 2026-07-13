@@ -80,6 +80,14 @@ document.addEventListener('DOMContentLoaded', async function () {
 		}, 500);
 	}
 
+	function toggleCityRequiredHint() {
+		const cityField = document.querySelector('#billing_city_field');
+		const cityValue = String(jQuery('#billing_city').val() || '').trim().toLowerCase();
+		if (cityField) {
+			cityField.classList.toggle('has-city', cityValue !== '' && cityValue !== 'город');
+		}
+	}
+
 	function initCitySelect2() {
 		const selectedCountry = countrySelect.value;
 
@@ -146,6 +154,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
 				// Устанавливаем значение явно
 				jQuery(this).val(selectedCity).trigger('change.select2');
+				toggleCityRequiredHint();
 
 				// Триггерим обновление checkout
 				triggerCheckoutUpdate();
@@ -160,7 +169,10 @@ document.addEventListener('DOMContentLoaded', async function () {
 					lastSelectedCity = cityValue;
 					// console.log('Город изменен на:', cityValue);
 				}
+				toggleCityRequiredHint();
 			});
+
+		toggleCityRequiredHint();
 	}
 
 	function updateCities() {
@@ -188,10 +200,12 @@ document.addEventListener('DOMContentLoaded', async function () {
 
 			citySelect.dispatchEvent(new Event('change'));
 			initCitySelect2();
+			toggleCityRequiredHint();
 		}
 	}
 
 	updateCities();
+	toggleCityRequiredHint();
 
 	jQuery(document).ready(function ($) {
 		$('#billing_country')

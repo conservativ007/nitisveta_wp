@@ -455,6 +455,10 @@ add_filter('woocommerce_return_to_shop_text', function ($text) {
 });
 
 add_filter('gettext', function ($translated_text, $text, $domain) {
+    if ($domain !== 'woocommerce') {
+        return $translated_text;
+    }
+
     // Перевод "Checkout is not available whilst your cart is empty."
     if ('Checkout is not available whilst your cart is empty.' === $text) {
         return 'Оформление заказа недоступно, пока ваша корзина пуста.';
@@ -466,6 +470,21 @@ add_filter('gettext', function ($translated_text, $text, $domain) {
     // Перевод "Return to shop"
     if ('Return to shop' === $text) {
         return 'Вернуться в магазин';
+    }
+    if ('%s has been added to your cart.' === $text) {
+        return '%s добавлен в корзину.';
+    }
+    if ('%s have been added to your cart.' === $text) {
+        return '%s добавлены в корзину.';
+    }
+    if ('%s removed.' === $text) {
+        return '%s удалён из корзины.';
+    }
+    if ('Undo?' === $text) {
+        return 'Отменить?';
+    }
+    if ('Cart updated.' === $text) {
+        return 'Корзина обновлена.';
     }
     return $translated_text;
 }, 10, 3);
