@@ -1,8 +1,6 @@
-document.addEventListener('DOMContentLoaded', async function () {
+document.addEventListener('DOMContentLoaded', function () {
 	const countrySelect = document.querySelector('#billing_country');
 	const citySelect = document.querySelector('#billing_city');
-	let allRussianCities = [];
-	let ruCitiesLoaded = false;
 	let updateCheckoutTimeout = null;
 	let lastSelectedCity = ''; // Сохраняем последний выбранный город
 
@@ -38,38 +36,6 @@ document.addEventListener('DOMContentLoaded', async function () {
 		}
 	});
 
-	async function loadAllRussianCities() {
-		if (ruCitiesLoaded) return;
-
-		const cached = localStorage.getItem('russianCitiesCache');
-		if (cached) {
-			try {
-				allRussianCities = JSON.parse(cached);
-				ruCitiesLoaded = true;
-				return;
-			} catch (error) {
-				console.warn(
-					'Ошибка парсинга localStorage, загружаем заново...'
-				);
-			}
-		}
-
-		try {
-			const res = await fetch('/wp-json/custom/v1/cities');
-			if (!res.ok) throw new Error('Ошибка загрузки городов России');
-			const data = await res.json();
-			allRussianCities = data;
-			ruCitiesLoaded = true;
-			localStorage.setItem('russianCitiesCache', JSON.stringify(data));
-		} catch (error) {
-			console.error('Ошибка загрузки JSON:', error);
-		}
-	}
-
-	if (countrySelect?.value === 'RU') {
-		await loadAllRussianCities();
-	}
-
 	function triggerCheckoutUpdate() {
 		if (updateCheckoutTimeout) {
 			clearTimeout(updateCheckoutTimeout);
@@ -104,33 +70,12 @@ document.addEventListener('DOMContentLoaded', async function () {
 
 		if (selectedCountry === 'RU') {
 			options.ajax = {
-				transport: async function (params, success, failure) {
-					await loadAllRussianCities();
-					const term = params.data.q?.toLowerCase() || '';
-					let filteredCities = allRussianCities.filter((city) => {
-						return city.name.toLowerCase().includes(term);
-					});
-
-					if (!term) {
-						filteredCities = filteredCities
-							.filter((city) => city.population)
-							.sort((a, b) => b.population - a.population);
-					}
-
-					let results = filteredCities.slice(0, 50).map((city) => {
-						if (city.isDualName) {
-							let text = `${city.name} ${city.region.name} ${city.region.typeShort}`;
-							return {
-								id: city.name,
-								text,
-							};
-						}
-						return { id: city.name, text: city.name };
-					});
-
-					success({ results });
-				},
+				url: '/wp-json/custom/v1/cities',
+				dataType: 'json',
 				delay: 300,
+				data: (params) => ({ q: params.term || '' }),
+				processResults: (results) => ({ results }),
+				cache: true,
 			};
 		}
 

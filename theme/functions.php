@@ -10,6 +10,7 @@
 $inc_path = get_template_directory() . '/inc/';
 //  custom scripts
 require_once $inc_path . 'scripts.php';
+require_once $inc_path . 'cities.php';
 
 // require_once $inc_path . 'woocommerce/order-statuses.php';
 
@@ -781,10 +782,25 @@ function nitisveta_get_russia_cities()
 add_action('rest_api_init', function () {
     register_rest_route('custom/v1', '/cities', [
         'methods' => 'GET',
-        'callback' => function () {
-            return rest_ensure_response(nitisveta_get_russia_cities());
+        'callback' => function (WP_REST_Request $request) {
+            $cities = nitisveta_get_russia_cities();
+
+            if (is_wp_error($cities)) {
+                return $cities;
+            }
+
+            return rest_ensure_response(nitisveta_search_russia_cities($cities, $request->get_param('q')));
         },
-        'permission_callback' => '__return_true'
+        'permission_callback' => '__return_true',
+        'args' => [
+            'q' => [
+                'default' => '',
+                'sanitize_callback' => 'sanitize_text_field',
+                'validate_callback' => function ($value) {
+                    return is_string($value) && strlen($value) <= 200;
+                },
+            ],
+        ],
     ]);
 });
 
