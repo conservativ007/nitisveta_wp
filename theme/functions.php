@@ -752,9 +752,9 @@ function nitisveta_get_russia_cities()
     $cached = get_transient($cache_key);
 
     if (
-        is_array($cached)
-        && isset($cached['mtime'], $cached['data'])
-        && (int) $cached['mtime'] === (int) $file_mtime
+        is_array($cached) &&
+        isset($cached['mtime'], $cached['data']) &&
+        (int) $cached['mtime'] === (int) $file_mtime
     ) {
         return $cached['data'];
     }
@@ -814,4 +814,60 @@ function custom_clear_cart_on_custom_thankyou()
             WC()->cart->empty_cart();
         }
     }
+}
+
+// Временное закрытие магазина: сменить на false, чтобы снова принимать заказы.
+const NITISVETA_STORE_CLOSED = true;
+const NITISVETA_STORE_CLOSED_MESSAGE = 'Магазин временно закрыт на 1 неделю';
+
+if (NITISVETA_STORE_CLOSED) {
+    add_filter('woocommerce_is_purchasable', '__return_false', 999);
+    add_filter('woocommerce_variation_is_purchasable', '__return_false', 999);
+
+    add_filter('woocommerce_add_to_cart_validation', function ($passed) {
+        wc_add_notice(NITISVETA_STORE_CLOSED_MESSAGE, 'error');
+        return false;
+    }, 999);
+
+    add_filter('woocommerce_order_button_text', function () {
+        return NITISVETA_STORE_CLOSED_MESSAGE;
+    }, 999);
+
+    add_filter('woocommerce_order_button_html', function ($html) {
+        return str_replace(
+            '<button ',
+            '<button disabled aria-disabled="true" ',
+            $html
+        );
+    }, 999);
+
+    add_action('woocommerce_checkout_process', function () {
+        wc_add_notice(NITISVETA_STORE_CLOSED_MESSAGE, 'error');
+    }, 999);
+
+    add_action('wp_head', function () {
+        echo '<style>.add_to_cart_button,.single_add_to_cart_button,.custom-button-add-to-cart,button[name="add-to-cart"]{display:none!important}#place_order[disabled]{cursor:not-allowed;opacity:.55}</style>';
+    });
+
+    add_action('wp_footer', function () {
+        if (!is_checkout()) {
+            return;
+        }
+?>
+<script>
+(() => {
+  const closeCheckout = () => {
+    const button = document.querySelector('#place_order');
+    if (!button) return;
+    button.disabled = true;
+    button.setAttribute('aria-disabled', 'true');
+    button.textContent = <?php echo wp_json_encode(NITISVETA_STORE_CLOSED_MESSAGE); ?>;
+    button.value = <?php echo wp_json_encode(NITISVETA_STORE_CLOSED_MESSAGE); ?>;
+  };
+  closeCheckout();
+  jQuery(document.body).on('updated_checkout', closeCheckout);
+})();
+</script>
+<?php
+    }, 999);
 }

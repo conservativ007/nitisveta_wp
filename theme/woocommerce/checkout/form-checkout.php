@@ -15,17 +15,16 @@
  * @package WooCommerce\Templates
  * @version 3.5.0
  */
-
 if (!defined('ABSPATH')) {
-    exit;
+	exit;
 }
 
 do_action('woocommerce_before_checkout_form', $checkout);
 
 // If checkout registration is disabled and not logged in, the user cannot checkout.
 if (!$checkout->is_registration_enabled() && $checkout->is_registration_required() && !is_user_logged_in()) {
-    echo esc_html(apply_filters('woocommerce_checkout_must_be_logged_in_message', __('You must be logged in to checkout.', 'woocommerce')));
-    return;
+	echo esc_html(apply_filters('woocommerce_checkout_must_be_logged_in_message', __('You must be logged in to checkout.', 'woocommerce')));
+	return;
 }
 
 ?>
@@ -40,38 +39,44 @@ if (!$checkout->is_registration_enabled() && $checkout->is_registration_required
 
 <form name="checkout" method="post" class="checkout woocommerce-checkout max-lg:px-[10px]" action="<?php echo esc_url(wc_get_checkout_url()); ?>" enctype="multipart/form-data">
 
-	<?php if ($checkout->get_checkout_fields()) : ?>
+  <?php if ($checkout->get_checkout_fields()): ?>
 
-		<?php do_action('woocommerce_checkout_before_customer_details'); ?>
+  <?php do_action('woocommerce_checkout_before_customer_details'); ?>
 
-		<div class="bg-white p-3 lg:p-7 shadow grid gap-y-3 lg:gap-x-3 grid-cols-1" id="customer_details">
-			<?php do_action('woocommerce_checkout_billing'); ?>
-			<?php do_action('woocommerce_checkout_shipping'); ?>
-		</div>
+  <div class="bg-white p-3 lg:p-7 shadow grid gap-y-3 lg:gap-x-3 grid-cols-1" id="customer_details">
+    <?php do_action('woocommerce_checkout_billing'); ?>
+    <?php do_action('woocommerce_checkout_shipping'); ?>
+  </div>
 
-		<?php if (WC()->cart->needs_shipping() && WC()->cart->show_shipping()) : ?>
-			<?php do_action('woocommerce_review_order_before_shipping'); ?>
-			<div class="my-custom-shipping-table">
-				<?php wc_cart_totals_shipping_html(); ?>
-			</div>
-			<?php do_action('woocommerce_review_order_after_shipping'); ?>
-		<?php endif; ?>
+  <?php if (defined('NITISVETA_STORE_CLOSED') && NITISVETA_STORE_CLOSED): ?>
+  <div class="mt-8">
+    <?php get_template_part('template-parts/blocks/store-closed-banner'); ?>
+  </div>
+  <?php endif; ?>
 
-		<?php do_action('woocommerce_checkout_after_customer_details'); ?>
+  <?php if (WC()->cart->needs_shipping() && WC()->cart->show_shipping()): ?>
+  <?php do_action('woocommerce_review_order_before_shipping'); ?>
+  <div class="my-custom-shipping-table">
+    <?php wc_cart_totals_shipping_html(); ?>
+  </div>
+  <?php do_action('woocommerce_review_order_after_shipping'); ?>
+  <?php endif; ?>
 
-	<?php endif; ?>
+  <?php do_action('woocommerce_checkout_after_customer_details'); ?>
 
-	<?php do_action('woocommerce_checkout_before_order_review_heading'); ?>
+  <?php endif; ?>
 
-	<?php do_action('woocommerce_checkout_before_order_review'); ?>
+  <?php do_action('woocommerce_checkout_before_order_review_heading'); ?>
 
-	<div id="order_review" class="woocommerce-checkout-review-order">
-		<?php do_action('woocommerce_checkout_order_review'); ?>
-	</div>
+  <?php do_action('woocommerce_checkout_before_order_review'); ?>
 
-	<?php do_action('woocommerce_checkout_after_order_review'); ?>
+  <div id="order_review" class="woocommerce-checkout-review-order">
+    <?php do_action('woocommerce_checkout_order_review'); ?>
+  </div>
 
-	<span class="block text-sm text-gray text-center -mt-6">Нажимая я соглашаюсь на обработку персональных данных и принимаю публичную оферту</span>
+  <?php do_action('woocommerce_checkout_after_order_review'); ?>
+
+  <span class="block text-sm text-gray text-center -mt-6">Нажимая я соглашаюсь на обработку персональных данных и принимаю публичную оферту</span>
 
 </form>
 

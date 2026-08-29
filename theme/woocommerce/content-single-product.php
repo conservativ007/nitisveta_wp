@@ -42,6 +42,11 @@ if ('да' === strtolower($ucenennyj_value)) {
 <div class="container xl:mt-6">
   <!-- <p class="text-[30px]">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolore, quaerat autem. Labore soluta, nobis illum autem praesentium exercitationem dolor illo atque ipsum in? Reiciendis maxime at sed quo, soluta modi.</p> -->
   <div id="product-<?php the_ID(); ?>" <?php wc_product_class('xl:grid grid-cols-1 xl:grid-cols-7 xl:gap-3', $product); ?>>
+    <?php if (defined('NITISVETA_STORE_CLOSED') && NITISVETA_STORE_CLOSED): ?>
+      <div class="mb-3" style="grid-column:1/-1">
+        <?php get_template_part('template-parts/blocks/store-closed-banner'); ?>
+      </div>
+    <?php endif; ?>
 
     <div class="single-product-gallery-wrapper w-full col-span-4 xl:col-span-3 px-0">
 
