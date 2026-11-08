@@ -147,7 +147,7 @@ function nitisveta_scripts()
       'checkout-city-submit-toggle',
       get_stylesheet_directory_uri() . '/assets/js/checkout-city-submit-toggle.js',
       ['jquery'],
-      null,
+      filemtime(get_stylesheet_directory() . '/assets/js/checkout-city-submit-toggle.js'),
       true
     );
 

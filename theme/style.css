@@ -1173,9 +1173,137 @@ span.select2-selection.select2-selection--single{
   margin-bottom: 2.5rem;
 }
 
-.wc_payment_methods,
-.woocommerce-terms-and-conditions-wrapper{
+.wc_payment_methods {
   display: none;
+}
+
+.woocommerce-terms-and-conditions-wrapper {
+  display: block;
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  text-align: left;
+}
+
+.woocommerce-terms-and-conditions-wrapper .woocommerce-privacy-policy-text {
+  display: none;
+}
+
+.woocommerce-terms-and-conditions-wrapper .form-row {
+  margin: 0;
+  padding: 0;
+}
+
+.woocommerce-terms-and-conditions-wrapper label {
+  display: block !important;
+  align-items: flex-start;
+  cursor: pointer;
+}
+
+.woocommerce-terms-and-conditions-wrapper input[type="checkbox"] {
+  position: absolute;
+  width: 1px !important;
+  height: 1px !important;
+  margin: 0 !important;
+  opacity: 0;
+}
+
+.woocommerce-terms-and-conditions-wrapper
+  .woocommerce-terms-and-conditions-checkbox-text {
+  display: block !important;
+  padding: 5px;
+}
+
+.nitisveta-consent-copy {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  column-gap: 0.25rem;
+  row-gap: 0.35rem;
+}
+
+.nitisveta-consent-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.nitisveta-consent-text::before {
+  content: "";
+  flex: none;
+  width: 1.75rem;
+  height: 1.75rem;
+  border: 1px solid #d4d4d8;
+  border-radius: 50%;
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  transition: border-color 0.2s ease;
+}
+
+.woocommerce-terms-and-conditions-wrapper
+  label:hover
+  input:not(:checked)
+  + .woocommerce-terms-and-conditions-checkbox-text
+  .nitisveta-consent-text::before {
+  border-color: #ef3343;
+}
+
+.woocommerce-terms-and-conditions-wrapper
+  input[type="checkbox"]:focus-visible
+  + .woocommerce-terms-and-conditions-checkbox-text
+  .nitisveta-consent-text::before {
+  outline: 2px solid #ef3343;
+  outline-offset: 3px;
+}
+
+.woocommerce-terms-and-conditions-wrapper
+  input[type="checkbox"]:checked
+  + .woocommerce-terms-and-conditions-checkbox-text
+  .nitisveta-consent-text::before {
+  border-color: transparent;
+  background-image: url("/wp-content/themes/nitisveta/theme/images/check-transparent.svg");
+}
+
+.woocommerce-terms-and-conditions-wrapper a {
+  color: #ef3343;
+  text-decoration: underline;
+}
+
+.woocommerce-terms-and-conditions-wrapper label > abbr.required {
+  display: none;
+}
+
+.nitisveta-consent-copy > a::after {
+  content: " *";
+}
+
+@media (max-width: 767px) {
+  .nitisveta-consent-copy {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+  }
+
+  .nitisveta-consent-text {
+    font-size: 0.75rem;
+    white-space: nowrap;
+  }
+
+  .nitisveta-consent-copy > a {
+    margin-left: 0;
+    font-size: 0.68rem;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 340px) {
+  .nitisveta-consent-text,
+  .nitisveta-consent-copy > a {
+    font-size: 0.65rem;
+    white-space: normal;
+  }
 }
 
 .woocommerce-shipping-totals th {
@@ -4230,10 +4358,6 @@ ul#ui-id-1 {
   padding: 0px;
 }
 
-.p-1{
-  padding: 0.25rem;
-}
-
 .p-2{
   padding: 0.5rem;
 }
@@ -4252,6 +4376,10 @@ ul#ui-id-1 {
 
 .p-7{
   padding: 1.75rem;
+}
+
+.p-1{
+  padding: 0.25rem;
 }
 
 .px-0{

@@ -54,6 +54,9 @@ if (!$checkout->is_registration_enabled() && $checkout->is_registration_required
   </div>
   <?php endif; ?>
 
+
+
+
   <?php if (WC()->cart->needs_shipping() && WC()->cart->show_shipping()): ?>
   <?php do_action('woocommerce_review_order_before_shipping'); ?>
   <div class="my-custom-shipping-table">
@@ -75,8 +78,6 @@ if (!$checkout->is_registration_enabled() && $checkout->is_registration_required
   </div>
 
   <?php do_action('woocommerce_checkout_after_order_review'); ?>
-
-  <span class="block text-sm text-gray text-center -mt-6">Нажимая я соглашаюсь на обработку персональных данных и принимаю публичную оферту</span>
 
 </form>
 
